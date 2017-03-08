@@ -1,0 +1,11 @@
+<orientadores>
+    <div class="col-md-12">
+        <div ng-repeat="aluno in data.alunos | filter : query">
+            <div class="col-md-4">
+                <div ba-panel ba-panel-title="Aluno - {{aluno.curso}}" ba-panel-class="with-scroll">
+                    <div ng-include="'app/pages/componentes/contato-aluno.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</orientadores>

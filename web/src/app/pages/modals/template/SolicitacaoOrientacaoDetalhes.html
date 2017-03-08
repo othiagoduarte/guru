@@ -1,0 +1,31 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">Solicitação de orientação</h4>
+  </div>
+  <div class="modal-body">
+   <form  class="col-md-12">
+      <div class="form-group col-md-12">
+        <label for="textarea01">Título do projeto</label>
+        <input disabled type="text" class="form-control input-lg" ng-model = "solicitacao.titulo">
+      </div>      
+      <div class="form-group col-md-6">
+        <label for="textarea01">Data de Solicitação</label>
+        <input disabled type="text" class="form-control input-lg" value="{{solicitacao.envio | date : 'dd/MM/yyyy'}}" >
+      </div>
+      <div class="form-group col-md-6">
+        <label for="textarea01">Status</label>
+        <input disabled type="text" class="form-control input-lg" value="{{traduzSolicitacao1(solicitacao.status)}}" >
+      </div>
+      <div class="form-group col-md-12">
+        <label for="textarea01">Resumo</label>
+        <textarea  disabled class="form-control" ng-model = "solicitacao.resumo" >{{solicitacao.resumo}}</textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="$dismiss()">OK</button>
+  </div>
+</div>

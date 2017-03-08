@@ -1,0 +1,13 @@
+(function () {
+  'use strict';
+
+  angular.module('BlurAdmin.pages.professor',modulos() );
+
+  function modulos(){
+      var modulos = [];
+     // modulos.push('BlurAdmin.pages.professor.agenda');
+      modulos.push('BlurAdmin.pages.professor.mensagens');
+      modulos.push('BlurAdmin.pages.professor.orientandos');
+      return modulos;
+  }
+})();

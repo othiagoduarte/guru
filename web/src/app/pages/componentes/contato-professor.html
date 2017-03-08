@@ -1,0 +1,28 @@
+<div class="row" >
+    <div class="xs-6 col-md-9">
+        <h3>{{professor.nome}}</h3>
+        <h6>{{professor.titulo}}</h6>
+    </div>
+    <div class="xs-6 col-md-3">
+        <div class="user-profile clearfix">
+            <div class="al-user-profile" uib-dropdown>
+                <img ng-src="{{::( professor.nome | profilePicture )}}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Row">
+    <div class="col-md-2">
+        <span>{{pontos_skills(professor)}}</span>        
+    </div>
+    <div class="col-md-5 col-md-offset-5">
+        <div class="button-wrapper">
+            <div ng-show="professor.disponivel">
+                <button type="button" class="btn btn-primary "  ng-click="solicitar(professor)">Solicitar</button>
+            </div>
+            <div ng-show=" ! professor.disponivel ">
+                <button type="button" class="btn btn-default" ng-click="EnviarMensagem(professor)">Mensagem</button>
+            </div>
+        </div>
+    </div>
+</div>

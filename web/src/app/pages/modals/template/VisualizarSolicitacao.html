@@ -1,0 +1,36 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">Solicitação de orientação</h4>
+  </div>
+  <div class="modal-body">
+   <form>
+      <div class="form-group">
+        <label class = "subtitulo-modal">Título do projeto</label>
+        <input type="text" disabled="true" required class="form-control input-lg" ng-model="data.solicitacao.titulo" placeholder="Informe o título do projeto">
+      </div>
+      <div class="form-group">
+        <label class = "subtitulo-modal">Resumo</label>
+        <textarea class="form-control"  disabled="true" required ng-model="data.solicitacao.resumo" placeholder="Faça um breve resumo do projeto. Fale sobre o problema, por que o problema é um problema e como o seu projeto irá ajudar no problema em questão."></textarea>
+      </div>
+      <div class="modal-footer">
+        <a type="button" class="btn btn-primary"  ng-click="VerProjeto(data.solicitacao.aluno)">Ver Projeto</a>
+      </div>
+       <div class="form-group">
+        <label class = "subtitulo-modal">Status</label>
+		    <select class="form-control"  disabled="true" title="Status" data-style="btn-inverse" ng-model="data.solicitacao.status" data-container="body" selectpicker
+			      ng-options="status.descricao for status in data.listStatus">
+        </select>
+      </div>
+      <div class="form-group">
+      	<label class = "subtitulo-modal">Resposta</label>
+        <textarea class="form-control"  disabled="true" required ng-model="data.solicitacao.resposta" placeholder="Informe a resposta sobre sobre a solicitação de orientação."></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="executar($dismiss)">Sair</button>
+  </div>
+</div>

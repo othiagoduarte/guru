@@ -1,0 +1,23 @@
+{
+  "name": "noexcell",
+  "description": "Aplicação para controle financeiro.",
+  "main": "server.js",
+  "authors": [
+    "Thiago Duarte"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/othiagoduarte/aps_pi2.git",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "/public/bowerModules"
+  ],
+  "dependencies": {
+    "materialize": "^0.97.6",
+    "jquery": "^2.2.3"
+  },
+  "private": true
+}

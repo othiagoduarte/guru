@@ -1,0 +1,93 @@
+<div>
+    <h3>Solicitação de Orientação</h3>
+</div>
+    <uib-accordion>
+    <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
+        <uib-accordion-heading>
+            Novas
+            <i class="fa pull-right ion-settings"></i>
+        </uib-accordion-heading>
+            <div class="horizontal-scroll">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>curso</th>   
+                        <th>Título</th>
+                        <th>Data da Resposta</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="solicitacao in data.solicitacoes | filter: filtrarSolicitacaoStatusEnviado"  ng-click ="responderSolicitacaoDetalhes(solicitacao)" >
+                        <td>{{solicitacao.aluno.nome}}</td>
+                        <td>{{solicitacao.aluno.curso}}</td>
+                        <td>{{solicitacao.titulo}}</td>   
+                        <td>{{solicitacao.dataResposta | date : 'dd/MM/yyyy'}}</td>
+                        <td>{{solicitacao.status.descricao}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </uib-accordion-group>
+    </uib-accordion>
+    <uib-accordion>
+    <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
+        <uib-accordion-heading>
+            Recusadas
+            <i class="fa pull-right ion-settings"></i>
+        </uib-accordion-heading>
+            <div class="horizontal-scroll">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>curso</th>   
+                        <th>Título</th>
+                        <th>Data da Resposta</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="solicitacao in data.solicitacoes | filter: filtrarSolicitacaoStatusRejeitado " ng-click ="visualizarSolicitacaoDetalhes(solicitacao)" >
+                        <td>{{solicitacao.aluno.nome}}</td>
+                        <td>{{solicitacao.aluno.curso}}</td>
+                        <td>{{solicitacao.titulo}}</td>   
+                        <td>{{solicitacao.dataResposta | date : 'dd/MM/yyyy'}}</td>
+                        <td>{{solicitacao.status.descricao}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </uib-accordion-group>
+    </uib-accordion>
+    <uib-accordion>
+        <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
+            <uib-accordion-heading>
+                Aceitas
+                <i class="fa pull-right ion-settings"></i>
+            </uib-accordion-heading>
+                <div class="horizontal-scroll">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>curso</th>   
+                            <th>Título</th>
+                            <th>Data da Resposta</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="solicitacao in data.solicitacoes | filter: filtrarSolicitacaoStatusAceito " ng-click ="visualizarSolicitacaoDetalhes(solicitacao)" >
+                            <td>{{solicitacao.aluno.nome}}</td>
+                            <td>{{solicitacao.aluno.curso}}</td>
+                            <td>{{solicitacao.titulo}}</td>   
+                            <td>{{solicitacao.dataResposta | date : 'dd/MM/yyyy'}}</td>
+                            <td>{{solicitacao.status.descricao}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </uib-accordion-group>
+    </uib-accordion>

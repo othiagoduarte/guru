@@ -1,0 +1,26 @@
+<div class="row" >
+    <div class="xs-6 col-md-9">
+        <h3>{{aluno.nome}}</h3>
+        <h6>{{aluno.titulo}}</h6>
+    </div>
+    <div class="xs-6 col-md-3">
+        <div class="user-profile clearfix">
+            <div class="al-user-profile" uib-dropdown>
+                <img ng-src="{{::( 'aluno' | profilePicture )}}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Row">
+    <div class="col-md-12 ">
+        <div class="button-wrapper">
+            <div class="col-md-4 "></div>
+            <div class="col-md-4 ">
+                <button type="button" class="btn btn-primary "  ng-click="EnviarMensagem(aluno)">Agenda</button>
+            </div>
+            <div class="col-md-4 ">
+                <button type="button" class="btn btn-primary " ng-click="VerProjeto(aluno)">Projeto</button>
+            </div>
+        </div>
+    </div>
+</div>
