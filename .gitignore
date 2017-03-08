@@ -54,3 +54,5 @@ web/release/public
 web/bower_components
 web/.tmp/serve
 web/.tmp/
+.vscode
+.vs
