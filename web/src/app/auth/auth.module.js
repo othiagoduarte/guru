@@ -3,25 +3,22 @@
 
   var app =  angular.module('BlurAdmin.auth', []);
   
-  app.service('$authService',authService);
+  app.factory('$authInterceptor',authInterceptor);
   
-  function authService(){
-    this.perfil = "ALUNO";
+ function authInterceptor ($location, $q,$window) {
+        
+        var interceptor = {
+    
+        responseError: function(resposta) {
+          if (resposta.status == 401) {
+              $window.location.href ="http://localhost:3000/auth.html";
+          }
+          return $q.reject(resposta);
+        }
+    }
+    
+    return interceptor;
+  
   }
-
-app.provider('unicornLauncher', function UnicornLauncherProvider() {
-  var useTinfoilShielding = false;
-
-  this.useTinfoilShielding = function(value) {
-    useTinfoilShielding = !!value;
-  };
-
-  this.$get = ["apiToken", function unicornLauncherFactory(apiToken) {
-
-    // let's assume that the UnicornLauncher constructor was also changed to
-    // accept and use the useTinfoilShielding argument
-    return new UnicornLauncher(apiToken, useTinfoilShielding);
-  }];
-});
 
 })();

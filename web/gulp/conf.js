@@ -13,7 +13,7 @@ var gutil = require('gulp-util');
  */
 exports.paths = {
   src: 'src',
-  dist: '../my-tcc-api/public',
+  dist: '../api/public',
   devDist: 'dev-release',
   tmp: '.tmp',
   e2e: 'e2e'

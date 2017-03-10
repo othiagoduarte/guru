@@ -23,7 +23,7 @@ module.exports = function(app)
 
 		Professor.find().exec()
 		.then(function(professores){
-			res.json(professores);
+			res.status(200).json(professores);
 		});
 			
 	};

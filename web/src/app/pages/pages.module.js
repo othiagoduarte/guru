@@ -2,16 +2,18 @@
   'use strict';
   var app = angular.module('BlurAdmin.pages',modulos()) .config(routeConfig);
   
-  function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-      $urlRouterProvider.otherwise('/agenda');  
-  }
+  function routeConfig($urlRouterProvider,$httpProvider, baSidebarServiceProvider) {
+      $urlRouterProvider.otherwise('/');  
+      $httpProvider.interceptors.push('$authInterceptor');
+ }
+
   /** @ngInject */
   function modulos($routeProvider){
     var mod = [];
     var perfil = "";
     /*perfil = "COORDENADOR";*/
-    //perfil = "ALUNO";
-    perfil = "PROFESSOR";
+    perfil = "ALUNO";
+    //perfil = "PROFESSOR";
     
     if (perfil == "ALUNO") {
       mod.push('BlurAdmin.pages.aluno');
