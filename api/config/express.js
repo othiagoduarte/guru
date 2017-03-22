@@ -45,6 +45,7 @@ module.exports = function()
 	load('models',{cwd: 'app'})
 	.then('controllers')
 	.then('routes')
+	.then('config/passaport')
 	.into(app);
 	
 	return app;

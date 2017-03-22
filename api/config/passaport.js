@@ -1,20 +1,34 @@
+var configAuth = require('./auth');
 var passport = require('passport');
-var GoogleStrategy = require('passport-google').Strategy;
+
+/*
+var LocalStrategy    = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var TwitterStrategy  = require('passport-twitter').Strategy;
+*/
+
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 module.exports = function() {
+
+    var Usuario = app.models.usuario;
        
     passport.serializeUser(function(user, done) {
-        done(null, user);
+        done(null, user.id);
     });
 
     passport.deserializeUser(function(obj, done) {
-        done(null, obj);  
+        Usuario.findById(id, function(err, user) {
+            done(err, user);
+        });
     });
     
     passport.use(new GoogleStrategy(
         {
-            returnURL: 'http://localhost:3000/auth/google/return',
-            realm: 'http://localhost:3000/'
+            clientID        : configAuth.googleAuth.clientID,
+            clientSecret    : configAuth.googleAuth.clientSecret,
+            callbackURL     : configAuth.googleAuth.callbackURL,
+
         },
         function(identifier, profile, done) {
         // asynchronous verification, for effect...
