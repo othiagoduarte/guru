@@ -6,4 +6,7 @@ module.exports = function(app)
 	app.get('/usuario', controller.getAll);
 	app.get('/usuario',controller.add);
 	app.get('/usuario',controller.save);
+	app.post('/usuario/login',controller.login);
+	app.post('/usuario/logout',controller.logout);
+
 };

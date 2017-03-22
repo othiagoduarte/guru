@@ -4,8 +4,9 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
-
-
+var expressSession = require('express-session');
+var LocalStrategy = require('passport-local').Strategy;
+	
 module.exports = function()
 {
 	var app = express();
@@ -21,20 +22,11 @@ module.exports = function()
 	app.use(bodyParser.urlencoded({extended: true}));
 	app.use(bodyParser.json());
 	app.use(require('method-override')());
-
-	app.use(cookieParser());
-
-	app.use(session(
-		{
-			secret: 'homem avestruz',
-			resave: true,
-			saveUninitialized: true
-		}
-	));
-
 	app.use(passport.initialize());
 	app.use(passport.session());
-	
+	app.use(cookieParser());
+	app.use(expressSession({secret: 'guru_db'}));
+
 	app.use(function(req, res, next){
 	  res.header("Access-Control-Allow-Origin", "*");
       res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
@@ -42,11 +34,16 @@ module.exports = function()
 	  next();   
 	});
 
+	var Account = require('../app/models/account.js');
+		
+	passport.use(new LocalStrategy(Account.authenticate()));
+	passport.serializeUser(Account.serializeUser());
+	passport.deserializeUser(Account.deserializeUser());
+	
 	load('models',{cwd: 'app'})
 	.then('controllers')
 	.then('routes')
-	.then('config/passaport')
 	.into(app);
-	
+		
 	return app;
 };
