@@ -16,8 +16,8 @@ exports.paths = {
   dist: '../api/public',
   devDist: 'dev-release',
   tmp: '.tmp',
-  e2e: 'e2e'
-};
+  e2e: 'e2e'};
+
 
 /**
  *  Wiredep is the lib which inject bower dependencies in your project

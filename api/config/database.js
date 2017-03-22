@@ -2,7 +2,17 @@ var mongoose = require('mongoose');
 
 module.exports = function(uri) {
     
-    mongoose.connect(uri);
+    //var urlDatabase = 'mongodb://othiaoduarte:tds071289@ds135790/gurudb';
+    
+    var urlDatabase = 'mongodb://master:master@ds135790.mlab.com:35790/gurudb';
+    
+    var options = {  db: { native_parser: true },
+					  server: { poolSize: 5 },
+					  user: 'othiagoduarte',
+					  pass: 'tds071289'
+					}
+					
+    mongoose.connect(urlDatabase);
     
     mongoose.connection.on('connected', function() {
         console.log('Mongoose! Conectado em ' + uri);

@@ -2,7 +2,7 @@ var express = require('express');
 var load = require('express-load');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
+
 var passport = require('passport');
 var expressSession = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
@@ -16,6 +16,8 @@ module.exports = function()
 
 	app.use(express.static('./public'));
 	
+	//app.use(express.static(__dirname + '/public'));
+	
 	app.set('view engine','ejs');
 	app.set('views','./app/views');
 	
@@ -27,6 +29,7 @@ module.exports = function()
 	app.use(cookieParser());
 	app.use(expressSession({secret: 'guru_db'}));
 
+	
 	app.use(function(req, res, next){
 	  res.header("Access-Control-Allow-Origin", "*");
       res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
@@ -34,16 +37,19 @@ module.exports = function()
 	  next();   
 	});
 
-	var Account = require('../app/models/account.js');
-		
-	passport.use(new LocalStrategy(Account.authenticate()));
-	passport.serializeUser(Account.serializeUser());
-	passport.deserializeUser(Account.deserializeUser());
+
 	
 	load('models',{cwd: 'app'})
 	.then('controllers')
 	.then('routes')
 	.into(app);
 		
+
+	var Account = require('../app/models/account.js');
+		
+	passport.use(new LocalStrategy(Account.authenticate()));
+	passport.serializeUser(Account.serializeUser());
+	passport.deserializeUser(Account.deserializeUser());
+	
 	return app;
 };
