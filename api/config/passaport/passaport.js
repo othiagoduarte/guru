@@ -1,9 +1,24 @@
-var configAuth = require('./auth');
-var passport = require('passport');
-var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-var LocalStrategy    = require('passport-local').Strategy;
 
-module.exports = function() {
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('../app/models/account.js');
+
+module.exports = function()
+{
+    passport.use(new LocalStrategy(
+      function(username, password, done) {
+        User.findOne({ username: username }, function (err, user) {
+          if (err) { return done(err); }
+          if (!user) {
+            return done(null, false, { message: 'Incorrect username.' });
+          }
+          if (!user.validPassword(password)) {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
+          return done(null, user);
+        });
+      }
+    ));
     
     passport.serializeUser(function(user, done) {
         done(null, user._id);
@@ -14,52 +29,6 @@ module.exports = function() {
             done(err, user);
         });
     });	
+
+    return  passport;
 }
-/*
-var LocalStrategy    = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
-var TwitterStrategy  = require('passport-twitter').Strategy;
-
-module.exports = function() {
-}      
-    passport.serializeUser(function(usuario, done) {
-        done(null, usuario._id);
-    });
-    
-    passport.deserializeUser(function(id, done) {
-        Usuario.findById(id).exec()
-        .then(function(usuario) {
-            done(null, usuario);
-        });
-    });
-    
-    passport.use(new GoogleStrategy(
-        {
-            clientID        : configAuth.googleAuth.clientID,
-            clientSecret    : configAuth.googleAuth.clientSecret,
-            callbackURL     : configAuth.googleAuth.callbackURL,
-
-        }, function(accessToken, refreshToken, profile, done) {
-        
-            Usuario.findOrCreate(
-                { "login" : profile.username},
-                { "nome" : profile.username},
-                    function(erro, usuario) {
-                        if(erro) {
-                            console.log(erro);
-                        return done(erro);
-                        }
-                        return done(null, usuario);
-                    }
-                );
-        }
-    ));
-
-    function ensureAuthenticated(req, res, next) {
-    
-        if (req.isAuthenticated()) { return next(); }
-            res.redirect('/login')
-    }
-};
-
-*/

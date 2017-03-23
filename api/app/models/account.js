@@ -1,13 +1,18 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    passportLocalMongoose = require('passport-local-mongoose'),
-    bcrypt = require('bcrypt-nodejs');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
+var bcrypt = require('bcrypt-nodejs');
 
-var Account = new Schema({
-    username: String,
-    password: String
-});
+module.exports = function() {
 
-Account.plugin(passportLocalMongoose);
+    var Account = new Schema({
+        username: String,
+        password: String
+    });
 
-module.exports = mongoose.model('account', Account);
+    Account.plugin(passportLocalMongoose);
+
+    return mongoose.model('Account', Account);
+    
+    
+};

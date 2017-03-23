@@ -4,10 +4,12 @@ module.exports = function (app) {
     
   var Account = app.models.account;    
   
+  
+/*
   app.get('/', function (req, res) {
       res.render('index', { user : req.user });
   });
-
+  */
   app.get('/register', function(req, res) {
       res.render('register', { });
   });
@@ -42,3 +44,4 @@ module.exports = function (app) {
   });
   
 };
+

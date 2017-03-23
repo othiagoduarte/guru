@@ -13,6 +13,7 @@
     "express-session": "^1.15.1",
     "method-override": "^2.3.7",
     "mongoose": "^4.8.5",
+    "mongoose-findorcreate": "^1.0.1",
     "nodemon": "^1.11.0",
     "passport": "^0.2.2",
     "passport-google": "^0.3.0",

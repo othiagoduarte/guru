@@ -2,11 +2,11 @@ var express = require('express');
 var load = require('express-load');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-
 var passport = require('passport');
 var expressSession = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
-	
+var Account = require('../app/models/account.js');	
+
 module.exports = function()
 {
 	var app = express();
@@ -15,8 +15,8 @@ module.exports = function()
 	app.set('port',process.env.PORT || 3008);
 
 	app.use(express.static('./public'));
-	
-	//app.use(express.static(__dirname + '/public'));
+	app.use(express.static(__dirname + '/public'));
+
 	
 	app.set('view engine','ejs');
 	app.set('views','./app/views');
@@ -37,19 +37,29 @@ module.exports = function()
 	  next();   
 	});
 
-
-	
 	load('models',{cwd: 'app'})
 	.then('controllers')
 	.then('routes')
 	.into(app);
-		
-
-	var Account = require('../app/models/account.js');
-		
-	passport.use(new LocalStrategy(Account.authenticate()));
-	passport.serializeUser(Account.serializeUser());
-	passport.deserializeUser(Account.deserializeUser());
 	
+	/*PASSAPORT - INICIO*/
+	passport.use(new LocalStrategy(
+		function(){
+			
+		}	
+	));
+	
+	passport.serializeUser(
+		function(user, done) {
+    		done(null, user._id);
+	});
+
+	passport.deserializeUser(function(id, done) {
+	    Account.findById(id, function(err, user) {
+	            done(err, user);
+	        });
+	    });	
+	/*PASSAPORT - FIM*/
+
 	return app;
 };
