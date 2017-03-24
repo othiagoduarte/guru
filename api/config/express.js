@@ -4,13 +4,13 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var expressSession = require('express-session');
-var LocalStrategy = require('passport-local').Strategy;
-var Account = require('../app/models/account.js');	
-
+var passaportGuru = require('./passport')
 module.exports = function()
 {
 	var app = express();
 	
+	app.passaportGuru = passaportGuru();
+
 	app.set('host',process.env.IP || "127.0.0.1");
 	app.set('port',process.env.PORT || 3008);
 
@@ -42,24 +42,5 @@ module.exports = function()
 	.then('routes')
 	.into(app);
 	
-	/*PASSAPORT - INICIO*/
-	passport.use(new LocalStrategy(
-		function(){
-			
-		}	
-	));
-	
-	passport.serializeUser(
-		function(user, done) {
-    		done(null, user._id);
-	});
-
-	passport.deserializeUser(function(id, done) {
-	    Account.findById(id, function(err, user) {
-	            done(err, user);
-	        });
-	    });	
-	/*PASSAPORT - FIM*/
-
 	return app;
 };

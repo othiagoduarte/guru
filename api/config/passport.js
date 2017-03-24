@@ -4,6 +4,16 @@ var User = require('../app/models/account.js');
 
 module.exports = function()
 {
+    
+    passport.isAuth = function(req, res, next) {
+	  return next();
+	  if (req.isAuthenticated()) {
+			return next();
+		} else {
+			res.status('401').json('Não autorizado');
+		}
+	}
+    
     passport.use(new LocalStrategy(
       function(username, password, done) {
         User.findOne({ username: username }, function (err, user) {
