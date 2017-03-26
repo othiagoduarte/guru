@@ -10,6 +10,13 @@ module.exports = function (app) {
       res.render('index', { user : req.user });
   });
   */
+  
+  app.get('/login', passport.authenticate('local'), function(req, res) {
+    
+      res.status(201).json({mensagem:"Logado"});
+
+  });
+  
   app.get('/register', function(req, res) {
       res.render('register', { });
   });
@@ -26,6 +33,7 @@ module.exports = function (app) {
       });
   });
 
+/*
   app.get('/login', function(req, res) {
       res.render('login', { user : req.user });
   });
@@ -42,6 +50,6 @@ module.exports = function (app) {
   app.get('/ping', function(req, res){
       res.send("pong!", 200);
   });
-  
+  */
 };
 

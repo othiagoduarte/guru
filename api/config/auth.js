@@ -1,22 +1,41 @@
-module.exports = {
-
-    /*
-    'facebookAuth' : {
-        'clientID'      : 'your-secret-clientID-here', // your App ID
-        'clientSecret'  : 'your-client-secret-here', // your App Secret
-        'callbackURL'   : 'http://localhost:8080/auth/facebook/callback'
-    },
-
-    'twitterAuth' : {
-        'consumerKey'       : 'your-consumer-key-here',
-        'consumerSecret'    : 'your-client-secret-here',
-        'callbackURL'       : 'http://localhost:8080/auth/twitter/callback'
-    },
-*/
-    'googleAuth' : {
-        'clientID'      : '397704523457-il7jqo6vumhvolemsd3mp49ncs4a2led.apps.googleusercontent.com',
-        'clientSecret'  : 'RXLdMSTQVm62Zsju5WqDB0U3',
-        'callbackURL'   : 'http://localhost:3008/auth/google/callback'
+// auth.js
+var passport = require("passport");
+var passportJWT = require("passport-jwt");
+var users = require("./users.js");
+var cfg = require("./config.js");
+var ExtractJwt = passportJWT.ExtractJwt;
+var Strategy = passportJWT.Strategy;
+var params = {
+  secretOrKey: cfg.jwtSecret,
+  jwtFromRequest: ExtractJwt.fromAuthHeader()
+};
+ 
+module.exports = function() {
+  var strategy = new Strategy(params, function(payload, done) {
+    console.log(params);
+    var user = users[payload.id] || null;
+    if (user) {
+      return done(null, {id: user.id});
+    } else {
+      return done(new Error("User not found"), null);
     }
+  });
+  passport.use(strategy);
 
+  passport.serializeUser(function( user, done ) {
+    done( null, user.id);
+  });
+
+  passport.deserializeUser(function( user, done ) {
+    done( null, user );
+  });
+  
+  return {
+    initialize: function() {
+      return passport.initialize();
+    },
+    authenticate: function() {
+      return passport.authenticate("jwt", cfg.jwtSession);
+    }
+  };
 };

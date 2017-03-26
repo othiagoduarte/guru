@@ -6,7 +6,8 @@ var app =  angular.module('BlurAdmin.data', []);
 app.service('$apiService',apiService);  
 
 function apiService($http){
-    var pUrlApi = "http://localhost:3008/" 
+    /*var pUrlApi = "http://localhost:3008/";*/ 
+    var pUrlApi = "https://guru-othiagoduarte.c9users.io/";
  
     this.aluno = Aluno(pUrlApi, $http);    
     this.contato = Contato(pUrlApi, $http);    
