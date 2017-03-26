@@ -8,13 +8,10 @@
  }
 
   /** @ngInject */
-  function modulos($routeProvider){
+  function modulos(){
     var mod = [];
-    var perfil = "";
-    /*perfil = "COORDENADOR";*/
-    perfil = "ALUNO";
-    //perfil = "PROFESSOR";
-    
+
+    var perfil = sessionStorage.perfil;
     if (perfil == "ALUNO") {
       mod.push('BlurAdmin.pages.aluno');
     }
