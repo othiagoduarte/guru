@@ -11,14 +11,14 @@
     
         responseError: function(resposta) {
           if (resposta.status == 401) {
-              $window.location.href ="http://localhost:3000/auth.html";
+              $window.location.href ="/auth.html";
           }
           return $q.reject(resposta);
         }
     }
     
     return interceptor;
-  
+    
   }
 
 })();

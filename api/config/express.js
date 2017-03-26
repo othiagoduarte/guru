@@ -4,13 +4,14 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var expressSession = require('express-session');
-var passaportGuru = require('./passport')
+var auth = require('./auth.js');
 module.exports = function()
 {
 	var app = express();
 	
-	app.passaportGuru = passaportGuru();
-
+		
+	app.passportGuru = auth(app);
+	
 	app.set('host',process.env.IP || "127.0.0.1");
 	app.set('port',process.env.PORT || 3008);
 
@@ -41,6 +42,6 @@ module.exports = function()
 	.then('controllers')
 	.then('routes')
 	.into(app);
-	
+
 	return app;
 };

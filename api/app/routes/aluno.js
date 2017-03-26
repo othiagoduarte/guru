@@ -1,7 +1,7 @@
 module.exports = function(app)
 {
 	var controller = app.controllers.aluno;
-	var auth = app.passaportGuru.isAuth;
+	var auth = app.passportGuru.authenticate();
 	
 	app.route('/aluno/:id')
 	.get(auth, controller.get);
@@ -11,7 +11,7 @@ module.exports = function(app)
 	
 	app.route('/aluno')
 	.get(auth, controller.getAll)
-	.post(auth,controller.add)
+	.post(auth, controller.add)
 	.put(auth, controller.save);
 
 };

@@ -1,25 +1,30 @@
-// auth.js
 var passport = require("passport");
 var passportJWT = require("passport-jwt");
-var users = require("./users.js");
-var cfg = require("./config.js");
+var cfg = { jwtSecret: "secret",jwtSession: {session: true}};
 var ExtractJwt = passportJWT.ExtractJwt;
 var Strategy = passportJWT.Strategy;
 var params = {
   secretOrKey: cfg.jwtSecret,
   jwtFromRequest: ExtractJwt.fromAuthHeader()
 };
- 
-module.exports = function() {
+
+var User = require('../app/models/user.js')();
+  
+module.exports = function(app) {
+  
+  
   var strategy = new Strategy(params, function(payload, done) {
-    console.log(params);
-    var user = users[payload.id] || null;
-    if (user) {
-      return done(null, {id: user.id});
-    } else {
-      return done(new Error("User not found"), null);
-    }
+
+    User.findOne({_id:payload.id})
+    .then(function(users){
+          return done(null, {id: users.id});
+      
+    },
+    function(erro){
+      return done(null, null);
+    });
   });
+  
   passport.use(strategy);
 
   passport.serializeUser(function( user, done ) {
