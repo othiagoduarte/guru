@@ -9,6 +9,32 @@ module.exports = function(app)
 	var controller = {};
 
     controller.login = login;
+    controller.getById = getById;
+    
+    function getById(req, res){
+        
+        if (req.params.id) {
+            var _id = req.params.id;
+            var where = {_id:_id}
+          
+            User.findOne(where)
+    	    .then(function(users){
+      	        
+      	        if(users){
+      			    res.json({user: users});
+      				
+      			}else{
+      				res.status(404).json({retorno:"Usuario não encontrado"});
+      			}
+    
+      		},function(erro){
+      			res.status(404).json({retorno:erro});
+      		});
+    
+        } else {
+            res.sendStatus(404);
+        }
+    }
 
     function login (req, res) {
 

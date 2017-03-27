@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+
 module.exports = function(app)
 {
 	var Aluno = app.models.aluno;		
@@ -8,6 +10,7 @@ module.exports = function(app)
 	controller.save = save; /*ATUALIZAR POR ID*/
 	controller.add = add;  	/*INSERIR NOVO*/
 	controller.getByMatricula = getByMatricula;	/*BUSCAR PELA MATRICULA*/
+	controller.getByUser = getByUser;
 	
 	function get (req, res) {	
 
@@ -33,6 +36,25 @@ module.exports = function(app)
 
 	};
 
+	function getByUser (req, res) {	
+		
+		var _user = req.params.user;
+		var where = {"user._id": mongoose.Types.ObjectId(_user)};
+
+		Aluno.findOne(where)
+		.then(function(alunos){
+			if(alunos){
+				res.status(200).jsonp(alunos);
+			}else{
+				res.status(404).json({retorno:"Não encontrado"});
+			}
+
+		},function(erro){
+			res.status(404).json(erro);
+		});
+
+	};
+	
 	function getAll (req, res) {
 		Aluno.find().exec()
 		.then(function(alunos){

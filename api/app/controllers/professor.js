@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 module.exports = function(app)
 {
 	var Professor = app.models.professor;		
@@ -7,7 +8,27 @@ module.exports = function(app)
 	controller.get = get; 		/*BUSCAR POR ID*/
 	controller.save = save; /*ATUALIZAR POR ID*/
 	controller.add = add;  	/*INSERIR NOVO*/
+	controller.getByUser = getByUser;
+	
+	function getByUser (req, res) {	
+		
+		var _user = req.params.user;
+		var where = {"user._id": mongoose.Types.ObjectId(_user)};
 
+		Professor.findOne(where)
+		.then(function(professores){
+			if(professores){
+				res.status(200).jsonp(professores);
+			}else{
+				res.status(404).json({retorno:"Não encontrado"});
+			}
+
+		},function(erro){
+			res.status(404).json(erro);
+		});
+
+	};
+	
 	function get (req, res) {	
 		
 		var _id = req.params.id;

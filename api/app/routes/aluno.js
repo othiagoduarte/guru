@@ -6,6 +6,9 @@ module.exports = function(app)
 	app.route('/aluno/:id')
 	.get(auth, controller.get);
 	
+	app.route('/aluno/getByUser/:user')
+	.get(auth, controller.getByUser);
+	
 	app.route('/aluno/byMatricula/:matricula')
 	.get(auth, controller.getByMatricula);
 	
