@@ -5,10 +5,11 @@ angular.module('BlurAdmin.pages.aluno.projeto')
 	.controller('ProjetoCtrl', ProjetoCtrl);
     
     /** @ngInject */
-    function ProjetoCtrl($scope,$apiService,$modalservice) {
+    function ProjetoCtrl($scope,$apiService,$modalservice,$window) {
       
       var bdProjeto = $apiService.projeto;
-      var _matricula = "631320232";
+      var _user = $window.sessionStorage.user;
+      
       $scope.data = {};
       $scope.data.usuario = {};
       $scope.data.projeto = null;
@@ -22,7 +23,7 @@ angular.module('BlurAdmin.pages.aluno.projeto')
           ,{descricao:"Testes",value:6}
       ];
 
-    $apiService.aluno.GetByMatricula(_matricula)
+    $apiService.aluno.GetByUser(_user)
     .then(function(aluno) {
         
         if(aluno){

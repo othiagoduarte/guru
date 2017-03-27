@@ -36,6 +36,9 @@ function Aluno(pUrlApi, $http){
       },
       GetByMatricula : function(pMatricula){
             return $http.get(pUrlApi + "/ByMatricula/" + pMatricula);
+      },
+      GetByUser : function(pUser){
+            return $http.get(pUrlApi + "/GetbyUser/" + pUser);
       }
   }
 }
@@ -46,8 +49,8 @@ function Contato(pUrlApi, $http){
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
   }
 }
@@ -58,8 +61,8 @@ function Coordenador(pUrlApi, $http){
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
   }
 }
@@ -70,8 +73,8 @@ function Curso(pUrlApi, $http){
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
   }
 }
@@ -82,8 +85,8 @@ function Entrega(pUrlApi, $http){
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
   }
 }
@@ -94,8 +97,8 @@ function Feedback(pUrlApi, $http){
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
   }
 }
@@ -106,8 +109,8 @@ function Orientacao(pUrlApi, $http){
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
   }
 }
@@ -133,8 +136,8 @@ function Projeto(pUrlApi, $http){
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
       Add: function(pData){
             return $http.post(pUrlApi, pData);  
@@ -156,7 +159,7 @@ function Skill(pUrlApi, $http){
             return $http.get(pUrlApi);            
       },
       Get : function(pId){
-            return $http.get(pUrlApi);            
+            return $http.get(pUrlApi + "/" + pId);            
       },
       Add: function(pData){
             return $http.post(pUrlApi, pData);  
@@ -170,8 +173,8 @@ function Solicitacao(pUrlApi, $http){
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
       Add: function(pData){
             return $http.post(pUrlApi, pData);  
@@ -183,25 +186,25 @@ function Solicitacao(pUrlApi, $http){
 }
 
 function Tarefa(pUrlApi, $http){
-  pUrlApi+= "solicitacao";
+  pUrlApi+= "Tarefa";
   return {
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
   }
 }
 
 function Usuario(pUrlApi, $http){
-  pUrlApi+= "solicitacao";
+  pUrlApi+= "Usuario";
   return {
       GetAll : function(pData){
             return $http.get(pUrlApi);            
       },
-      Get : function(id){
-            return $http.get(pUrlApi);            
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
       },
   }
 }

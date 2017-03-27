@@ -10,11 +10,6 @@ angular.module('BlurAdmin.pages.aluno.mensagens')
     	$scope.data = {};
 		$scope.traduzSolicitacao = traduzSolicitacao;
 		$scope.solicitacaoOrientacaoDetalhes = solicitacaoOrientacaoDetalhes;
-  		
-		$apiService.contato.GetAll()
-		.then(function(contatos){
-			$scope.data.contatos = contatos.data;
-		});
 		
 		$apiService.solicitacao.GetAll()
 		.then(function(solicitacao){

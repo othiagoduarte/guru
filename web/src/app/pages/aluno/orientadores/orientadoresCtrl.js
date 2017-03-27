@@ -5,14 +5,14 @@ angular.module('BlurAdmin.pages.aluno.orientadores')
 	.controller('OrientadoresCtrl', OrientadoresCtrl);
     
  	/** @ngInject */
-	function OrientadoresCtrl($scope,$modalservice,$apiService) {
+	function OrientadoresCtrl($scope,$modalservice,$apiService,$window) {
 
 		$scope.data = {};
 		$scope.filtroSkilss = [];
 		$scope.mensagens = l_mensagens();
 		$scope.disponibilidade = {name:"nao"};
 		
-		var _matriculaTemp = "631320232";
+		var _user = $window.sessionStorage.user;
 		
 		$apiService.skill.GetAll()
 		.then(function(skills){
@@ -30,7 +30,7 @@ angular.module('BlurAdmin.pages.aluno.orientadores')
 			console.log(data);
 		});
 
-		$apiService.aluno.GetByMatricula(_matriculaTemp)
+		$apiService.aluno.GetByUser(_user)
 		.then(function(aluno){
 			$scope.data.aluno = aluno.data;
 		})

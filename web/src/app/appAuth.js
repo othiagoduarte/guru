@@ -1,4 +1,5 @@
 'use strict';
+  /** @ngInject */
 var app = angular.module('Auth',[]);
 
 app.controller('loginCtrl', function($scope,$http,$window) {
@@ -7,10 +8,6 @@ app.controller('loginCtrl', function($scope,$http,$window) {
     
     $scope.login = login;
     $scope.data = {};
-    $scope.data.password  = null;
-    $scope.data.email ="";
-    
-    console.log("Controller ready");
 
     function login(){
  
@@ -20,6 +17,7 @@ app.controller('loginCtrl', function($scope,$http,$window) {
             .then(function(res){
                 $window.sessionStorage.token = res.data.token ;
                 $window.sessionStorage.perfil = res.data.user.tipo;
+                $window.sessionStorage.user = res.data.user._id;
                 window.location.href ="/#/" + res.data.user.tipo ;
             })
             .catch(function(res){

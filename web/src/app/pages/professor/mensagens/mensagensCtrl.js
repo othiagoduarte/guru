@@ -5,12 +5,12 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 	.controller('mensagensCtrl', MensagensCtrl);
     
  	/** @ngInject */
-	function MensagensCtrl($scope,$apiService,$modalservice,$uibModal) {
+	function MensagensCtrl($scope,$apiService,$modalservice,$uibModal,$window) {
 
 		/*VAR*/
-    	var dbUsuario = {_id:"58bb5e2f7052402ef078d26e"};
-		var dbProfessor = $apiService.professor;
-		var dbSolicitacao =$apiService.solicitacao;
+		var dbProfessor =  $apiService.professor;
+		var dbSolicitacao = $apiService.solicitacao;
+		var dbUsuario = $apiService.usuario;
 		
 		/*DADOS*/
 		$scope.data = {};
@@ -18,16 +18,20 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 		$scope.data.solicitacao = {};
 		$scope.data.listStatus = [{cod:'A',descricao:'Aceito'},{cod:'R',descricao:'Recusado'},{cod:'P',descricao:'Pendente'}];
 		
-		dbProfessor.Get(dbUsuario._id)
-		.then( function(professor){
-			$scope.data.professor = professor.data;
-			
-			dbSolicitacao.GetByProfessor($scope.data.professor._id)
-			.then(function(solicitacao){
-				debugger;
-				$scope.data.solicitacoes = solicitacao.data; 
+		var _id = $window.sessionStorage.user;
+		
+		dbUsuario.Get(_id)
+    	.then(function(res){
+        	var  dbUsuario = res.user;
+			dbProfessor.Get(dbUsuario._id)
+			.then( function(professor){
+				$scope.data.professor = professor.data;
+				dbSolicitacao.GetByProfessor($scope.data.professor._id)
+				.then(function(solicitacao){
+					$scope.data.solicitacoes = solicitacao.data; 
+				});			
 			});
-		});
+    	});
 		
 
 		/*FUNCTION*/

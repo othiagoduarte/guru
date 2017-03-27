@@ -5,7 +5,7 @@
   function routeConfig($urlRouterProvider,$httpProvider, baSidebarServiceProvider) {
       $urlRouterProvider.otherwise('/');  
       $httpProvider.interceptors.push('$authInterceptor');
- }
+  }
 
   /** @ngInject */
   function modulos(){
