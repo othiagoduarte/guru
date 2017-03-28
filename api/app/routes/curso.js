@@ -1,9 +1,13 @@
 module.exports = function(app)
 {
 	var controller = app.controllers.curso;
+	var auth = app.passportGuru.authenticate();
 	
 	app.get('/curso/:id',controller.get);
-	app.get('/curso', controller.getAll);
-	app.get('/curso',controller.add);
-	app.get('/curso',controller.save);
+	
+	app.route('/curso')
+	.all(auth)
+	.get(controller.getAll)
+	.post(controller.add)
+	.put(controller.save);
 };

@@ -4,10 +4,17 @@ module.exports = function(app)
 	
 	var auth = app.passportGuru.authenticate();
 		
-	app.get('/professor',auth, controller.getAll);
-	app.get('/professor/:id',auth, controller.get);
-	app.post('/professor',auth, controller.add);
+	
+	app.route('/professor')
+	.all(auth)
+	.get(controller.getAll)
+	.post(controller.add);
+	
+	app.route('/professor/:id')
+	.all(auth)
+	.get(controller.get);
 	
 	app.route('/aluno/getByUser/:user')
-	.get(auth, auth, controller.getByUser);
+	.all(auth)
+	.get(controller.getByUser);
 };

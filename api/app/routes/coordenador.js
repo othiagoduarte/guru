@@ -1,9 +1,15 @@
 module.exports = function(app)
 {
 	var controller = app.controllers.coordenador;
+	var auth = app.passportGuru.authenticate();
 	
-	app.get('/coordenador/:id',controller.get);
-	app.get('/coordenador', controller.getAll);
-	app.get('/coordenador',controller.add);
-	app.get('/coordenador',controller.save);
+	app.route('/coordenador/:id')
+	.all(auth)
+	.get(controller.get);
+	
+	app.route('/coordenador')
+	.all(auth)
+	.get(controller.getAll)
+	.post(controller.add)
+	.put(controller.save);
 };
