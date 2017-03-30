@@ -5,7 +5,8 @@
       .config(routeConfig);
 
    /** @ngInject */
-  function routeConfig($stateProvider) {
+  function routeConfig($stateProvider,$httpProvider) {
+
     	$stateProvider.state('Projeto', {
           url: '/aluno/projeto',
           title: 'Meu Projeto',

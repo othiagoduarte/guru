@@ -13,6 +13,7 @@ var app = angular.module('BlurAdmin', [
                           'ngJsTree',
                           'angular-progress-button-styles',
                           'firebase',
+                          'angular-jwt',
                           'BlurAdmin.auth',
                           'BlurAdmin.theme',
                           'BlurAdmin.data',

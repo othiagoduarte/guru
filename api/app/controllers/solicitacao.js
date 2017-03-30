@@ -3,11 +3,12 @@ module.exports = function(app)
 	var Solicitacao = app.models.solicitacao;		
 	var controller = {};
 	
-	controller.getAll = getAll; /*BUSCAR TODOS*/ 
-	controller.get = get; 		/*BUSCAR POR ID*/
-	controller.save = save; /*ATUALIZAR POR ID*/
-	controller.add = add;  	/*INSERIR NOVO*/
+	controller.getAll = getAll;  
+	controller.get = get; 		
+	controller.save = save; 
+	controller.add = add;  	
 	controller.getByProfessor = getByProfessor
+	
 	function get (req, res) {	
 
 		Solicitacao.find().exec()

@@ -4,12 +4,10 @@ module.exports = function(app)
 	var auth = app.passportGuru.authenticate();
 	
 	app.route('/feedback/:id')
-	.all(auth)
-	.get(controller.get);
+	.get(auth, controller.get);
 
 	app.route('/feedback')
-	.all(auth)
-	.get(controller.getAll)
-	.get(controller.add)
-	.get(controller.save);
+	.get(auth, controller.getAll)
+	.post(auth, controller.add)
+	.put(auth, controller.save);
 };

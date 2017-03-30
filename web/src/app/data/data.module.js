@@ -6,8 +6,9 @@ var app =  angular.module('BlurAdmin.data', []);
 app.service('$apiService',apiService);  
 
 function apiService($http){
-    /*var pUrlApi = "http://localhost:3008/";*/ 
-    var pUrlApi = "https://guru-othiagoduarte.c9users.io/";
+
+    var pUrlApi = "http://localhost:3008/"; 
+    //var pUrlApi = "https://guru-othiagoduarte.c9users.io/";
  
     this.aluno = Aluno(pUrlApi, $http);    
     this.contato = Contato(pUrlApi, $http);    
@@ -35,13 +36,14 @@ function Aluno(pUrlApi, $http){
             return $http.get(pUrlApi + "/" + pId);            
       },
       GetByMatricula : function(pMatricula){
-            return $http.get(pUrlApi + "/ByMatricula/" + pMatricula);
+            return $http.post(pUrlApi + "/ByMatricula/" + pMatricula,{headers: {'Authorization':'JWT'}});
       },
       GetByUser : function(pUser){
-            return $http.get(pUrlApi + "/GetbyUser/" + pUser);
+            return $http.get(pUrlApi + "/GetbyUser/" + pUser) ;
       }
   }
 }
+
 
 function Contato(pUrlApi, $http){
   pUrlApi+= "contato";

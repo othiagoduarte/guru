@@ -44,7 +44,7 @@ angular.module('BlurAdmin.pages.aluno.projeto')
         })
     })
     .catch(function(error) {
-        console.error("Error:", error);
+        console.log("Error:", error);
     });
             
     function salvarProjeto(){

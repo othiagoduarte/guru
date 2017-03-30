@@ -1,10 +1,15 @@
 (function () {
   'use strict';
-  var app = angular.module('BlurAdmin.pages',modulos()) .config(routeConfig);
-  
-  function routeConfig($urlRouterProvider,$httpProvider, baSidebarServiceProvider) {
+  var app = angular.module('BlurAdmin.pages',modulos()) 
+  .config(routeConfig);
+
+  function routeConfig($urlRouterProvider,$httpProvider) {
       $urlRouterProvider.otherwise('/');  
-      $httpProvider.interceptors.push('$authInterceptor');
+        
+      $httpProvider.defaults.headers.common['authorization'] = 'JWT ' + window.sessionStorage.token;
+
+
+      //$httpProvider.interceptors.push('$authInterceptor');
   }
 
   /** @ngInject */

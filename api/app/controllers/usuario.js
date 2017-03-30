@@ -7,8 +7,7 @@ module.exports = function(app)
 	controller.get = get; 		/*BUSCAR POR ID*/
 	controller.save = save; /*ATUALIZAR POR ID*/
 	controller.add = add;  	/*INSERIR NOVO*/
-	controller.login = login;
-	controller.logout = logout;
+
 
 	function get (req, res) {	
 
@@ -33,18 +32,6 @@ module.exports = function(app)
 	};
 
 	function add(req, res){
-
-	}
-
-	function login(req, res){
-
-		
-
-	}
-
-	function logout(req, res){
-
-		
 
 	}
 

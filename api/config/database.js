@@ -6,12 +6,7 @@ module.exports = function(uri) {
     
     var urlDatabase = 'mongodb://master:master@ds135790.mlab.com:35790/gurudb';
     
-    var options = {  db: { native_parser: true },
-					  server: { poolSize: 5 },
-					  user: 'othiagoduarte',
-					  pass: 'tds071289'
-					}
-					
+    uri = urlDatabase;
     mongoose.connect(urlDatabase);
     
     mongoose.connection.on('connected', function() {
