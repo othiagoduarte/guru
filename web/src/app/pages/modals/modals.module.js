@@ -111,7 +111,6 @@
         function enviarSolicitacao (fechar){
             
             var retorno = $validarService.solicitacao($scope.solicitacao);
-
             if(retorno.valido){
                 
                 $apiService.solicitacao.Add($scope.solicitacao)

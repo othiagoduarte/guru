@@ -9,6 +9,7 @@ module.exports = function() {
         ,aluno: {}
         ,professor: {}
         ,resumo: {type: String}
+        ,status: {type: {} , default :{"cod":"E","descricao":"Enviado"}}
     });
 
     return mongoose.model('Solicitacoes', schema);

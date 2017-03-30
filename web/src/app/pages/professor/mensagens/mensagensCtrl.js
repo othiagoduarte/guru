@@ -7,34 +7,6 @@ angular.module('BlurAdmin.pages.professor.mensagens')
  	/** @ngInject */
 	function MensagensCtrl($scope,$apiService,$modalservice,$uibModal,$window) {
 
-		/*VAR*/
-		var dbProfessor =  $apiService.professor;
-		var dbSolicitacao = $apiService.solicitacao;
-		var dbUsuario = $apiService.usuario;
-		
-		/*DADOS*/
-		$scope.data = {};
-		$scope.data.solicitacoes = [];
-		$scope.data.solicitacao = {};
-		$scope.data.listStatus = [{cod:'A',descricao:'Aceito'},{cod:'R',descricao:'Recusado'},{cod:'P',descricao:'Pendente'}];
-		
-		var _id = $window.sessionStorage.user;
-		
-		dbUsuario.Get(_id)
-    	.then(function(res){
-        	var  dbUsuario = res.user;
-			dbProfessor.Get(dbUsuario._id)
-			.then( function(professor){
-				$scope.data.professor = professor.data;
-				dbSolicitacao.GetByProfessor($scope.data.professor._id)
-				.then(function(solicitacao){
-					$scope.data.solicitacoes = solicitacao.data; 
-				});			
-			});
-    	});
-		
-
-		/*FUNCTION*/
 		$scope.traduzSolicitacao = traduzSolicitacao;
 		$scope.responderSolicitacaoDetalhes = responderSolicitacaoDetalhes;
 		$scope.visualizarSolicitacaoDetalhes = visualizarSolicitacaoDetalhes;
@@ -42,8 +14,32 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 		$scope.filtrarSolicitacaoStatusRejeitado = filtrarSolicitacaoStatusRejeitado;
 		$scope.filtrarSolicitacaoStatusAceito = filtrarSolicitacaoStatusAceito;
 		$scope.VerProjeto = VerProjeto;
-		/*CARREGAR DADOS*/		
+		
+		$scope.data = {};
+		$scope.data.solicitacoes = [];
+		$scope.data.solicitacao = {};
+		$scope.data.listStatus = [{cod:'A',descricao:'Aceito'},{cod:'R',descricao:'Recusado'},{cod:'P',descricao:'Pendente'}];
+		
+		var dbProfessor =  $apiService.professor;
+		var dbSolicitacao = $apiService.solicitacao;
+		var _userId = $window.sessionStorage.user;
+				
+		dbProfessor.GetByUser(_userId)
+		.then( function(professor){
 
+			$scope.data.professor = professor.data;
+			dbSolicitacao.GetByProfessor($scope.data.professor._id)
+			.then(function(solicitacao){
+				$scope.data.solicitacoes = solicitacao.data; 
+			})
+			.catch(function(error) {
+				console.log("Error:", error);
+			});		
+		})
+		.catch(function(error) {
+			console.log("Error:", error);
+		});
+		
 		function responderSolicitacaoDetalhes(solicitacao){
 			
 			$scope.data.solicitacao = solicitacao;
@@ -66,7 +62,7 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 				data:$scope.data,
 				size:'lg',
 				template:'app/pages/modals/template/visualizarSolicitacao.html'
-			});
+			})
 		}
 		
 		function visualizarSolicitacao($data){
@@ -76,9 +72,8 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 		function responderSolicitacao($data){
 			
 			var retorno = {};
-			var dbSolicitacao = $apiService.solicitacao;
 			
-			dbSolicitacao.Add($data)
+			$apiService.solicitacao.Add($data)
 			.then(function(data){
 				retorno.titulo = "Parabéns";
             	retorno.mensagem = "Sucesso ao enviar a resposta.";
@@ -86,35 +81,32 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 				$modalservice.informacao(retorno);
 			
 				$data.solicitacao = {};
-			});		
-			
+			})
+			.catch(function(error) {
+				console.log("Error:", error);
+			});			
 		}
 
 		function VerProjeto (aluno,fechar){
-			fechar();
-			var dados = {};
-			var dbProjeto = $apiService.projeto;
-
-			dbProjeto.GetByAluno(aluno.matricula)
+			$apiService.projeto.GetByAluno(aluno.matricula)
 			.then(function (aluno){
+				var dados = {};
 				dados.projeto = aluno.data;
-
 				
-			 $uibModal.open({
-                animation: true,
-                templateUrl: 'app/pages/componentes/projeto/projeto.html',
-                size: 'lg',
-                controller: MensagensCtrl,
-                resolve: {
-                    data: data
-                }
-            });
-			
+				$modalservice.executar({
+					data: dados,
+					size:'lg',
+					template:'app/pages/componentes/projeto/projeto.html'
+				})
+			})
+			.catch(function(error) {
+				console.log("Error:", error);
 			});
-
+		
+			fechar();
 		}
 
-		function criarProjeto($data){
+		function atualizarProjeto($data){
 	
 			var dbProjeto = new $model.Projeto();
 			
@@ -155,8 +147,7 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 				return solicitacao;
 			}else{
 				return;
-			}
-			
+			}			
 		}
 
 		function filtrarSolicitacaoStatusAceito(solicitacao){
@@ -164,8 +155,7 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 				return solicitacao;
 			}else{
 				return;
-			}
-			
+			}			
 		}
 
 		function filtrarSolicitacaoStatusRejeitado(solicitacao){
@@ -173,8 +163,7 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 				return solicitacao;
 			}else{
 				return;
-			}
-			
+			}		
 		}
 	}
 })();

@@ -21,10 +21,11 @@
                 <tbody>
                     <tr ng-repeat="solicitacao in data.solicitacoes | filter: filtrarSolicitacaoStatusEnviado"  ng-click ="responderSolicitacaoDetalhes(solicitacao)" >
                         <td>{{solicitacao.aluno.nome}}</td>
-                        <td>{{solicitacao.aluno.curso}}</td>
+                        <td>{{solicitacao.aluno.curso.nome}}</td>
                         <td>{{solicitacao.titulo}}</td>   
                         <td>{{solicitacao.dataResposta | date : 'dd/MM/yyyy'}}</td>
                         <td>{{solicitacao.status.descricao}}</td>
+                        <p> {{solicitacao.aluno}}</p>
                     </tr>
                 </tbody>
             </table>

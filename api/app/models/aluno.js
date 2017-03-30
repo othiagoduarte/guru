@@ -15,7 +15,7 @@ module.exports = function() {
             type: String
         },
         curso: {
-            type: String
+            type: {}
         }
     });
 

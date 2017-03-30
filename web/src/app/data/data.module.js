@@ -128,6 +128,9 @@ function Professor(pUrlApi, $http){
       },
       Add: function(pData){
             return $http.post(pUrlApi, pData);  
+      },
+      GetByUser : function(pUser){
+            return $http.get(pUrlApi + "/GetbyUser/" + pUser) ;
       }
   }
 }

@@ -10,6 +10,6 @@ module.exports = function(app)
 	app.route('/professor/:id')
 	.get(auth, controller.get);
 	
-	app.route('/aluno/getByUser/:user')
+	app.route('/professor/getByUser/:user')
 	.get(auth, controller.getByUser);
 };

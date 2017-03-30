@@ -11,7 +11,9 @@ module.exports = function(app)
 
 	function get (req, res) {	
 
-		Usuario.find().exec()
+		var _id = req.params.id;
+		
+		Usuario.findById(_id).exec()
 		.then(function(contatos){
 			res.json(contatos);
 		});
