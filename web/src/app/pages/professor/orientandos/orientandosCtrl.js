@@ -5,17 +5,17 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 	.controller('OrientandosCtrl', OrientandosCtrl);
     
  	/** @ngInject */
-	function OrientandosCtrl($scope,$apiService, $modalservice) {
+	function OrientandosCtrl($scope,$apiService, $modalservice,$PROFESSOR) {
 		
 		var dbAlunos = $apiService.aluno;
 		var dbProjeto = $apiService.projeto;
-    	
+
 		$scope.data = {};
 		$scope.filtroSkilss = [];
 		
-		dbAlunos.GetAll()
+		dbAlunos.GetByOrientando($PROFESSOR._id)
 		.then(function(alunos){
-			$scope.data.alunos = alunos.data;
+			$scope.data.alunos = alunos.data.alunos;
 		});
     	
 		$scope.EnviarMensagem = function(aluno){

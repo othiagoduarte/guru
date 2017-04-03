@@ -52,7 +52,7 @@
                 <tbody>
                     <tr ng-repeat="solicitacao in data.solicitacoes | filter: filtrarSolicitacaoStatusRejeitado " ng-click ="visualizarSolicitacaoDetalhes(solicitacao)" >
                         <td>{{solicitacao.aluno.nome}}</td>
-                        <td>{{solicitacao.aluno.curso}}</td>
+                        <td>{{solicitacao.aluno.curso.nome}}</td>
                         <td>{{solicitacao.titulo}}</td>   
                         <td>{{solicitacao.dataResposta | date : 'dd/MM/yyyy'}}</td>
                         <td>{{solicitacao.status.descricao}}</td>
@@ -82,7 +82,7 @@
                     <tbody>
                         <tr ng-repeat="solicitacao in data.solicitacoes | filter: filtrarSolicitacaoStatusAceito " ng-click ="visualizarSolicitacaoDetalhes(solicitacao)" >
                             <td>{{solicitacao.aluno.nome}}</td>
-                            <td>{{solicitacao.aluno.curso}}</td>
+                            <td>{{solicitacao.aluno.curso.nome}}</td>
                             <td>{{solicitacao.titulo}}</td>   
                             <td>{{solicitacao.dataResposta | date : 'dd/MM/yyyy'}}</td>
                             <td>{{solicitacao.status.descricao}}</td>

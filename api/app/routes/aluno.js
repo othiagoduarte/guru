@@ -12,6 +12,9 @@ module.exports = function(app)
 	app.route('/aluno/byMatricula/:matricula')
 	.get(auth, controller.getByMatricula);
 	
+	app.route('/aluno/byOrientando/:idProfessor')
+	.get(auth, controller.getByOrientando);
+	
 	app.route('/aluno')
 	.get(auth, controller.getAll)
 	.post(auth, controller.add)

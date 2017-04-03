@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.professor',modulos() );
+  angular.module('BlurAdmin.pages.professor',modulos() )
+  .constant("$PROFESSOR", JSON.parse(window.sessionStorage.userData));
 
   function modulos(){
       var modulos = [];

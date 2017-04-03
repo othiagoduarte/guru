@@ -5,7 +5,7 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 	.controller('mensagensCtrl', MensagensCtrl);
     
  	/** @ngInject */
-	function MensagensCtrl($scope,$apiService,$modalservice,$uibModal,$window) {
+	function MensagensCtrl($scope,$apiService,$modalservice,$uibModal,$window,$PROFESSOR) {
 
 		$scope.traduzSolicitacao = traduzSolicitacao;
 		$scope.responderSolicitacaoDetalhes = responderSolicitacaoDetalhes;
@@ -20,25 +20,18 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 		$scope.data.solicitacao = {};
 		$scope.data.listStatus = [{cod:'A',descricao:'Aceito'},{cod:'R',descricao:'Recusado'},{cod:'P',descricao:'Pendente'}];
 		
-		var dbProfessor =  $apiService.professor;
 		var dbSolicitacao = $apiService.solicitacao;
-		var _userId = $window.sessionStorage.user;
-				
-		dbProfessor.GetByUser(_userId)
-		.then( function(professor){
-
-			$scope.data.professor = professor.data;
-			dbSolicitacao.GetByProfessor($scope.data.professor._id)
-			.then(function(solicitacao){
-				$scope.data.solicitacoes = solicitacao.data; 
-			})
-			.catch(function(error) {
-				console.log("Error:", error);
-			});		
+	
+		$scope.data.professor = $PROFESSOR;
+		
+		dbSolicitacao.GetByProfessor($scope.data.professor._id)
+		.then(function(solicitacao){
+			$scope.data.solicitacoes = solicitacao.data; 
 		})
 		.catch(function(error) {
 			console.log("Error:", error);
-		});
+		});		
+
 		
 		function responderSolicitacaoDetalhes(solicitacao){
 			
@@ -72,14 +65,12 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 		function responderSolicitacao($data){
 			
 			var retorno = {};
-			
-			$apiService.solicitacao.Add($data)
+
+			$apiService.solicitacao.Save($data.solicitacao)
 			.then(function(data){
 				retorno.titulo = "Parabéns";
             	retorno.mensagem = "Sucesso ao enviar a resposta.";
-            
 				$modalservice.informacao(retorno);
-			
 				$data.solicitacao = {};
 			})
 			.catch(function(error) {

@@ -1,13 +1,16 @@
+var mongoose = require('mongoose');
 module.exports = function(app)
 {
-	var Solicitacao = app.models.solicitacao;		
+	var Solicitacao = app.models.solicitacao;	
+	var Projeto = 	app.models.projeto;
 	var controller = {};
 	
 	controller.getAll = getAll;  
 	controller.get = get; 		
 	controller.save = save; 
 	controller.add = add;  	
-	controller.getByProfessor = getByProfessor
+	controller.getByProfessor = getByProfessor;
+	controller.getByAluno = getByAluno;
 	
 	function get (req, res) {	
 
@@ -28,7 +31,34 @@ module.exports = function(app)
 	};
 	
 	function save(req, res){
+		
+		var _solicitacao = req.body;
+		var query = {"_id":_solicitacao._id};
 
+		Solicitacao.findOneAndUpdate(query,_solicitacao)
+		.then(function(solicitacoes) {
+			
+			if(_solicitacao.status.cod == "A"){
+				
+				var query = {"aluno._id": _solicitacao.aluno._id}; 
+				var set = { "professor":_solicitacao.professor};
+
+				Projeto.findOneAndUpdate(query,{$set:set})
+				.then(function(Projetos){
+					res.status(200).json(solicitacoes._doc);					
+				},function(error){
+					res.status(501).json(error,solicitacoes._doc);										
+				});
+
+			}else{
+				res.status(200).json(solicitacoes._doc);
+			}
+
+		},
+		function(erro) {
+			console.log(erro);
+			res.status(501).json(erro.message);
+		});
 	};
 
 	function add(req, res){
@@ -54,6 +84,15 @@ module.exports = function(app)
 			res.status(200).json(professores);
 		});
 	}
-
+	
+	function getByAluno(req, res){
+		var _id = req.params.idAluno;
+		
+		Solicitacao.find({"aluno._id":_id})
+		.then(function(professores){
+			res.status(200).json(professores);
+		});
+	}
+	
 	return controller;	
 };

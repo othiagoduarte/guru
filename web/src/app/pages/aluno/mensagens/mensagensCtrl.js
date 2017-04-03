@@ -5,17 +5,15 @@ angular.module('BlurAdmin.pages.aluno.mensagens')
 	.controller('mensagensCtrl', MensagensCtrl);
     
  	/** @ngInject */
-	function MensagensCtrl($scope,$modalservice,$apiService) {
+	function MensagensCtrl($scope,$modalservice,$apiService,$ALUNO) {
 
     	$scope.data = {};
 		$scope.traduzSolicitacao = traduzSolicitacao;
 		$scope.solicitacaoOrientacaoDetalhes = solicitacaoOrientacaoDetalhes;
-		
-		$apiService.solicitacao.GetAll()
+		$apiService.solicitacao.GetByAluno($ALUNO._id)
 		.then(function(solicitacao){
 			$scope.data.solicitacoes = solicitacao.data;
 		});
-
 		
 		function solicitacaoOrientacaoDetalhes(solicitacao){
 			

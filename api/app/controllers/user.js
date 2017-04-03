@@ -74,11 +74,16 @@ module.exports = function(app)
                         
                         if (_tipo == "PROFESSOR"){
                         
-                            Professor.findOne({"user._id":_id})
-                            .then(function(professores){
-                                var payload = {id: users.id};
-                                var token = jwt.encode(payload, cfg.jwtSecret);
-                                res.json({token: token, user: users, userData:alunos._doc});
+                            Professor.findOne({"user._id":mongoose.Types.ObjectId(_id)})
+                            .then(function(Professores){
+                                if(Professores){
+                                    var payload = {id: users.id};
+                                    var token = jwt.encode(payload, cfg.jwtSecret);
+                                    res.json({token: token, user: users, userData:Professores._doc});
+                                }
+                                else{
+                                     res.status(401).json({retorno:"Dados do Usuario não encontrado"});
+                                }
                             }
                             , function(error){
                                 res.status(401).json({retorno:"Dados do Usuario não encontrado"});

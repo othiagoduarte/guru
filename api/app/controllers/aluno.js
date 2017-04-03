@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 
 module.exports = function(app)
 {
-	var Aluno = app.models.aluno;		
+	var Aluno = app.models.aluno;	
+	var Projeto = app.models.projeto;	
+		
 	var controller = {};
 	
 	controller.getAll = getAll; /*BUSCAR TODOS*/ 
@@ -11,6 +13,7 @@ module.exports = function(app)
 	controller.add = add;  	/*INSERIR NOVO*/
 	controller.getByMatricula = getByMatricula;	/*BUSCAR PELA MATRICULA*/
 	controller.getByUser = getByUser;
+	controller.getByOrientando = getByOrientando;
 	
 	function get (req, res) {	
 
@@ -70,5 +73,28 @@ module.exports = function(app)
 
 	}
 
+	
+	function getByOrientando(req, res){
+		
+		var _id = req.params.idProfessor;
+
+		var $match = { "professor._id": _id};
+		var $unwind = "$aluno";
+		var $group = { _id:null , alunos:{$addToSet:"$aluno"}};
+		var $project = {_id: false, alunos: true}
+
+		Projeto.aggregate(
+			{$match: $match},
+			{$unwind:$unwind},
+			{$group:$group},
+			{$project:$project}
+		).exec()
+		.then(function(Projetos){
+			res.status(200).jsonp(Projetos[0]);
+
+		},function(error){
+			res.status(501).jsonp(error);
+		});
+	}
 	return controller;	
 };

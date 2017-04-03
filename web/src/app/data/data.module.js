@@ -40,7 +40,12 @@ function Aluno(pUrlApi, $http){
       },
       GetByUser : function(pUser){
             return $http.get(pUrlApi + "/GetbyUser/" + pUser) ;
-      }
+      },
+      GetByOrientando : function(pIdProfessor){
+            return $http.get(pUrlApi + "/ByOrientando/" + pIdProfessor) ;
+      },
+
+       
   }
 }
 
@@ -184,9 +189,16 @@ function Solicitacao(pUrlApi, $http){
       Add: function(pData){
             return $http.post(pUrlApi, pData);  
       },
+      Save: function(pData){
+            return $http.put(pUrlApi, pData);  
+      },
+      
       GetByProfessor : function(pIdProfessor){
             return $http.get(pUrlApi + "/byProfessor/" + pIdProfessor);
-      }
+      },
+      GetByAluno : function(pIdAluno){
+            return $http.get(pUrlApi + "/byAluno/" + pIdAluno);
+      }      
   }
 }
 

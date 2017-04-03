@@ -8,8 +8,12 @@ module.exports = function(app)
 	
 	app.route('/solicitacao')
 	.get(auth, controller.getAll)
-	.post(auth ,controller.add);
+	.post(auth ,controller.add)
+	.put(auth ,controller.save);
 	
+	app.route('/solicitacao/ByAluno/:idAluno')
+	.get(auth, controller.getByAluno);
+
 	app.route('/solicitacao/ByProfessor/:idProfessor')
 	.get(auth, controller.getByProfessor);
 };

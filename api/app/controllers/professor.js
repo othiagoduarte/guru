@@ -67,5 +67,9 @@ module.exports = function(app)
 
 	}
 
+	function getAllSkills(){
+
+	}
+
 	return controller;	
 };
