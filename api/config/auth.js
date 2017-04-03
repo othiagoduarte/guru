@@ -39,8 +39,13 @@ module.exports = function(app) {
     initialize: function() {
       return passport.initialize();
     },
+    /* //AUTENTICAÇÃO DESATIVADA
     authenticate: function() {
       return passport.authenticate("jwt", cfg.jwtSession);
+    }
+    */
+    authenticate: function() {
+      return function(req,res,next){next();}
     }
   };
 };

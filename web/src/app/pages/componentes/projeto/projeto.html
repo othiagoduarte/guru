@@ -1,4 +1,15 @@
-
+<projeto class="col-md-12" ng-if="data.projeto.professor">
+    <div class="row">
+        <div ba-panel ba-panel-title="Orientador" ba-panel-class="with-scroll">
+            <div  class="row">
+                <div class="form-group col-md-10">
+                    <label for="textarea01">Meu Orientador</label>
+                    <input   type="text" class="form-control input-lg" ng-model = "data.projeto.professor.nome" placeholder="Você não possue um orientador!">
+                </div>
+            </div>
+        </div>
+    </div>
+</projeto>          
 <projeto class="col-md-12" ng-if="data.projeto">
     <div class="row">
         <div ba-panel ba-panel-title="Projeto" ba-panel-class="with-scroll">

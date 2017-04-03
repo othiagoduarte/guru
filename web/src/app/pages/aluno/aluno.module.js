@@ -6,6 +6,6 @@
                                             ,'BlurAdmin.pages.aluno.orientadores'
                                             ,'BlurAdmin.pages.aluno.modals'
                                             ,'BlurAdmin.pages.aluno.mensagens'
-                                          ]);
-
+                                          ])
+.constant("$ALUNO", JSON.parse(window.sessionStorage.userData));
 })();

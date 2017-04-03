@@ -5,30 +5,20 @@ angular.module('BlurAdmin.pages.aluno.projeto')
 	.controller('ProjetoCtrl', ProjetoCtrl);
     
     /** @ngInject */
-    function ProjetoCtrl($scope,$apiService,$modalservice,$window) {
-      
-      var bdProjeto = $apiService.projeto;
-      var _user = $window.sessionStorage.user;
-      
-      $scope.data = {};
-      $scope.data.usuario = {};
-      $scope.data.projeto = null;
-      $scope.salvarProjeto = salvarProjeto;
-      $scope.data.listSegmento = [
-           {descricao:"Mobile",value:1}
-          ,{descricao:"Web",value:2}
-          ,{descricao:"Desktop",value:3}
-          ,{descricao:"Mineração de Dados",value:4}
-          ,{descricao:"Gerência/Infra Redes",value:5}
-          ,{descricao:"Testes",value:6}
-      ];
+    function ProjetoCtrl($scope,$apiService,$modalservice,$window,$ALUNO) {
 
-    $apiService.aluno.GetByUser(_user)
-    .then(function(aluno) {
-        
-        if(aluno){
-            $scope.data.aluno = aluno.data;
-        }
+        $scope.data = {};
+        $scope.data.aluno = $ALUNO;
+        $scope.data.projeto = null;
+        $scope.salvarProjeto = salvarProjeto;
+        $scope.data.listSegmento = [
+            {descricao:"Mobile",value:1}
+            ,{descricao:"Web",value:2}
+            ,{descricao:"Desktop",value:3}
+            ,{descricao:"Mineração de Dados",value:4}
+            ,{descricao:"Gerência/Infra Redes",value:5}
+            ,{descricao:"Testes",value:6}
+        ];
 
         $apiService.projeto.GetByAluno($scope.data.aluno.matricula)
         .then(function(projeto){
@@ -41,11 +31,7 @@ angular.module('BlurAdmin.pages.aluno.projeto')
                 $scope.data.projeto.aluno = $scope.data.aluno;
                 $apiService.projeto.Add($scope.data.projeto);
             }
-        })
-    })
-    .catch(function(error) {
-        console.log("Error:", error);
-    });
+        });
             
     function salvarProjeto(){
         $apiService.projeto.Save($scope.data.projeto)

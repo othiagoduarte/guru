@@ -2,10 +2,13 @@ var jwt = require("jwt-simple");
 var cfg = { jwtSecret: "secret",
             jwtSession: {session: true}
             };
-            
+var mongoose = require('mongoose');            
 module.exports = function(app)
 {
 	var User = app.models.user;		
+    var Aluno = app.models.aluno;		
+    var Professor = app.models.professor;		
+    
 	var controller = {};
 
     controller.login = login;
@@ -44,15 +47,45 @@ module.exports = function(app)
       	        
       	        if(users){
                     
-                    if(users.password != req.body.password){
+                    var _tipo = users._doc.tipo;
+                    var _id = users.id;
+                    var _user = users._doc;
+
+                    if(_user.password != req.body.password){
                         res.status(401).json({retorno:"Senha inválida"});
+                    }
+                    else{
+                        if (_tipo == "ALUNO"){
+                            Aluno.findOne({"user._id":mongoose.Types.ObjectId(_id)})
+                            .then(function(alunos){
+                                if(alunos){
+                                    var payload = {id: _user.id};
+                                    var token = jwt.encode(payload, cfg.jwtSecret);
+                                    res.json({token: token, user: _user, userData:alunos._doc});
+                                }
+                                else{
+                                    res.status(401).json({retorno:"Dados do Usuario não encontrado"});
+                                }
+                            }
+                            , function(error){
+                                res.status(401).json({retorno:"Dados do Usuario não encontrado"});
+                            });
+                        }
+                        
+                        if (_tipo == "PROFESSOR"){
+                        
+                            Professor.findOne({"user._id":_id})
+                            .then(function(professores){
+                                var payload = {id: users.id};
+                                var token = jwt.encode(payload, cfg.jwtSecret);
+                                res.json({token: token, user: users, userData:alunos._doc});
+                            }
+                            , function(error){
+                                res.status(401).json({retorno:"Dados do Usuario não encontrado"});
+                            });
+                        }
                     } 
 
-                    var payload = {id: users.id};
-                    var token = jwt.encode(payload, cfg.jwtSecret);
-        
-                    res.json({token: token, user: users});
-      				
       			}else{
       				res.status(401).json({retorno:"Usuario não encontrado"});
       			}
@@ -65,6 +98,6 @@ module.exports = function(app)
           res.sendStatus(401);
         }
       }
-      
+       
       return controller;
 };
