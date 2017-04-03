@@ -17,8 +17,7 @@ module.exports = function(app) {
 
     User.findOne({_id:payload.id})
     .then(function(users){
-          return done(null, {id: users.id});
-      
+      return done(null, {id: users.id});
     },
     function(erro){
       return done(null, null);
@@ -39,13 +38,15 @@ module.exports = function(app) {
     initialize: function() {
       return passport.initialize();
     },
-    /* //AUTENTICAÇÃO DESATIVADA
     authenticate: function() {
       return passport.authenticate("jwt", cfg.jwtSession);
     }
-    */
+        /* //AUTENTICAÇÃO DESATIVADA
+
     authenticate: function() {
       return function(req,res,next){next();}
     }
+        */
+
   };
 };
