@@ -1,18 +1,18 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.aluno.mensagens',['BlurAdmin.data'])
+  angular.module('BlurAdmin.pages.aluno.orientacao',['BlurAdmin.data'])
       .config(routeConfig);
 
   /** @ngInject */
 
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('Mensagens', {
-          url: '/aluno/Mensagens',
-          title: 'Mensagens',
-          templateUrl: 'app/pages/aluno/mensagens/mensagens.html',
-          controller: 'mensagensCtrl',
+        .state('Orientacao', {
+          url: '/aluno/orientacao',
+          title: 'Orientações',
+          templateUrl: 'app/pages/aluno/orientacao/orientacao.html',
+          controller: 'orientacaoCtrl',
           sidebarMeta: {
             icon: 'ion-email',
             order: 5,
