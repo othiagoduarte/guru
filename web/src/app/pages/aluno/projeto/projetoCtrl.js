@@ -9,6 +9,7 @@ angular.module('BlurAdmin.pages.aluno.projeto')
 
         $scope.data = {};
         $scope.data.aluno = $ALUNO;
+        $scope.data.isAluno = true;
         $scope.data.projeto = null;
         $scope.salvarProjeto = salvarProjeto;
         $scope.data.listSegmento = [
@@ -25,7 +26,9 @@ angular.module('BlurAdmin.pages.aluno.projeto')
             
             $scope.data.projeto = {};
             if(projeto.data){
-                $scope.data.projeto = projeto.data; 
+                $scope.data.projeto = projeto.data;
+                console.log(projeto.data); 
+                $scope.data.isAluno = true;
             }
             else{
                 $scope.data.projeto.aluno = $scope.data.aluno;

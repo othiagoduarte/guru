@@ -13,5 +13,4 @@
       'textAngular',
       'BlurAdmin.theme.components'
   ]);
-
 })();

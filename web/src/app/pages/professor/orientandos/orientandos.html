@@ -1,3 +1,8 @@
+<div ng-show="!data.alunos">
+    <div class="alert bg-info closeable" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Informação </strong>Você não possui nenhuma orientando!
+    </div>
+</div>
 <orientadores>
     <div class="col-md-12">
         <div ng-repeat="aluno in data.alunos | filter : query">

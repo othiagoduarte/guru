@@ -11,7 +11,8 @@ angular.module('BlurAdmin.pages.aluno.orientadores')
 		$scope.filtroSkilss = [];
 		$scope.mensagens = l_mensagens();
 		$scope.disponibilidade = {name:"nao"};
-		
+		$scope.data.temOrientador = true;
+
 		var _user = $window.sessionStorage.user;
 		
 		$apiService.skill.GetAll()
@@ -33,6 +34,7 @@ angular.module('BlurAdmin.pages.aluno.orientadores')
 		$apiService.aluno.GetByUser(_user)
 		.then(function(aluno){
 			$scope.data.aluno = aluno.data;
+			$scope.data.temOrientador = ($scope.data.aluno.orientador != undefined)
 		})
 		.catch(function(data) {
 			console.log(data);

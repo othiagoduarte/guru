@@ -1,5 +1,12 @@
+<div ng-show="! data.solicitacoes.length > 0">
+    <div class="alert bg-info closeable" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Informação </strong>Você não possui nenhuma mensagens!
+    </div>
+</div>
+<div ng-show=" data.solicitacoes.length > 0">
 <mensagens>
     <div class="row">
       <div ng-include="'app/pages/professor/mensagens/mensages-tab.html'"></div>
     </div>
 </mensagens>
+</div>

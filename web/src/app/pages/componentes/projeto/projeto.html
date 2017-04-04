@@ -1,15 +1,12 @@
-<projeto class="col-md-12" ng-if="data.projeto.professor">
-    <div class="row">
-        <div ba-panel ba-panel-title="Orientador" ba-panel-class="with-scroll">
-            <div  class="row">
-                <div class="form-group col-md-10">
-                    <label for="textarea01">Meu Orientador</label>
-                    <input   type="text" class="form-control input-lg" ng-model = "data.projeto.professor.nome" placeholder="Você não possue um orientador!">
+<projeto ng-if="data.isAluno">
+        <!--PROFESSORES - INICIO -->
+            <div class="col-md-12" ng-if="data.projeto.professor" ng-init="professor = data.projeto.professor">
+                <div ba-panel ba-panel-title="Meu orientador" ba-panel-class="with-scroll">
+                    <div ng-include="'app/pages/componentes/professor-orientador.html'"></div>
                 </div>
             </div>
-        </div>
-    </div>
-</projeto>          
+        <!--PROFESSORES - FIM -->
+</projeto>
 <projeto class="col-md-12" ng-if="data.projeto">
     <div class="row">
         <div ba-panel ba-panel-title="Projeto" ba-panel-class="with-scroll">
@@ -47,10 +44,11 @@
                         ng-options="segmento.descricao for segmento in data.listSegmento">
                 </select>
             </div>
-            <p>{{data.projeto.segmento}}</p>
-            <div class="form-group col-md-offset-11 col-md-1">
-                 <div>
-                    <button type="button" class="btn btn-danger" ng-click="salvarProjeto(data.projeto)">Salvar</button>
+            <div ng-if="data.isAluno">
+                <div class="form-group col-md-offset-11 col-md-1">
+                    <div>
+                        <button type="button" class="btn btn-danger" ng-click="salvarProjeto(data.projeto)">Salvar</button>
+                    </div>
                 </div>
             </div>
             </form>

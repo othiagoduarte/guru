@@ -16,7 +16,8 @@ module.exports = function() {
         },
         curso: {
             type: {}
-        }
+        },
+        orientador:{}
     });
 
     return mongoose.model('Alunos', schema);

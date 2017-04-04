@@ -6,9 +6,10 @@
   'use strict';
 
   var IMAGES_ROOT = 'assets/img/';
-
   angular.module('BlurAdmin.theme')
-    .constant('layoutSizes', {
+   .constant('USERDATA', JSON.parse(window.sessionStorage.userData))
+   .constant('USERID', window.sessionStorage.user)
+   .constant('layoutSizes', {
       resWidthCollapseSidebar: 1200,
       resWidthHideSidebar: 500
     })

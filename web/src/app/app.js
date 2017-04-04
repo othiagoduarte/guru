@@ -19,6 +19,7 @@ var app = angular.module('BlurAdmin', [
                           'BlurAdmin.pages']);
 
 app.constant("authorization", {tipo:"JWT", token:""});
+app.constant("$USERDATA",JSON.parse(window.sessionStorage.userData));
 app.constant("PERFIL", "");
 app.run(function ($rootScope,$state,authorization, $window,PERFIL) {
     authorization.token = $window.sessionStorage.token;

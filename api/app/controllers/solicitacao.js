@@ -3,6 +3,7 @@ module.exports = function(app)
 {
 	var Solicitacao = app.models.solicitacao;	
 	var Projeto = 	app.models.projeto;
+	var Aluno  = 	app.models.aluno;
 	var controller = {};
 	
 	controller.getAll = getAll;  
@@ -45,7 +46,17 @@ module.exports = function(app)
 
 				Projeto.findOneAndUpdate(query,{$set:set})
 				.then(function(Projetos){
-					res.status(200).json(solicitacoes._doc);					
+					
+					var query = {"_id": mongoose.Types.ObjectId(_solicitacao.aluno._id)}; 
+					var set = { "orientador":_solicitacao.professor};
+					
+					Aluno.findOneAndUpdate(query,{$set:set})
+					.then(function(alunos){
+						res.status(200).json(solicitacoes._doc);
+					},function(error){
+						res.status(501).json(error,solicitacoes._doc);						
+					});
+
 				},function(error){
 					res.status(501).json(error,solicitacoes._doc);										
 				});

@@ -17,10 +17,10 @@
     </div>
     <div class="col-md-5 col-md-offset-5">
         <div class="button-wrapper">
-            <div ng-show="professor.disponivel">
+            <div ng-show="professor.disponivel && ! data.temOrientador ">
                 <button type="button" class="btn btn-primary "  ng-click="solicitar(professor)">Solicitar</button>
             </div>
-            <div ng-show=" ! professor.disponivel ">
+            <div ng-show=" ! professor.disponivel || data.temOrientador ">
                 <button type="button" class="btn btn-default" ng-click="EnviarMensagem(professor)">Mensagem</button>
             </div>
         </div>
