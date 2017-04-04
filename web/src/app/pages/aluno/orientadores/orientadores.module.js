@@ -8,7 +8,7 @@
   function routeConfig($stateProvider) {
     	$stateProvider.state('Orientadores', {
           url: '/aluno/orientadores',
-          title: 'Buscar Orientadores',
+          title: 'Orientadores',
           templateUrl: 'app/pages/aluno/orientadores/orientadores.html',
           controller: 'OrientadoresCtrl',
           sidebarMeta: {

@@ -73,7 +73,6 @@
 
     /** @ngInject */
     function executarCtrl($scope,param){
-
         $scope.data = param.data;
         $scope.func = param.func;
         $scope.func2 = param.func2;

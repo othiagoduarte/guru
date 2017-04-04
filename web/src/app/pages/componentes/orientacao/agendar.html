@@ -1,0 +1,43 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title">Agendar Orientação</h4>
+  </div>
+  <div class="modal-body">
+	<form>
+		<div class="col-md-12">
+    		<div class="form-group">
+    			<label for="textarea01">Assunto da Orientação</label>
+        		<input type="text" required class="form-control input-lg" ng-model="data.assunto" placeholder="Informe o assunto da orientação...">
+      		</div>
+      	</div>
+      	<div class="col-md-12">
+     		<div class="form-group ">
+        		<label for="textarea02">Detalhe</label>
+        		<input type="text" required class="form-control input-lg" ng-model="data.detalhe" placeholder="Descreva o objetivo da orientação e demais observações...">
+      		</div>
+      	</div>
+
+        	<div class="form-group col-md-6">
+            	<label for="textarea02">Local</label>
+            	<input type="text" required class="form-control input-lg" ng-model="data.local" placeholder="Informe o loca da orientação...">
+        	</div>
+        	<div class="form-group col-md-6">
+				<div class="col-md-8">
+            		<label for="textarea02">Data</label>
+					<input type="date" required class="form-control input-lg" ng-model="data.data" placeholder="Informe o loca da orientação...">
+        		</div>
+				<div class="col-md-4">
+					<label for="textarea02">Hora</label>
+					<input type="time" required class="form-control input-lg" ng-model="data.data" placeholder="Informe o loca da orientação...">
+				</div>
+			</div>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info" ng-click="$dismiss()">Cancelar</button>
+    <button type="button" class="btn btn-info" ng-click="executar($dismiss)">Enviar</button>
+  </div>
+</div>

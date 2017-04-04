@@ -119,6 +119,16 @@ function Orientacao(pUrlApi, $http){
       Get : function(pId){
             return $http.get(pUrlApi + "/" + pId);            
       },
+      Add: function(pData){
+            return $http.post(pUrlApi, pData);  
+      },
+      GetByProfessor : function(pIdProfessor){
+            return $http.get(pUrlApi + "/byProfessor/" + pIdProfessor);
+      },
+      GetByAluno : function(pIdAluno){
+            return $http.get(pUrlApi + "/byAluno/" + pIdAluno);
+      }   
+
   }
 }
 
