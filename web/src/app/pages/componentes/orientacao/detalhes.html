@@ -13,15 +13,6 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="textarea01">
-                      Status
-                    </label>
-                    <input disabled type="text" required class="form-control input-lg" ng-model="data.status.descricao"
-                    placeholder="Informe o assunto da orientação...">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="textarea01">
                         Assunto da Orientação
                     </label>
                     <input disabled type="text" required class="form-control input-lg" ng-model="data.assunto"
@@ -60,6 +51,32 @@
                     max="23:59:00" ng-model="data.data" value="{{data.data | date : 'HH:mm:ss'}}"
                     placeholder="Informe a hora da orientação...">
                 </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="textarea01">
+                    Status
+                </label>
+                <input disabled type="text" required class="form-control input-lg" ng-model="data.status.descricao"
+                placeholder="Informe o assunto da orientação...">
+            </div>
+            <div class="form-group col-md-6">
+                <div class="form-group col-md-7">
+                    <label for="textarea01">
+                        Data do Envio
+                    </label>
+                    <input disabled type="date" required class="form-control input-lg" value="{{data.envio | date : 'yyyy-MM-dd'}}"
+                    placeholder="Informe o assunto da orientação...">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="textarea01">
+                        Hora do Envio
+                    </label>
+                    <input disabled type="time" required class="form-control input-lg" value="{{data.envio | date : 'HH:mm:ss'}}"
+                    placeholder="Informe o assunto da orientação...">
+                </div>
+            </div>
+            <div ng-if="data.resposta">
+                
             </div>
         </form>
     </div>

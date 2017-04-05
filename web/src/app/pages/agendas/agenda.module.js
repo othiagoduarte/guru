@@ -1,19 +1,19 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.professor.agenda',['BlurAdmin.data','BlurAdmin.theme'])
+  angular.module('BlurAdmin.pages.agenda',['BlurAdmin.data'])
       .config(routeConfig);
 
    /** @ngInject */
   function routeConfig($stateProvider) {
     	$stateProvider.state('Agenda', {
-          url: '/professor/agenda',
+          url: '/dasboard/agenda',
           title: 'Agenda',
-          templateUrl: 'app/pages/professor/agendas/agenda.html',
+          templateUrl: 'app/pages/agendas/agenda.html',
           controller: 'AgendaCtrl',
           sidebarMeta: {
             icon: 'ion-search',
-            order: 1,
+            order: 0,
           }        });
 	}  
 })();

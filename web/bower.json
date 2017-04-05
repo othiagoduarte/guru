@@ -56,7 +56,8 @@
     "textAngular": "~1.4.6",
     "angular-xeditable": "~0.1.9",
     "ng-js-tree": "~0.0.7",
-    "angular-jwt": "^0.1.9"
+    "angular-jwt": "^0.1.9",
+    "angular-ui-calendar": "^1.0.2"
   },
   "resolutions": {
     "angular": "~1.4.8"

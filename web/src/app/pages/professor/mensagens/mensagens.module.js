@@ -9,7 +9,7 @@
     $stateProvider
         .state('Mensagens', {
           url: '/professor/Mensagens',
-          title: 'Mensagens',
+          title: 'Solicitação',
           templateUrl: 'app/pages/professor/mensagens/mensagens.html',
           controller: 'mensagensCtrl',
           sidebarMeta: {

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.aluno', [
+  angular.module('BlurAdmin.pages.aluno', [  'BlurAdmin.pages.agenda'
                                             ,'BlurAdmin.pages.aluno.projeto'
                                             ,'BlurAdmin.pages.aluno.orientadores'
                                             ,'BlurAdmin.pages.aluno.modals'

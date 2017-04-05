@@ -1,3 +1,12 @@
+<div ng-show="! data.orientacoes.length > 0">
+    <div class="alert bg-info closeable" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Informação </strong>Você não possui orientação agendada!
+    </div>
+</div>
+<div ng-show=" data.orientacoes.length > 0">
 <mensagens>
-<p>{{data.orientacoes}} </p>
-</mensagens> 
+    <div class="row">
+      <div ng-include="'app/pages/aluno/orientacao/orientacao-tab.html'"></div>
+    </div>
+</mensagens>
+</div>

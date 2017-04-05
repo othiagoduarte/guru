@@ -11,11 +11,21 @@ angular.module('BlurAdmin.pages.aluno.orientacao')
 
     	$scope.data = {};
 		$scope.traduzSolicitacao = traduzSolicitacao;
+		$scope.Detalhes = Detalhes;
 
 		dbOrientacao.GetByAluno($ALUNO._id)
 		.then(function(orientacao){
 			$scope.data.orientacoes = orientacao.data;
 		});
+		
+		 function Detalhes(pOrientacao){
+
+			$modalservice.detalhar({
+				data:pOrientacao,
+				size:'lg',
+				template:'app/pages/componentes/orientacao/detalhes.html'
+			});
+		}
 
 		function traduzSolicitacao(status){
 			

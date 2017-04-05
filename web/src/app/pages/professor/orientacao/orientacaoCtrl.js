@@ -20,9 +20,8 @@ angular.module('BlurAdmin.pages.professor.orientacao')
  		
 		 function Detalhes(pOrientacao){
 
-			var data = pOrientacao;
 			$modalservice.detalhar({
-				data:data,
+				data:pOrientacao,
 				size:'lg',
 				template:'app/pages/componentes/orientacao/detalhes.html'
 			});
@@ -33,8 +32,8 @@ angular.module('BlurAdmin.pages.professor.orientacao')
 			if (status == "E") {
 				return "Enviado";
 			}
-			if (status == "A") {
-				return "Aceito";
+			if (status == "C") {
+				return "Confirmada";
 			}
 			if (status == "R") {
 				return "Recusado";
