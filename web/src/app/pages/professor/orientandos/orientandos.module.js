@@ -13,7 +13,7 @@
           controller: 'OrientandosCtrl',
           sidebarMeta: {
             icon: 'ion-search',
-            order: 2,
+            order: 1,
           }        });
 	}  
 })();

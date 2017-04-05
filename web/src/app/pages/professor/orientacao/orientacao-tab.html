@@ -1,0 +1,100 @@
+<div>
+    <h3>Agendamento de Orientação</h3>
+</div>
+    <uib-accordion>
+    <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
+        <uib-accordion-heading>
+            Enviadas
+            <i class="fa pull-right ion-settings"></i>
+        </uib-accordion-heading>
+            <div class="horizontal-scroll">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Assunto</th>
+                        <th>Local</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="orientacao in data.orientacoes | filter: filtrarOrientacaoStatusEnviado"  ng-click ="Detalhes(orientacao)" >
+                        <td>{{orientacao.aluno.nome}}</td>
+                        <td>{{orientacao.assunto}}</td>   
+                        <td>{{orientacao.local}}</td>  
+                        <td>{{orientacao.data | date : 'dd/MM/yyyy'}}</td>
+                        <td>{{orientacao.data | date : 'HH:mm:ss'}}</td>
+                        <td>{{orientacao.status.descricao}}</td>
+                        <p> {{orientacao.aluno}}</p>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </uib-accordion-group>
+    </uib-accordion>
+    <uib-accordion>
+    <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
+        <uib-accordion-heading>
+            Recusadas
+            <i class="fa pull-right ion-settings"></i>
+        </uib-accordion-heading>
+            <div class="horizontal-scroll">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Assunto</th>
+                        <th>Local</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="orientacao in data.solicitacoes | filter: filtrarOrientacaoStatusRejeitado " ng-click ="Detalhes(orientacao)" >
+                        <td>{{orientacao.aluno.nome}}</td>
+                        <td>{{orientacao.assunto}}</td>   
+                        <td>{{orientacao.local}}</td>   
+                        <td>{{orientacao.data | date : 'dd/MM/yyyy'}}</td>
+                        <td>{{orientacao.data | date : 'HH:mm:ss'}}</td>
+                        <td>{{orientacao.status.descricao}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </uib-accordion-group>
+    </uib-accordion>
+    <uib-accordion>
+        <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
+            <uib-accordion-heading>
+                Aceitas
+                <i class="fa pull-right ion-settings"></i>
+            </uib-accordion-heading>
+                <div class="horizontal-scroll">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th>Assunto</th>
+                            <th>Local</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="orientacao in data.solicitacoes | filter: filtrarOrientacaoStatusAceito " ng-click ="Detalhes(orientacao)" >
+                            <td>{{orientacao.aluno.nome}}</td>
+                            <td>{{orientacao.assunto}}</td>   
+                            <td>{{orientacao.local}}</td>   
+                            <td>{{orientacao.data | date : 'dd/MM/yyyy'}}</td>
+                            <td>{{orientacao.data | date : 'HH:mm:ss'}}</td>
+                            <td>{{orientacao.status.descricao}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </uib-accordion-group>
+    </uib-accordion>

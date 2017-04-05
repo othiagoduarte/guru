@@ -8,6 +8,18 @@
 
     function modalservice($uibModal) {
 
+        this.detalhar = function (modalData) {
+            $uibModal.open({
+                animation: true,
+                templateUrl: modalData.template,
+                size: modalData.size || 'md',
+                controller: detalharCtrl,
+                resolve: {
+                    param: modalData,
+                }
+            });
+        }
+
         this.executar = function (modalData) {
             $uibModal.open({
                 animation: true,
@@ -81,7 +93,16 @@
             fechar();
         }
     }
-    
+    /** @ngInject */
+    function detalharCtrl($scope,param){
+        $scope.data = param.data;
+        $scope.func = param.func;
+        $scope.func2 = param.func2;
+        $scope.executar = function (fechar){
+            $scope.func($scope.data);
+            fechar();
+        }
+    }
     function modalCtrl($modalservice,$scope,retorno) {
         
         $scope.retorno = retorno;

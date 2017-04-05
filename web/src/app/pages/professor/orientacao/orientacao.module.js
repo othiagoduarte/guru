@@ -15,7 +15,7 @@
           controller: 'orientacaoCtrl',
           sidebarMeta: {
             icon: 'ion-email',
-            order: 5,
+            order: 2,
           }, 
           data: {
             requireLogin: true // this property will apply to all children of 'app'

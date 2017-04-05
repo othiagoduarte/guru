@@ -1,12 +1,12 @@
 <div class="row" >
     <div class="xs-6 col-md-9">
         <h3>{{aluno.nome}}</h3>
-        <h6>{{aluno.titulo}}</h6>
+        <h6>{{aluno.apresentacao}}</h6>
     </div>
     <div class="xs-6 col-md-3">
         <div class="user-profile clearfix">
             <div class="al-user-profile" uib-dropdown>
-                <img ng-src="{{::( 'aluno' | profilePicture )}}">
+                <img ng-src="{{::( aluno.user._id | profilePicture )}}">
             </div>
         </div>
     </div>
