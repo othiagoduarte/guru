@@ -26,7 +26,17 @@ module.exports = function(app)
 	};
 	
 	function save(req, res){
+		
+		var _orientacao = req.body;
+		var query = {"_id":_orientacao._id};
 
+		Orientacao.findOneAndUpdate(query,_orientacao)
+		.then(function(orientacoes) {
+			res.status(200).json(orientacoes._doc);
+		},
+		function(erro) {
+			console.log(erro);
+		});	
 	};
 
 	function add(req, res){

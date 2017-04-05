@@ -13,7 +13,7 @@
           templateUrl: 'app/pages/componentes/projeto/projeto.html',
           controller: 'ProjetoCtrl',
           sidebarMeta: {
-            icon: 'ion-flag',
+            icon: 'ion-star',
             order: 0,
           }
         });

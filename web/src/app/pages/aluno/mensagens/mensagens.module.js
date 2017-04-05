@@ -10,12 +10,12 @@
     $stateProvider
         .state('Mensagens', {
           url: '/aluno/Mensagens',
-          title: 'Mensagens',
+          title: 'Solicitações',
           templateUrl: 'app/pages/aluno/mensagens/mensagens.html',
           controller: 'mensagensCtrl',
           sidebarMeta: {
             icon: 'ion-email',
-            order: 5,
+            order: 10,
           }, 
           data: {
             requireLogin: true // this property will apply to all children of 'app'

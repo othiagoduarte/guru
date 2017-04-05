@@ -1,6 +1,6 @@
-<projeto ng-if="data.isAluno">
+<projeto class="row" ng-if="data.isAluno">
         <!--PROFESSORES - INICIO -->
-            <div class="col-md-12" ng-if="data.projeto.professor" ng-init="professor = data.projeto.professor">
+            <div ng-if="data.projeto.professor" ng-init="professor = data.projeto.professor">
                 <div ba-panel ba-panel-title="Meu orientador" ba-panel-class="with-scroll">
                     <div ng-include="'app/pages/componentes/professor-orientador.html'"></div>
                 </div>

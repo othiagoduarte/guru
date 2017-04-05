@@ -12,7 +12,7 @@
           templateUrl: 'app/pages/agendas/agenda.html',
           controller: 'AgendaCtrl',
           sidebarMeta: {
-            icon: 'ion-search',
+            icon: 'ion-clipboard',
             order: 0,
           }        });
 	}  

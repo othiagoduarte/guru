@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="orientacao in data.orientacoes | filter: filtrarOrientacaoStatusEnviado"  ng-click ="Detalhes(orientacao)" >
+                    <tr ng-repeat="orientacao in data.orientacoes | filter: filtrarStatusEnviado"  ng-click ="Responder(orientacao)" >
                         <td>{{orientacao.assunto}}</td>   
                         <td>{{orientacao.local}}</td>  
                         <td>{{orientacao.data | date : 'dd/MM/yyyy'}}</td>
@@ -56,7 +56,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="orientacao in data.solicitacoes | filter: filtrarOrientacaoStatusAceito " ng-click ="Detalhes(orientacao)" >
+                        <tr ng-repeat="orientacao in data.orientacoes | filter: filtrarStatusConfirmado " ng-click ="Detalhes(orientacao)" >
                             <td>{{orientacao.assunto}}</td>   
                             <td>{{orientacao.local}}</td>   
                             <td>{{orientacao.data | date : 'dd/MM/yyyy'}}</td>
@@ -90,7 +90,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="orientacao in data.solicitacoes | filter: filtrarOrientacaoStatusRejeitado " ng-click ="Detalhes(orientacao)" >
+                    <tr ng-repeat="orientacao in data.orientacoes | filter: filtrarStatusRejeitado " ng-click ="Detalhes(orientacao)" >
                         <td>{{orientacao.assunto}}</td>   
                         <td>{{orientacao.local}}</td>   
                         <td>{{orientacao.data | date : 'dd/MM/yyyy'}}</td>

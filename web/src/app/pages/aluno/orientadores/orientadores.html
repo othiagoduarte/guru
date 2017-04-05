@@ -1,26 +1,28 @@
 <orientadores>
-    <div class="col-md-4 col-md-offset-8" ba-panel>
-        <div class="input-demo radio-demo row">
-            <div class="col-md-6">
-                <label class="radio-inline custom-radio nowrap">
-                <input type="radio" ng-model="disponibilidade.name" value="nao">
-                <span>Todos</span>
-                </label>
-            </div>
-            <div class="col-md-6">
-                <label class="radio-inline custom-radio nowrap">
-                <input type="radio" ng-model="disponibilidade.name" value="sim">
-                <span>Disponíveis</span>
-                </label>
+    <div ng-if="! data.temOrientador">
+        <div class="col-md-4 col-md-offset-8" ba-panel>
+            <div class="input-demo radio-demo row">
+                <div class="col-md-6">
+                    <label class="radio-inline custom-radio nowrap">
+                    <input type="radio" ng-model="disponibilidade.name" value="nao">
+                    <span>Todos</span>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <label class="radio-inline custom-radio nowrap">
+                    <input type="radio" ng-model="disponibilidade.name" value="sim">
+                    <span>Disponíveis</span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-12">
-       <uib-accordion>
+    <div >
+       <uib-accordion class="col-md-12">
             <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
                 <uib-accordion-heading>
                     Para encontrar um orientador ideal selecione as habilidades
-                    <i class="fa pull-right ion-settings"></i>
+                    <i class="fa pull-right ion-funnel"></i>
                 </uib-accordion-heading>
                    <!--FILTROS - INICIO -->
                     <div ng-repeat="filtro in data.skills ">

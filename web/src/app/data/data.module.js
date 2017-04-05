@@ -122,6 +122,9 @@ function Orientacao(pUrlApi, $http){
       Add: function(pData){
             return $http.post(pUrlApi, pData);  
       },
+      Save: function(pData){
+            return $http.put(pUrlApi, pData);  
+      },
       GetByProfessor : function(pIdProfessor){
             return $http.get(pUrlApi + "/byProfessor/" + pIdProfessor);
       },
