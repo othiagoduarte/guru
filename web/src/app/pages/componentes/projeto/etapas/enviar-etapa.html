@@ -1,0 +1,43 @@
+<div class="modal-content">
+   <div class="modal-header">
+      <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close">
+      </em>
+      </button>
+      <h4 class="modal-title">
+         Feedback
+      </h4>
+   </div>
+   <div class="modal-body">
+      <form>
+         <div class="col-md-12">
+            <div class="form-group">
+               <label for="textarea01">
+               Titulo
+               </label>
+               <input type="text" required class="form-control input-lg" ng-model="data.etapa.titulo"
+                  placeholder="Informe o assunto do feedback" >
+            </div>
+         </div>
+         <div class="form-group col-md-12">
+            <label for="textarea01">Resumo</label>
+            <textarea class="form-control" ng-model = "data.etapa.resumo" placeholder="Descreva o feedback!" >{{data.etapa.detalhe}}</textarea>
+         </div>
+         <div class="col-md-7">
+            <label for="textarea02">
+                Data Crítica
+            </label>
+            <input type="date" required class="form-control input-lg" ng-model="data.etapa.dataCritica"
+            placeholder="Informe a data crítica...">
+        </div>
+      </form>
+   </div>
+   <div class="modal-footer">
+      <button type="button" class="btn btn-info" ng-click="$dismiss()">
+      Cancelar
+      </button>
+      <button type="button" class="btn btn-info" ng-click="executar($dismiss)">
+      Enviar
+      </button>
+   </div>
+</div>

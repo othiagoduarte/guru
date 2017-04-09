@@ -7,64 +7,64 @@ angular.module('BlurAdmin.pages.professor.orientandos')
  	/** @ngInject */
 	function OrientandosCtrl($scope,$apiService, $modalservice,$PROFESSOR) {
 		
+		
 		var dbAlunos = $apiService.aluno;
 		var dbProjeto = $apiService.projeto;
 		var dbOrientacao = $apiService.orientacao;
-
-		$scope.data = {};
-		$scope.filtroSkilss = [];
+		var dbFeedback =  $apiService.feedback;
+		
 		$scope.VerProjeto = VerProjeto;
 		$scope.Agendar = Agendar; 
-		
+		$scope.Feedback = Feedback; 
+
+		$scope.data = {};
+				
 		dbAlunos.GetByOrientando($PROFESSOR._id)
 		.then(function(alunos){
 			$scope.data.alunos = alunos.data.alunos;
 		});
     	
-		function VerProjeto (aluno){
-
-			var dados = {};
- 
+		function VerProjeto(aluno){
 			dbProjeto.GetByAluno(aluno.matricula)
 			.then(function (projeto){
-				dados.projeto = projeto.data;
-			});
-
-			$modalservice.executar({
-				func:visualizarProjeto,
-				data:dados,
-				size:'lg',
-				template:'app/pages/componentes/projeto/projeto.html'
+				$modalservice.detalhar({
+					data: {projeto:projeto.data},
+					size:'lg',
+					template:'app/pages/componentes/projeto/projeto-detalhe.html'
+				});
 			});
 		}
 		
-		function Agendar(aluno){
+		function Feedback(pAluno){
+			$modalservice.executar({
+				func:EnviarFeedback,
+				data:{aluno: pAluno, professor: $PROFESSOR },
+				size:'lg',
+				template:'app/pages/componentes/feedback/enviar-feedback.html'
+			});
+		}
+		
+		function EnviarFeedback(pDados){
+			dbFeedback.Add(pDados)
+			.then(function(){
+				$modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao enviar o feedback"});
+			});
+		}
 
-			var dados = {};
-			
-			dados.aluno = aluno;
-			dados.professor = $PROFESSOR;
-
+		function Agendar(pAluno){
 			$modalservice.executar({
 				func:AgendarOrientacao,
-				data:dados,
+				data:{aluno: pAluno, professor: $PROFESSOR },
 				size:'lg',
 				template:'app/pages/componentes/orientacao/agendar.html'
 			});
 		}
 
-		function visualizarProjeto(){
-
-		}
-
 		function AgendarOrientacao(dados){
-
 			dbOrientacao.Add(dados)
 			.then(function(){
 				$modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao agendar Orientação!"});
 			});
 		}
-		
-
 	}
 })();

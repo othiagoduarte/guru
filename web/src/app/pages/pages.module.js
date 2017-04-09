@@ -8,8 +8,6 @@
         
       $httpProvider.defaults.headers.common['authorization'] = 'JWT ' + window.sessionStorage.token;
 
-
-      //$httpProvider.interceptors.push('$authInterceptor');
   }
 
   /** @ngInject */

@@ -12,5 +12,13 @@ module.exports = function(app)
 	app.route('/projeto')
 	.get(auth, controller.getAll)
 	.post(auth, controller.add)
-	.put(auth, controller.save);		
+	.put(auth, controller.save);	
+	
+	app.route('/projeto/addEtapa')
+	.put(auth, controller.addEtapa);
+
+	
+	app.route('/projeto/editarEtapa')
+	.post(auth, controller.editarEtapa);	
+	
 };

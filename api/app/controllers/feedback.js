@@ -1,6 +1,6 @@
 module.exports = function(app)
 {
-	var Feedback = app.models.feedback;		
+	var Projeto = app.models.projeto;		
 	var controller = {};
 	
 	controller.getAll = getAll; /*BUSCAR TODOS*/ 

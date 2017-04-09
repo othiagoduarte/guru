@@ -1,0 +1,28 @@
+<div class="row">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>    
+                <th>Título</th>
+                <th>Resumo</th>   
+                <th>Data Crítica</th>
+                <th>Concluído</th>
+                <th>Tarefas</th>
+                <th>Editar</th> 
+                <th>Excluir</th>    
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="etapa in etapas" ng-click ="etapaDetalhes(etapa)" >
+                <td></td>
+                <td>{{etapa.titulo}}</td>  
+                <td>{{etapa.resumo}}</td>   
+                <td>{{etapa.dataCritica | date : 'dd/MM/yyyy'}}</td>
+                <td><a ng-click="concluirEtapa(etapa,data.projeto)">{{etapa.concluido ? "Sim" : "Não" }}</a></td>
+                <td><a ng-click="addTarefa(etapa,data.projeto)"><i class="ion-plus-round"></i></a></td>                
+                <td><a ng-click="editarEtapa(etapa,data.projeto)"><i class="ion-edit"></i></a></td>
+                <td><a ng-click="excluirEtapa(etapa,data.projeto)"><i class="ion-trash-a"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

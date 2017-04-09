@@ -171,7 +171,12 @@ function Projeto(pUrlApi, $http){
       GetByAluno: function(pMatricula){
             return $http.get(pUrlApi + "/GetByAluno/" + pMatricula);  
       },
-
+      AddEtapa: function(pData){
+            return $http.put(pUrlApi + "/addEtapa", pData);
+      },
+      EditarEtapa: function(pData){
+            return $http.post(pUrlApi + "/editarEtapa", pData);
+      },
   }
 }
 
