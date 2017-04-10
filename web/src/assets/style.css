@@ -11,4 +11,9 @@
 table tbody  tr  a{
     cursor: pointer;
 }
-
+td a i{
+    font-size: 25px;
+}
+th tr{
+    font: bold;
+}

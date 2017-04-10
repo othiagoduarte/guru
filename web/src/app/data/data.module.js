@@ -179,7 +179,7 @@ function Projeto(pUrlApi, $http){
       },
       DelEtapa: function(pData){
             return $http.post(pUrlApi + "/delEtapa", pData);
-      },      
+      },           
   }
 }
 

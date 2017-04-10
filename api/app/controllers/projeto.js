@@ -108,7 +108,7 @@ module.exports = function(app)
 			console.log(erro);
 		});	
 	}
-
+	
 	function add(req, res){
 		
 		var _projeto = req.body;

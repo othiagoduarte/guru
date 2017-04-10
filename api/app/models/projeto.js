@@ -21,7 +21,8 @@ module.exports = function() {
             matricula:{type: String},
             user: { email:{type: String},
                     _id:{type: String}
-                }
+                },
+          apresentacao:  {type: String},
         },
         professor:{            
             _id:{type: String},
@@ -33,7 +34,12 @@ module.exports = function() {
                       dataCritica:{ type: Date ,required: true},
                       concluido:{ type: Boolean, default:false},
                       tarefas:[],
-                      feedback:[]
+                      feedback:[{ assunto:{type: String},
+                                  detalhe:{type: String}, 
+                                  envio:{ type: Date, 
+                                      default: Date.now 
+                                    }
+                                }]
                     }                    
                 ]
         , segmento:{}

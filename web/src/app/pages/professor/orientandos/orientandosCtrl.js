@@ -5,17 +5,17 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 	.controller('OrientandosCtrl', OrientandosCtrl);
     
  	/** @ngInject */
-	function OrientandosCtrl($scope,$apiService, $modalservice,$PROFESSOR) {
+	function OrientandosCtrl($scope,$apiService, $modalservice,$PROFESSOR,$uibModal) {
 		
 		
 		var dbAlunos = $apiService.aluno;
 		var dbProjeto = $apiService.projeto;
 		var dbOrientacao = $apiService.orientacao;
-		var dbFeedback =  $apiService.feedback;
 		
 		$scope.VerProjeto = VerProjeto;
 		$scope.Agendar = Agendar; 
 		$scope.Feedback = Feedback; 
+		$scope.VerEtapas = VerEtapas;
 
 		$scope.data = {};
 				
@@ -30,22 +30,44 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 				$modalservice.detalhar({
 					data: {projeto:projeto.data},
 					size:'lg',
-					template:'app/pages/componentes/projeto/projeto-detalhe.html'
+					template:'app/pages/componentes/projeto/projeto-modal.html'
 				});
 			});
 		}
 		
-		function Feedback(pAluno){
+		function VerEtapas(aluno){
+			dbProjeto.GetByAluno(aluno.matricula)
+			.then(function (projeto){
+				
+				$uibModal.open({
+					animation: true,
+					templateUrl:'app/pages/componentes/projeto/etapas/etapas-modal.html',
+					size: 'lg',
+					controller: VerEtapasCtrl,
+					resolve: {
+						param: projeto.data,
+					}
+				});	
+			});
+		}
+		
+		function VerEtapasCtrl($scope,param){
+			$scope.projeto = param;
+			$scope.Feedback = Feedback; 			
+		}		
+		
+		function Feedback(etapa,projeto){
 			$modalservice.executar({
 				func:EnviarFeedback,
-				data:{aluno: pAluno, professor: $PROFESSOR },
+				data:{etapa: etapa, projeto: projeto },
 				size:'lg',
 				template:'app/pages/componentes/feedback/enviar-feedback.html'
 			});
 		}
 		
 		function EnviarFeedback(pDados){
-			dbFeedback.Add(pDados)
+			pDados.etapa.feedback.push({assunto:pDados.assunto, detalhe:pDados.detalhe});
+			dbProjeto.EditarEtapa(pDados)
 			.then(function(){
 				$modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao enviar o feedback"});
 			});
