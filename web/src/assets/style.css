@@ -7,3 +7,8 @@
 .total-msg{
     margin-right: 5px;
 }
+
+table tbody  tr  a{
+    cursor: pointer;
+}
+

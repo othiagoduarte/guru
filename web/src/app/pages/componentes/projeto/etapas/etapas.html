@@ -19,7 +19,7 @@
                 <td>{{etapa.resumo}}</td>   
                 <td>{{etapa.dataCritica | date : 'dd/MM/yyyy'}}</td>
                 <td><a ng-click="concluirEtapa(etapa,data.projeto)">{{etapa.concluido ? "Sim" : "Não" }}</a></td>
-                <td><a ng-click="addTarefa(etapa,data.projeto)"><i class="ion-plus-round"></i></a></td>                
+                <td><a ng-click="addTarefa(etapa,data.projeto)"><i class="ion-checkmark-round"></i></a></td>                
                 <td><a ng-click="editarEtapa(etapa,data.projeto)"><i class="ion-edit"></i></a></td>
                 <td><a ng-click="excluirEtapa(etapa,data.projeto)"><i class="ion-trash-a"></i></a></td>
             </tr>

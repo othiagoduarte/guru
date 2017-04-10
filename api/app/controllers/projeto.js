@@ -12,6 +12,7 @@ module.exports = function(app)
 	controller.getByAluno = getByAluno;
 	controller.addEtapa = addEtapa;
 	controller.editarEtapa = editarEtapa;
+	controller.delEtapa = delEtapa;
 
 	function get (req, res) {	
 
@@ -23,8 +24,7 @@ module.exports = function(app)
 		Projeto.find().exec()
 		.then(function(projetos){
 			res.json(projetos);
-		});
-			
+		});			
 	};
 	
 	function save(req, res){
@@ -51,7 +51,7 @@ module.exports = function(app)
 		.then(function(projetos) {
 			
 			if(projetos){
-			res.status(200).json(projetos._doc);
+				res.status(200).json(projetos._doc);
 			}else{
 				res.status(501).json({});
 				console.log(erro);
@@ -74,7 +74,7 @@ module.exports = function(app)
 		.then(function(projetos) {
 			
 			if(projetos){
-			res.status(200).json(projetos._doc);
+				res.status(200).json(projetos._doc);
 			}else{
 				res.status(501).json({});
 				console.log(erro);
@@ -85,6 +85,29 @@ module.exports = function(app)
 			console.log(erro);
 		});	
 	};
+	
+	function delEtapa(req, res){
+
+		var _projeto = req.body.projeto;
+		var _etapa = req.body.etapa;
+		
+		var query = {"_id":mongoose.Types.ObjectId(_projeto._id), "etapas._id" :mongoose.Types.ObjectId(_etapa._id)};
+	
+		Projeto.findOneAndUpdate(query, {$pull:  {'etapas': { _id : _etapa._id }}} , {new: true })
+		.then(function(projetos) {
+			
+			if(projetos){
+				res.status(200).json(projetos._doc);
+			}else{
+				res.status(501).json({retorno :"Não encontrado!"});
+				console.log(erro);
+			}
+		},
+		function(erro) {
+			res.status(501).json(erro);
+			console.log(erro);
+		});	
+	}
 
 	function add(req, res){
 		

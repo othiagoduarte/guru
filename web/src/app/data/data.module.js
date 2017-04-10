@@ -177,6 +177,9 @@ function Projeto(pUrlApi, $http){
       EditarEtapa: function(pData){
             return $http.post(pUrlApi + "/editarEtapa", pData);
       },
+      DelEtapa: function(pData){
+            return $http.post(pUrlApi + "/delEtapa", pData);
+      },      
   }
 }
 

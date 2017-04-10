@@ -17,7 +17,9 @@ module.exports = function(app)
 	app.route('/projeto/addEtapa')
 	.put(auth, controller.addEtapa);
 
-	
+	app.route('/projeto/delEtapa')
+	.post(auth, controller.delEtapa);
+
 	app.route('/projeto/editarEtapa')
 	.post(auth, controller.editarEtapa);	
 	
