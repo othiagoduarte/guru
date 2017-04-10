@@ -5,7 +5,7 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 	.controller('OrientandosCtrl', OrientandosCtrl);
     
  	/** @ngInject */
-	function OrientandosCtrl($scope,$apiService, $modalservice,$PROFESSOR,$uibModal) {
+	function OrientandosCtrl($scope,$apiService, $modalservice,$PROFESSOR,$uibModal,$timeout) {
 		
 		
 		var dbAlunos = $apiService.aluno;
@@ -16,7 +16,7 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 		$scope.Agendar = Agendar; 
 		$scope.Feedback = Feedback; 
 		$scope.VerEtapas = VerEtapas;
-
+		
 		$scope.data = {};
 				
 		dbAlunos.GetByOrientando($PROFESSOR._id)
@@ -53,8 +53,46 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 		
 		function VerEtapasCtrl($scope,param){
 			$scope.projeto = param;
-			$scope.Feedback = Feedback; 			
-		}		
+			$scope.Feedback = Feedback; 
+			$scope.EditarEtapa = EditarEtapa;			
+		}
+		
+		function EditarEtapa(pDados,projeto){    
+            pDados.projeto = { _id: projeto._id};
+            $modalservice.executar({
+                func:EditarEtapaCtrl,
+                data:{etapa:pDados,projeto: pDados.projeto },
+                size:'lg',
+                template:'app/pages/componentes/projeto/etapas/etapa.html'
+            });
+        } 
+
+        function EditarEtapaCtrl(pDados,fecharModal){
+            $apiService.projeto.EditarEtapa(pDados)
+            .then(function(projeto){
+            
+                $scope.data.projeto = {};
+                
+                $timeout(function(){
+                    $modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao salvar os dados da etapa"});
+                    if(fecharModal){
+                        fecharModal();
+                    }
+
+                    $scope.$apply(function(){
+                        $scope.data.projeto = projeto.data ;                    
+                    });
+                });            
+            })
+            .catch(function(data) {
+                var retorno = {};
+                retorno.titulo = "Atenção";
+                retorno.mensagem = "Não foi editar etapa!";
+                fecharModal();
+                $modalservice.atencao(retorno);
+             });
+        } 
+		
 		
 		function Feedback(etapa,projeto){
 			$modalservice.executar({
@@ -65,11 +103,12 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 			});
 		}
 		
-		function EnviarFeedback(pDados){
+		function EnviarFeedback(pDados,fecharModal){
 			pDados.etapa.feedback.push({assunto:pDados.assunto, detalhe:pDados.detalhe});
 			dbProjeto.EditarEtapa(pDados)
 			.then(function(){
 				$modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao enviar o feedback"});
+				fecharModal();
 			});
 		}
 
