@@ -33,6 +33,7 @@ module.exports = function() {
                       resumo: {type: String,required: true},
                       dataCritica:{ type: Date ,required: true},
                       concluido:{ type: Boolean, default:false},
+                      entrega:{url:{type: String}},
                       tarefas:[],
                       feedback:[{ assunto:{type: String},
                                   detalhe:{type: String}, 

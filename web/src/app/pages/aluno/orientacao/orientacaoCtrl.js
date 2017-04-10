@@ -41,10 +41,11 @@ angular.module('BlurAdmin.pages.aluno.orientacao')
 			});
 		}
 
-		function ResponderOrientacao(dados){
+		function ResponderOrientacao(dados,fecharModal){
 			dbOrientacao.Save(dados)
 			.then(function(){
 				$modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao agendar Orientação!"});
+				fecharModal();
 			});
 		}
 		function traduzSolicitacao(status){

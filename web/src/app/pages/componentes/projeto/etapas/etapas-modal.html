@@ -33,18 +33,23 @@
                     <tbody>
                         <tr ng-repeat="etapa in etapas" ng-click ="etapaDetalhes(etapa)" >
                             <td><a ng-click="EditarEtapa(etapa,projeto)"><i class="ion-edit"></i></a></td>
-                            <td>{{etapa.titulo | limitTo: 10}}</td>  
-                            <td>{{(etapa.resumo | limitTo: 15) + "..." }}</td>   
+                            <td>{{etapa.titulo | limitTo: 20}}</td>  
+                            <td>{{(etapa.resumo | limitTo: 20) + "..." }}</td>   
                             <td>{{etapa.dataCritica | date : 'dd/MM/yyyy'}}</td>
                             <td>{{etapa.concluido ? "Sim" : "Não" }}</td>
-                            <td><a ng-if="etapa.entrega" ng-click="verEntrega(etapa,data.projeto)"><i class="ion-archive"></i></a></td>
+                            <td><a ng-if="etapa.entrega" href="{{etapa.entrega.url}}" target="_blank" ><i class="ion-archive"></i></a></td>
                             <td>{{etapa.feedback.length}}</td>
                             <td><a ng-click="Feedback(etapa,projeto)"><i class="ion-forward"></i></a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-    </div>
+            <div class="button-wrapper col-md-1 ">
+                <div>
+                    <button type="button" class="btn btn-default" ng-click="CriarEtapa(projeto)">Incluir</button>
+                </div>
+            </div>            
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-info" ng-click="$dismiss()">

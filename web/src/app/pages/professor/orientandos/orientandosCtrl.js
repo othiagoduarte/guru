@@ -54,7 +54,8 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 		function VerEtapasCtrl($scope,param){
 			$scope.projeto = param;
 			$scope.Feedback = Feedback; 
-			$scope.EditarEtapa = EditarEtapa;			
+			$scope.EditarEtapa = EditarEtapa;
+			$scope.CriarEtapa = CriarEtapa;			
 		}
 		
 		function EditarEtapa(pDados,projeto){    
@@ -93,6 +94,44 @@ angular.module('BlurAdmin.pages.professor.orientandos')
              });
         } 
 		
+		function CriarEtapa(pDados){
+            var _etapa = {titulo :"ETAPA #" + (pDados.etapas.length + 1)};
+            $modalservice.executar({
+                func:criarEtapaCtrl,
+                data:{projeto:pDados, etapa: _etapa},
+                size:'lg',
+                template:'app/pages/componentes/projeto/etapas/etapa.html'
+            });
+        }
+
+        function criarEtapaCtrl(pDados,fecharModal){
+			console.log(pDados);
+			pDados.projeto.etapas.push(pDados.etapa);
+            
+			var _dados = { projeto: pDados, etapa:pDados.etapa };
+
+            $apiService.projeto.AddEtapa(_dados)
+            .then(function(projeto){
+                
+				$scope.projeto = {};
+                
+                $timeout(function(){
+                    $modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao criar etapa"});
+                    fecharModal();
+
+                    $scope.$apply(function(){
+                       $scope.projeto = projeto.data ;                    
+                    });
+                });            
+            })
+            .catch(function(data) {
+                var retorno = {};
+                retorno.titulo = "Atenção";
+                retorno.mensagem = "Não foi criar etapa!";
+                $modalservice.atencao(retorno);
+                fecharModal();
+             });
+        }
 		
 		function Feedback(etapa,projeto){
 			$modalservice.executar({
@@ -121,10 +160,11 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 			});
 		}
 
-		function AgendarOrientacao(dados){
+		function AgendarOrientacao(dados,fecharModal){
 			dbOrientacao.Add(dados)
 			.then(function(){
 				$modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao agendar Orientação!"});
+				fecharModal();
 			});
 		}
 	}

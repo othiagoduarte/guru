@@ -135,7 +135,7 @@ angular.module('BlurAdmin.pages.aluno.projeto')
             $modalservice.executar({
                 func:excluirEtapaCtrl,
                 data:{retorno:_retorno,etapa:pDados,projeto: pDados.projeto},
-                size:'lg',
+                size:'sm',
                 template:'app/pages/modals/template/processar.html'
             });
         } 
