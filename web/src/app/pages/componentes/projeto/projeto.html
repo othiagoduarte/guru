@@ -1,19 +1,6 @@
 <uib-accordion>
     <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
         <uib-accordion-heading>
-            Detalhes do Projeto
-            <i class="fa pull-right ion-settings"></i>
-        </uib-accordion-heading>
-        <div class="horizontal-scroll">
-                <projeto  class="col-md-12">
-                <div ng-include="'app/pages/componentes/projeto/projeto-detalhe.html'"></div>
-            </projeto>
-        </div>
-	</uib-accordion-group>
-</uib-accordion>
-<uib-accordion>
-    <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
-        <uib-accordion-heading>
             Etapas do Projeto
             <i class="fa pull-right ion-settings"></i>
         </uib-accordion-heading>
@@ -45,6 +32,19 @@
                     <div ng-include="'app/pages/componentes/professor-orientador.html'"></div>
                 </div>
             </orientador>
+        </div>
+	</uib-accordion-group>
+</uib-accordion>
+<uib-accordion>
+    <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
+        <uib-accordion-heading>
+            Detalhes do Projeto
+            <i class="fa pull-right ion-settings"></i>
+        </uib-accordion-heading>
+        <div class="horizontal-scroll">
+                <projeto  class="col-md-12">
+                <div ng-include="'app/pages/componentes/projeto/projeto-detalhe.html'"></div>
+            </projeto>
         </div>
 	</uib-accordion-group>
 </uib-accordion>

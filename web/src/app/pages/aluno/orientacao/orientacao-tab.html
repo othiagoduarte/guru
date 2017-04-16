@@ -13,22 +13,24 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Assunto</th>
                         <th>Local</th>
                         <th>Data Orientação</th>
                         <th>Hora</th>
                         <th>Status</th>
-                        <th>Recebido</th>                        
+                        <th>Enviado</th>                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="orientacao in data.orientacoes | filter: filtrarStatusEnviado"  ng-click ="Responder(orientacao)" >
-                        <td>{{orientacao.assunto}}</td>   
-                        <td>{{orientacao.local}}</td>  
+                        <td></td>
+                        <td>{{orientacao.assunto | limitTo: 30}}</td>   
+                        <td>{{orientacao.local | limitTo: 30}}</td>  
                         <td>{{orientacao.data | date : 'dd/MM/yyyy'}}</td>
                         <td>{{orientacao.data | date : 'HH:mm:ss'}}</td>
                         <td>{{orientacao.status.descricao}}</td>
-                        <td>{{orientacao.envio}}</td>                        
+                        <td>{{orientacao.envio | date : 'dd/MM/yyyy'}}</td>                        
                     </tr>
                 </tbody>
             </table>
@@ -47,22 +49,24 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Assunto</th>
                             <th>Local</th>
                             <th>Data Orientação</th>
                             <th>Hora</th>
                             <th>Status</th>
-                            <th>Recebido</th>   
+                            <th>Enviado</th>   
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="orientacao in data.orientacoes | filter: filtrarStatusConfirmado " ng-click ="Detalhes(orientacao)" >
-                            <td>{{orientacao.assunto}}</td>   
-                            <td>{{orientacao.local}}</td>   
+                            <td></td>
+                            <td>{{orientacao.assunto  | limitTo: 30}}</td>   
+                            <td>{{orientacao.local  | limitTo: 30}}</td>   
                             <td>{{orientacao.data | date : 'dd/MM/yyyy'}}</td>
                             <td>{{orientacao.data | date : 'HH:mm:ss'}}</td>
                             <td>{{orientacao.status.descricao}}</td>
-                            <td>{{orientacao.envio}}</td>
+                            <td>{{orientacao.envio | date : 'dd/MM/yyyy'}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -81,22 +85,24 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Assunto</th>
                         <th>Local</th>
                         <th>Data Orientação</th>
                         <th>Hora</th>
                         <th>Status</th>
-                        <th>Recebido</th>   
+                        <th>Enviado</th>   
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="orientacao in data.orientacoes | filter: filtrarStatusRejeitado " ng-click ="Detalhes(orientacao)" >
-                        <td>{{orientacao.assunto}}</td>   
-                        <td>{{orientacao.local}}</td>   
+                        <td></td>
+                        <td>{{orientacao.assunto | limitTo: 30}}</td>   
+                        <td>{{orientacao.local | limitTo: 30}}</td>   
                         <td>{{orientacao.data | date : 'dd/MM/yyyy'}}</td>
                         <td>{{orientacao.data | date : 'HH:mm:ss'}}</td>
                         <td>{{orientacao.status.descricao}}</td>
-                        <td>{{orientacao.envio}}</td>
+                        <td>{{orientacao.envio | date : 'dd/MM/yyyy'}}</td>
                     </tr>
                 </tbody>
             </table>

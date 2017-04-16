@@ -19,4 +19,5 @@ module.exports = function(app)
 	.get(auth, controller.getAll)
 	.post(auth, controller.add)
 	.put(auth, controller.save);
+
 };

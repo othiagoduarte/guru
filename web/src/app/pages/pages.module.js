@@ -26,7 +26,7 @@
     if (perfil == "COORDENADOR") {
       mod.push('BlurAdmin.pages.coordenador');
     }
-  
+    
     return mod; 
   }
   
