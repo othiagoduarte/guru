@@ -4,6 +4,7 @@
   .constant("$ALUNO", JSON.parse(window.sessionStorage.userData));
    function modulos(){
       var modulos = [];
+
       modulos.push('BlurAdmin.pages.agenda');
       modulos.push('BlurAdmin.pages.aluno.projeto');
       modulos.push('BlurAdmin.pages.aluno.orientadores');

@@ -1,9 +1,8 @@
 (function () {
   'use strict';
 angular.module('BlurAdmin.pages.aluno.projeto')
+.controller('ProjetoCtrl', ProjetoCtrl);
 
-	.controller('ProjetoCtrl', ProjetoCtrl);
-    
     /** @ngInject */
     function ProjetoCtrl($scope,$apiService,$modalservice,$window,$ALUNO,$timeout,$uibModal) {
 
@@ -18,6 +17,7 @@ angular.module('BlurAdmin.pages.aluno.projeto')
         $scope.addTarefa = addTarefa;
         $scope.addToDoItem = addToDoItem; 
         $scope.concluirEtapa = concluirEtapa;
+        $scope.entregarEtapa = entregarEtapa;
         $scope.todoList = [];
         
         $scope.data.listSegmento = [
@@ -161,6 +161,37 @@ angular.module('BlurAdmin.pages.aluno.projeto')
                     fecharModal();
              });;
         } 
+        
+        function entregarEtapa(pDados,projeto){
+        
+            pDados.projeto = { _id: projeto._id};
+            
+            var uploader = $apiService.arquivo.AlunosProjetoEtapa({teste:"teste123"});
+            
+            
+            uploader.onCompleteAll = function() {
+                uploader = $apiService.arquivo.AlunosProjetoEtapa();
+            };
+
+            $modalservice.executar({
+                func:entregarEtapaCtrl,
+                data:{etapa:pDados,projeto: pDados.projeto, uploader:uploader},
+                size:'md',
+                template:'app/pages/componentes/upload/uploadFile.html'
+            });
+        } 
+
+        function entregarEtapaCtrl(pDados,fecharModal){
+            
+            pDados.uploader.onCompleteAll = function() {
+                alert("Concluído");
+                fecharModal();
+                
+            };
+
+           return;
+        } 
+        
         
         function addTarefa(pDados,projeto){
 
