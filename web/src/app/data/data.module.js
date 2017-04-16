@@ -5,9 +5,9 @@ var app =  angular.module('BlurAdmin.data', []);
 
 app.service('$apiService',apiService);  
 
-function apiService($http){
+function apiService($http,$URLAPI,FileUploader){
 
-    var pUrlApi = "http://localhost:3008/"; 
+    var pUrlApi = $URLAPI;
     //var pUrlApi = "https://guru-othiagoduarte.c9users.io/";
  
     this.aluno = Aluno(pUrlApi, $http);    
@@ -23,6 +23,38 @@ function apiService($http){
     this.tarefa = Tarefa(pUrlApi, $http);
     this.usuario = Usuario(pUrlApi, $http);
     this.skill = Skill(pUrlApi, $http);
+    this.arquivo = Arquivo(pUrlApi,$http,FileUploader);
+}
+
+function Arquivo(pUrlApi,$http,FileUploader){
+         pUrlApi += "arquivo/alunos/etapas/";
+    return {
+        AlunosProjetoEtapa: function(formData){
+   
+            
+            var uploader = new FileUploader({ url: pUrlApi, headers:formData});
+                    // a sync filter
+                uploader.filters.push({
+                    name: 'syncFilter',
+                    fn: function(item /*{File|FileLikeObject}*/, options) {
+                        console.log('syncFilter');
+                        return this.queue.length < 10;
+                    }
+                });
+              
+                // an async filter
+                uploader.filters.push({
+                    name: 'asyncFilter',
+                    fn: function(item /*{File|FileLikeObject}*/, options, deferred) {
+                        console.log('asyncFilter');
+                        setTimeout(deferred.resolve, 1e3);
+                    }
+                });
+            
+            return uploader;
+                
+        }
+    }
 }
 
 function Aluno(pUrlApi, $http){

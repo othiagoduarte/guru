@@ -15,6 +15,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Professor</th>
                         <th>Título</th>   
                         <th>Data de Envio</th>
@@ -23,8 +24,9 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="solicitacao in data.solicitacoes" ng-click ="solicitacaoOrientacaoDetalhes(solicitacao)" >
-                        <td>{{solicitacao.professor.nome}}</td>
-                        <td>{{solicitacao.titulo}}</td>   
+                        <td></td>
+                        <td>{{solicitacao.professor.nome | limitTo: 30}}</td>
+                        <td>{{solicitacao.titulo | limitTo: 30}}</td>   
                         <td>{{solicitacao.envio | date : 'dd/MM/yyyy'}}</td>
                         <td>{{solicitacao.status.descricao}}</td>
                     </tr>

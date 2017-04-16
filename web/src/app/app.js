@@ -14,6 +14,7 @@ var app = angular.module('BlurAdmin', [
                           'ngJsTree',
                           'angular-progress-button-styles',
                           'firebase',
+                          'angularFileUpload',
                           'BlurAdmin.auth',
                           'BlurAdmin.theme',
                           'BlurAdmin.data',
@@ -22,6 +23,10 @@ var app = angular.module('BlurAdmin', [
 app.constant("authorization", {tipo:"JWT", token:""});
 app.constant("$USERDATA",JSON.parse(window.sessionStorage.userData));
 app.constant("PERFIL", "");
+app.constant("$URLAPI", "https://guru-api-othiagoduarte.c9users.io/");
+/*
+app.constant("$URLAPI", "http://localhost:3008/");
+*/
 app.run(function ($rootScope,$state,authorization, $window,PERFIL) {
     authorization.token = $window.sessionStorage.token;
     PERFIL = $window.sessionStorage.perfil;

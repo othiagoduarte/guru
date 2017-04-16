@@ -1,0 +1,30 @@
+<div ng-init = "uploader = data.uploader"></div>
+
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title">Upload</h4>
+  </div>
+  <div class="modal-body">
+    <div>
+         <input type="file" nv-file-select="" uploader="uploader" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn" ng-click="$dismiss()">Não</button>
+    <button type="button" class="btn btn btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+        <span class="glyphicon glyphicon-upload"></span> Upload all
+    </button>
+    <div ng-if="uploader.progress > 0 && uploader.progress < 100" style="heigth : 100px">
+      
+    <hr>
+      <div class="progress" style="">
+        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+     </div>
+    <hr>
+    </div>
+
+  </div>
+</div>
