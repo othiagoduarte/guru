@@ -14,7 +14,7 @@
           templateUrl: 'app/pages/professor/orientacao/orientacao.html',
           controller: 'orientacaoCtrl',
           sidebarMeta: {
-            icon: 'ion-checkmark-round',
+            icon: 'ion-email',
             order: 2,
           }, 
           data: {

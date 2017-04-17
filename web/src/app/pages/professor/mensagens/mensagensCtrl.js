@@ -18,7 +18,7 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 		$scope.data = {};
 		$scope.data.solicitacoes = [];
 		$scope.data.solicitacao = {};
-		$scope.data.listStatus = [{cod:'A',descricao:'Aceito'},{cod:'R',descricao:'Recusado'},{cod:'P',descricao:'Pendente'}];
+		$scope.data.listStatus = [{cod:'A',descricao:'Aceito'},{cod:'R',descricao:'Recusado'}];
 		
 		var dbSolicitacao = $apiService.solicitacao;
 	
@@ -87,14 +87,13 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 				$modalservice.executar({
 					data: dados,
 					size:'lg',
-					template:'app/pages/componentes/projeto/projeto.html'
+					template:'app/pages/componentes/projeto/projeto-modal.html'
 				})
 			})
 			.catch(function(error) {
 				console.log("Error:", error);
 			});
 		
-			fechar();
 		}
 
 		function atualizarProjeto($data){

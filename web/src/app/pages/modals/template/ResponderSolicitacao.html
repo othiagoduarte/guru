@@ -15,9 +15,6 @@
         <label class = "subtitulo-modal">Resumo</label>
         <textarea class="form-control" required ng-model="data.solicitacao.resumo" placeholder="Faça um breve resumo do projeto. Fale sobre o problema, por que o problema é um problema e como o seu projeto irá ajudar no problema em questão."></textarea>
       </div>
-      <div class="form-group">
-          <button type="button" class="btn btn-primary" ng-click="func2(data.solicitacao.aluno,$dismiss)">Ver projeto</button>
-      </div>
        <div class="form-group">
         <label class = "subtitulo-modal">Status</label>
 		    <select class="form-control" title="Status" data-style="btn-inverse" data-container="body" selectpicker
@@ -31,6 +28,8 @@
     </form>
   </div>
   <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="func2(data.solicitacao.aluno,$dismiss)">Ver projeto</button>
     <button type="button" class="btn btn-primary" ng-click="executar($dismiss)">Responder</button>
+     <button type="button" class="btn btn-primary" ng-click="$dismiss()">Sair</button>
   </div>
 </div>

@@ -15,7 +15,7 @@
           controller: 'feedbackCtrl',
           sidebarMeta: {
             icon: 'ion-checkmark-round',
-            order: 6,
+            order: 7,
           }, 
           data: {
             requireLogin: true // this property will apply to all children of 'app'

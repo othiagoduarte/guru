@@ -5,7 +5,7 @@
     <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
         <uib-accordion-heading>
             Novas
-            <i class="fa pull-right ion-settings"></i>
+            <i class="fa pull-right ion-email"></i>
         </uib-accordion-heading>
             <div class="horizontal-scroll">
             <table class="table table-hover">
@@ -14,7 +14,7 @@
                         <th>Aluno</th>
                         <th>curso</th>   
                         <th>Título</th>
-                        <th>Data da Resposta</th>
+                        <th>Data do recebimento</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -23,9 +23,8 @@
                         <td>{{solicitacao.aluno.nome}}</td>
                         <td>{{solicitacao.aluno.curso.nome}}</td>
                         <td>{{solicitacao.titulo}}</td>   
-                        <td>{{solicitacao.dataResposta | date : 'dd/MM/yyyy'}}</td>
+                        <td>{{solicitacao.envio | date : 'dd/MM/yyyy'}}</td>
                         <td>{{solicitacao.status.descricao}}</td>
-                        <p> {{solicitacao.aluno}}</p>
                     </tr>
                 </tbody>
             </table>
@@ -36,7 +35,7 @@
     <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
         <uib-accordion-heading>
             Recusadas
-            <i class="fa pull-right ion-settings"></i>
+            <i class="fa pull-right ion-email"></i>
         </uib-accordion-heading>
             <div class="horizontal-scroll">
             <table class="table table-hover">
@@ -66,7 +65,7 @@
         <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
             <uib-accordion-heading>
                 Aceitas
-                <i class="fa pull-right ion-settings"></i>
+                <i class="fa pull-right ion-email"></i>
             </uib-accordion-heading>
                 <div class="horizontal-scroll">
                 <table class="table table-hover">
