@@ -1,8 +1,14 @@
 {
-  "name": "api",
-  "version": "1.0.0",
-  "description": "API para sistema web para gerenciamento dos processos de Trabalho de Conclusão de Curso",
+  "name": "Guru Web",
+  "version": "0.0.1",
+  "description": "Guru Web - Gerenciador de TCC",
+  "engines": {
+    "node": "6.10.2"
+  },
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.1",
@@ -23,22 +29,14 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/othiagoduarte/my-tcc-api.git"
+    "url": "https://github.com/othiagoduarte/guru"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/othiagoduarte/my-tcc-api/issues"
-  },
-  "homepage": "https://github.com/othiagoduarte/my-tcc-api#readme",
-  "optionalDependencies": {
-    "passport": "^0.2.2"
-  }
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
 }
