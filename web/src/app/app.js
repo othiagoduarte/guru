@@ -23,12 +23,10 @@ var app = angular.module('BlurAdmin', [
 app.constant("authorization", {tipo:"JWT", token:""});
 app.constant("$USERDATA",JSON.parse(window.sessionStorage.userData));
 app.constant("PERFIL", "");
-
-app.constant("$URLAPI", "https://guru-api-othiagoduarte.c9users.io/");
+app.constant("$URLAPI", "https://guru-web.herokuapp.com/");
 /*
-app.constant("$URLAPI", "https://othiagoduarte.herokuapp.com/");
+app.constant("$URLAPI", "https://guru-api-othiagoduarte.c9users.io/");
 */
-
 /*
 app.constant("$URLAPI", "http://localhost:3008/");
 */

@@ -4,20 +4,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blur Admin</title>
-
+  <title>Guru | Login</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
-
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/guru.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/guru.png">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/img/guru.png">
-
   <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
   <!-- bower:css -->
   <!-- run `gulp inject` to automatically populate bower styles dependencies -->
   <!-- endbower -->
   <!-- endbuild -->
-
   <!-- build:css({.tmp/serve,src}) styles/auth.css -->
   <!-- inject:css -->
   <!-- css files will be automatically insert here -->
@@ -57,15 +53,13 @@
   </div>
 </main>
 </body>
-
-
 <!-- build:js(src) scripts/vendor.js -->
 <!-- bower:js -->
 <!-- run `gulp inject` to automatically populate bower script dependencies -->
 <!-- endbower -->
 <!-- endbuild -->
  <script>
-       'use strict';
+'use strict';
   /** @ngInject */
 var app = angular.module('Auth',[]);
 
@@ -78,10 +72,7 @@ app.controller('loginCtrl', function($scope,$http,$window) {
 
     function login(){
         
-        //var url = "http://localhost:3008/login";
-        //https://guru-api-othiagoduarte.c9users.io/
-        
-        var url = "https://guru-api-othiagoduarte.c9users.io/login";
+        var url = "https://guru-web.herokuapp.com/login";
 
         if($scope.data && $scope.data.password != "" && $scope.data.email !="" ){      
             $http.post(url, $scope.data)
@@ -99,14 +90,12 @@ app.controller('loginCtrl', function($scope,$http,$window) {
 
     function sucessoLogin(res){
         
-        if(res.data.user._id){
-        
+        if(res.data.user._id){        
             $window.sessionStorage.token = res.data.token ;
             $window.sessionStorage.perfil = res.data.user.tipo;
             $window.sessionStorage.user = res.data.user._id;
             $window.sessionStorage.userData = JSON.stringify(res.data.userData);
             $window.location.href ="/" ;
-
         }else{
 
         }
