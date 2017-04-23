@@ -1,0 +1,20 @@
+<div class="row" >
+    <div class="xs-6 col-md-9">
+        <h3>{{professor.nome}}</h3>
+        <h6>{{professor.titulo}}</h6>
+    </div>
+    <div class="xs-6 col-md-3">
+        <div class="user-profile clearfix">
+            <div class="al-user-profile" uib-dropdown>
+                <img ng-src="{{::( professor.nome | profilePicture )}}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Row">
+    <div class="button-wrapper">
+        <div class="col-md-4 col-md-offset-8 ">
+            <button type="button" class="btn btn-primary " ng-click="dashboard(professor)">Dashboard</button>
+        </div>
+    </div>
+</div>

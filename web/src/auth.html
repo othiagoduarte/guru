@@ -72,7 +72,7 @@ app.controller('loginCtrl', function($scope,$http,$window) {
 
     function login(){
         
-        var url = "https://guru-web.herokuapp.com/login";
+        var url = "http://localhost:3008/login";
 
         if($scope.data && $scope.data.password != "" && $scope.data.email !="" ){      
             $http.post(url, $scope.data)

@@ -9,12 +9,12 @@
     $stateProvider
         .state('Orientadores', {
           url: 'coordenador/orientadores',
-          title: 'Buscar Orientadores',
+          title: 'Orientadores',
           templateUrl: 'app/pages/coordenador/orientadores/orientadores.html',
           controller: 'OrientadoresCtrl',
           sidebarMeta: {
-            icon: 'ion-grid',
-            order: 1,
+            icon: 'ion-search',
+            order: 3,
           },        
       });
   }

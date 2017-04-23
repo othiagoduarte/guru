@@ -1,5 +1,4 @@
 'use strict';
-
 var app = angular.module('BlurAdmin', [
                           'ngAnimate',
                           'ui.calendar',
@@ -18,18 +17,12 @@ var app = angular.module('BlurAdmin', [
                           'BlurAdmin.auth',
                           'BlurAdmin.theme',
                           'BlurAdmin.data',
-                          'BlurAdmin.pages']);
-
-app.constant("authorization", {tipo:"JWT", token:""});
-app.constant("$USERDATA",JSON.parse(window.sessionStorage.userData));
-app.constant("PERFIL", "");
-app.constant("$URLAPI", "https://guru-web.herokuapp.com/");
-/*
-app.constant("$URLAPI", "https://guru-api-othiagoduarte.c9users.io/");
-*/
-/*
-app.constant("$URLAPI", "http://localhost:3008/");
-*/
+                          'BlurAdmin.pages'])
+.constant("authorization", {tipo:"JWT", token:""})
+.constant("$USERDATA",JSON.parse(window.sessionStorage.userData))
+.constant("PERFIL", "")
+//.constant("$URLAPI", "https://guru-web.herokuapp.com/");
+.constant("$URLAPI", "http://localhost:3008/");
 app.run(function ($rootScope,$state,authorization, $window,PERFIL) {
     authorization.token = $window.sessionStorage.token;
     PERFIL = $window.sessionStorage.perfil;

@@ -1,5 +1,8 @@
-<orientadores>
-    <p1>{{msg}}</p1>
-</orientadores>
-    
+<div ng-repeat="professor in data.professores | filter : filtrarSkilss">
+    <div class="col-md-4">
+        <div ba-panel ba-panel-title="Professor" ba-panel-class="with-scroll">
+            <div ng-include="'app/pages/coordenador/orientadores/contato-professor.html'"></div>
+        </div>
+    </div>
+</div>
     
