@@ -144,7 +144,7 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 		
 		function EnviarFeedback(pDados,fecharModal){
 			pDados.etapa.feedback.push({assunto:pDados.assunto, detalhe:pDados.detalhe});
-			dbProjeto.EditarEtapa(pDados)
+			dbProjeto.EnviarFeedback(pDados)
 			.then(function(){
 				$modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao enviar o feedback"});
 				fecharModal();
