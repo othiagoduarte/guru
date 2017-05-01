@@ -9,7 +9,7 @@
   function routeConfig($stateProvider) {
     $stateProvider
         .state('Mensagens', {
-          url: '/aluno/Mensagens',
+          url: '/aluno/Solicitacao',
           title: 'Solicitações',
           templateUrl: 'app/pages/aluno/mensagens/mensagens.html',
           controller: 'mensagensCtrl',

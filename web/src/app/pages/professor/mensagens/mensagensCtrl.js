@@ -62,7 +62,7 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 			console.log($data);
 		}
 
-		function responderSolicitacao($data){
+		function responderSolicitacao($data,fecharModal){
 			
 			var retorno = {};
 
@@ -72,13 +72,15 @@ angular.module('BlurAdmin.pages.professor.mensagens')
             	retorno.mensagem = "Sucesso ao enviar a resposta.";
 				$modalservice.informacao(retorno);
 				$data.solicitacao = {};
+				fecharModal();
 			})
 			.catch(function(error) {
 				console.log("Error:", error);
+				fecharModal();
 			});			
 		}
 
-		function VerProjeto (aluno,fechar){
+		function VerProjeto (aluno){
 			$apiService.projeto.GetByAluno(aluno.matricula)
 			.then(function (aluno){
 				var dados = {};
@@ -96,25 +98,6 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 		
 		}
 
-		function atualizarProjeto($data){
-	
-			var dbProjeto = new $model.Projeto();
-			
-			dbProjeto.professor = $data.solicitacao.professor;
-			dbProjeto.aluno = $data.solicitacao.aluno;
-			dbProjeto.titulo = $data.solicitacao.titulo;
-			dbProjeto.inicio = Date.now();
-			dbProjeto.curso = $data.solicitacao.aluno.curso;
-			
-			var retorno = dbProjeto.Validar();
-			
-			if(retorno.sucesso){
-
-				return dbProjeto.Add();
-			}
-			
-		}
-
 		function traduzSolicitacao(status){
 			
 			if (status == "E") {
@@ -128,6 +111,9 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 			}
 			if (status == "P") {
 				return "Pendente";
+			}
+			if (status == "C") {
+				return "Cancelado";
 			}
 			return "-";
 		}
@@ -150,6 +136,14 @@ angular.module('BlurAdmin.pages.professor.mensagens')
 
 		function filtrarSolicitacaoStatusRejeitado(solicitacao){
 			if(solicitacao.status.cod == 'R'){
+				return solicitacao;
+			}else{
+				return;
+			}		
+		}
+		
+		function filtrarSolicitacaoStatusCancelado(solicitacao){
+			if(solicitacao.status.cod == 'C'){
 				return solicitacao;
 			}else{
 				return;

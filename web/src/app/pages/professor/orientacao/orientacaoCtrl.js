@@ -39,7 +39,7 @@ angular.module('BlurAdmin.pages.professor.orientacao')
 				return "Confirmada";
 			}
 			if (status == "R") {
-				return "Recusado";
+				return "Recusada";
 			}
 
 			if (status == "P") {
