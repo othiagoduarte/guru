@@ -8,8 +8,8 @@
                 <th>Data Crítica</th>
                 <th>Concluído</th>
                 <th>Download</th>
-                <th>Upload</th>
-                <th>Tarefas</th>
+                <th>Entregar</th>
+                <th>Ver Tarefas</th>
                 <th>Excluir</th>    
             </tr>
         </thead>
@@ -20,8 +20,8 @@
                 <td>{{etapa.resumo | limitTo: 15}}</td>   
                 <td>{{etapa.dataCritica | date : 'dd/MM/yyyy'}}</td>
                 <td><a ng-click="concluirEtapa(etapa,data.projeto)">{{etapa.concluido ? "Sim" : "Não" }}</a></td>
-                <td><a ng-if="etapa.entrega" href="{{etapa.entrega.url}}" target="_blank" ><i class="ion-archive"></i></a></td>
-                <td><a ng-click="entregarEtapa(etapa,data.projeto)"><i class="ion-document"></i></a></td>
+                <td><a ng-if="etapa.entrega" href="{{etapa.entrega.url}}" target="_blank" ><i class="ion-arrow-down-c"></i></a></td>
+                <td><a ng-click="entregarEtapa(etapa,data.projeto)"><i class="ion-arrow-up-c"></i></a></td>
                 <td><a ng-click="addTarefa(etapa,data.projeto)"><i class="ion-checkmark-round"></i></a></td>                
                 <td><a ng-click="excluirEtapa(etapa,data.projeto)"><i class="ion-trash-a"></i></a></td>
             </tr>

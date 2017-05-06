@@ -159,39 +159,44 @@ angular.module('BlurAdmin.pages.aluno.projeto')
                     retorno.mensagem = "Não foi possivel excluir etapa!" + data.data.retorno;
                     $modalservice.atencao(retorno);
                     fecharModal();
-             });;
+             });
         } 
         
         function entregarEtapa(pDados,projeto){
-        
-            pDados.projeto = { _id: projeto._id};
-            
-            var uploader = $apiService.arquivo.AlunosProjetoEtapa({teste:"teste123"});
-            
-            
-            uploader.onCompleteAll = function() {
-                uploader = $apiService.arquivo.AlunosProjetoEtapa();
-            };
+
+            pDados.projeto = projeto;
 
             $modalservice.executar({
                 func:entregarEtapaCtrl,
-                data:{etapa:pDados,projeto: pDados.projeto, uploader:uploader},
+                data:{etapa:pDados,projeto: pDados.projeto},
                 size:'md',
-                template:'app/pages/componentes/upload/uploadFile.html'
+                template:'app/pages/componentes/upload/upload.html'
             });
         } 
 
         function entregarEtapaCtrl(pDados,fecharModal){
-            
-            pDados.uploader.onCompleteAll = function() {
-                alert("Concluído");
+            var data = this.data;
+            var file = this.myFile;
+            $apiService.arquivo.entregarEtapa( file , data)
+            .then(function(projeto){
+                $scope.data.projeto = {};
+                $timeout(function(){
+                    $modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao entregar etapa!"});
+                    fecharModal();
+                    $scope.$apply(function(){
+                        $scope.data.projeto = projeto.data ;                    
+                    });
+                });                  
                 fecharModal();
-                
-            };
-
-           return;
+            })
+            .catch(function(data) {
+                    var retorno = {};
+                    retorno.titulo = "Atenção";
+                    retorno.mensagem = "Não foi possivel enviar arquivo!" + data.data.mensagem;
+                    $modalservice.atencao(retorno);
+                    fecharModal();
+             });
         } 
-        
         
         function addTarefa(pDados,projeto){
 

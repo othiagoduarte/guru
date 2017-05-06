@@ -3,9 +3,27 @@
 
 var app =  angular.module('BlurAdmin.data', []);
 
+app.directive('fileModel',fileModel);
 app.service('$apiService',apiService);  
 
-function apiService($http,$URLAPI,FileUploader){
+function fileModel ($parse) {
+      return {
+            restrict: 'A',
+                  link: function(scope, element, attrs) {
+                        
+                        var model = $parse(attrs.fileModel);
+                        var modelSetter = model.assign;
+                        
+                        element.bind('change', function(){
+                              scope.$apply(function(){
+                              modelSetter(scope, element[0].files[0]);
+                              });
+                        });
+                  }
+            };
+ }
+
+function apiService($http,$URLAPI,FileUploader,$httpParamSerializer){
 
     var pUrlApi = $URLAPI;
     //var pUrlApi = "https://guru-othiagoduarte.c9users.io/";
@@ -23,38 +41,28 @@ function apiService($http,$URLAPI,FileUploader){
     this.tarefa = Tarefa(pUrlApi, $http);
     this.usuario = Usuario(pUrlApi, $http);
     this.skill = Skill(pUrlApi, $http);
-    this.arquivo = Arquivo(pUrlApi,$http,FileUploader);
+    this.arquivo = Arquivo(pUrlApi,$http);
 }
 
-function Arquivo(pUrlApi,$http,FileUploader){
-         pUrlApi += "arquivo/alunos/etapas/";
+function Arquivo(pUrlApi,$http){
+         pUrlApi += "arquivo/";
+    
     return {
-        AlunosProjetoEtapa: function(formData){
-   
-            
-            var uploader = new FileUploader({ url: pUrlApi, headers:formData});
-                    // a sync filter
-                uploader.filters.push({
-                    name: 'syncFilter',
-                    fn: function(item /*{File|FileLikeObject}*/, options) {
-                        console.log('syncFilter');
-                        return this.queue.length < 10;
-                    }
-                });
-              
-                // an async filter
-                uploader.filters.push({
-                    name: 'asyncFilter',
-                    fn: function(item /*{File|FileLikeObject}*/, options, deferred) {
-                        console.log('asyncFilter');
-                        setTimeout(deferred.resolve, 1e3);
-                    }
-                });
-            
-            return uploader;
-                
-        }
-    }
+            entregarEtapa : function(pFile, pData){
+                  
+                  
+                  var form = new FormData();
+
+                  form.append('file', pFile, pData.etapa.titulo + ".zip" );
+                  form.append('projeto', pData.projeto._id);
+                  form.append('etapa', pData.etapa._id);
+                  
+                  return $http.post(pUrlApi + "alunos/etapas", form, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined}
+                  });
+            }
+      }
 }
 
 function Aluno(pUrlApi, $http){
