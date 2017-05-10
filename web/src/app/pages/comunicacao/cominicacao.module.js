@@ -1,19 +1,19 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.coordenador.comunicacao',[])
+  angular.module('BlurAdmin.pages.comunicacao',['BlurAdmin.pages.aluno.modals'])
       .config(routeConfig);
 
    /** @ngInject */
   function routeConfig($stateProvider) {
     	$stateProvider.state('comunicacao', {
-          url: '/cordenador/comunicacao',
+          url: '/comunicacao',
           title: 'Comunicação',
-          templateUrl: 'app/pages/coordenador/comunicacao/comunicacao.html',
+          templateUrl: 'app/pages/comunicacao/comunicacao.html',
           controller: 'comunicacaoCtrl',
           sidebarMeta: {
             icon: 'ion-clipboard',
-            order: 3,
+            order: 2,
           }
         });
 	}  

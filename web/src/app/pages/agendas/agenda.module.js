@@ -13,7 +13,7 @@
           controller: 'AgendaCtrl',
           sidebarMeta: {
             icon: 'ion-clipboard',
-            order: 0,
+            order: 1,
           }        });
 	}  
 })();

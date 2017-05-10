@@ -14,7 +14,7 @@
           controller: 'ProjetoCtrl',
           sidebarMeta: {
             icon: 'ion-star',
-            order: 0,
+            order: 3,
           }
         });
 	}  

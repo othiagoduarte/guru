@@ -13,7 +13,7 @@
           controller: 'OrientadoresCtrl',
           sidebarMeta: {
             icon: 'ion-search',
-            order: 1,
+            order: 4,
           }
         });
 	}  

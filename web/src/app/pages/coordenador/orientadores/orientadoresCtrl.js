@@ -5,7 +5,14 @@
     .controller('OrientadoresCtrl', OrientadoresCtrl);
     
  /** @ngInject */
-  function OrientadoresCtrl($scope,$apiService,$window) {
+  function OrientadoresCtrl($scope,$apiService,$window,$modalservice) {
+    
+    $scope.dashboard = dashboard;
+
+		function dashboard(pProfessor){
+        $modalservice.informacao({titulo:"Mensagem",mensagem:"dashboard!"});
+    }
+
     $scope.data = {};
     $apiService.professor.GetAll()
 		.then(function(professores){

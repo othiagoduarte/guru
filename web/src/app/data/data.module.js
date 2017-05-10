@@ -42,6 +42,7 @@ function apiService($http,$URLAPI,FileUploader,$httpParamSerializer){
     this.usuario = Usuario(pUrlApi, $http);
     this.skill = Skill(pUrlApi, $http);
     this.arquivo = Arquivo(pUrlApi,$http);
+    this.comunicado = Comunicado(pUrlApi,$http);
 }
 
 function Arquivo(pUrlApi,$http){
@@ -58,6 +59,19 @@ function Arquivo(pUrlApi,$http){
                   form.append('etapa', pData.etapa._id);
                   
                   return $http.post(pUrlApi + "alunos/etapas", form, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined}
+                  });
+            },
+           addComunicado : function(pFile, pData){
+                  
+                  
+                  var form = new FormData();
+
+                  form.append('file', pFile);
+                  form.append('comunicado', pData.comunicado);
+                  
+                  return $http.post(pUrlApi + "comunicado/addArquivo", form, {
                         transformRequest: angular.identity,
                         headers: {'Content-Type': undefined}
                   });
@@ -89,7 +103,17 @@ function Aluno(pUrlApi, $http){
   }
 }
 
-
+function Comunicado(pUrlApi, $http){
+  pUrlApi+= "comunicado";
+  return {
+      GetAll : function(pData){
+            return $http.get(pUrlApi);            
+      },
+      Get : function(pId){
+            return $http.get(pUrlApi + "/" + pId);            
+      },
+  }
+}
 function Contato(pUrlApi, $http){
   pUrlApi+= "contato";
   return {

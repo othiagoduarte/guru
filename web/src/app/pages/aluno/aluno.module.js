@@ -6,6 +6,7 @@
       var modulos = [];
 
       modulos.push('BlurAdmin.pages.agenda');
+      modulos.push('BlurAdmin.pages.comunicacao');
       modulos.push('BlurAdmin.pages.aluno.projeto');
       modulos.push('BlurAdmin.pages.aluno.orientadores');
       modulos.push('BlurAdmin.pages.aluno.modals');
