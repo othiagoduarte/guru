@@ -6,8 +6,8 @@ angular.module('BlurAdmin.pages.comunicacao')
     
  	/** @ngInject */
 	function comunicacaoCtrl($scope,$apiService,$modalservice) {
-    var timelineBlocks = $('.cd-timeline-block');
-    var offset = 0.8;
+    let timelineBlocks = $('.cd-timeline-block');
+    let offset = 0.8;
 
     $scope.isCoordenador = sessionStorage.perfil == "COORDENADOR";
     $scope.traduzTipo = traduzTipo;
@@ -16,6 +16,12 @@ angular.module('BlurAdmin.pages.comunicacao')
     $scope.data = {};
     $scope.data.comunicados = [];
        
+    $scope.data.listTipo = [
+             {descricao:"Aviso",value:1}
+            ,{descricao:"Arquivo",value:2}
+            ,{descricao:"Dica",value:3}
+    ];
+    
     $apiService.comunicado.GetAll()
 		.then(function(comunicados){
 			$scope.data.comunicados = comunicados.data;
@@ -23,14 +29,92 @@ angular.module('BlurAdmin.pages.comunicacao')
 		.catch(function(data) {
 			console.log(data);
 		});
-    
-    function addComunicado(){
-        $modalservice.informacao({titulo:"Mensagem",mensagem:"Inclsão de comunicado!"});
-    }
 
     function edtComunicado(pComunicado){
-        $modalservice.informacao({titulo:"Mensagem",mensagem:"Edição de comunicado!"});
+        
+        let _comunicado = angular.copy(pComunicado);
+        
+        $modalservice.executar({
+            func1:edtComunicadoCtrl,
+            func2:excluirComunicadoCtrl,
+            data:{comunicado: _comunicado, listTipo:$scope.data.listTipo},
+            size:'lg',
+            template:'app/pages/comunicacao/comunicado-modal.html'
+        });  
     }
+    
+    function addComunicado(pComunicado){
+        $modalservice.executar({
+            func:addComunicadoCtrl,
+            data:{comunicado:pComunicado},
+            size:'lg',
+            template:'app/pages/comunicacao/comunicado-modal.html'
+        });    
+    }
+    
+    function excluirComunicadoCtrl(pDados,fecharModal){
+        let _dados = { projeto: pDados, etapa:pDados.etapa };
+            
+        $apiService.comunicado.Add(_dados)
+        .then(function(comunicado){
+                          
+              $timeout(function(){
+                $modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao criar etapa"});
+                fecharModal();
+              });            
+          })
+          .catch(function(data) {
+              var retorno = {};
+              retorno.titulo = "Atenção";
+              retorno.mensagem = "Não foi criar etapa!";
+              $modalservice.atencao(retorno);
+                  fecharModal();
+             });
+    }
+    
+    function edtComunicadoCtrl(pDados,fecharModal){
+
+        let _dados = { projeto: pDados, etapa:pDados.etapa };
+            
+        $apiService.comunicado.Add(_dados)
+        .then(function(comunicado){
+                          
+              $timeout(function(){
+                $modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao criar etapa"});
+                fecharModal();
+
+              });            
+          })
+          .catch(function(data) {
+              var retorno = {};
+              retorno.titulo = "Atenção";
+              retorno.mensagem = "Não foi criar etapa!";
+              $modalservice.atencao(retorno);
+                  fecharModal();
+             });
+      }
+      
+      function addComunicadoCtrl(pDados,fecharModal){
+
+        var _dados = { projeto: pDados, etapa:pDados.etapa };
+            
+        $apiService.comunicado.Add(_dados)
+        .then(function(comunicado){
+                          
+              $timeout(function(){
+                $modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao criar etapa"});
+                fecharModal();
+
+              });            
+          })
+          .catch(function(data) {
+              var retorno = {};
+              retorno.titulo = "Atenção";
+              retorno.mensagem = "Não foi criar etapa!";
+              $modalservice.atencao(retorno);
+                  fecharModal();
+             });
+        }
 
     function traduzTipo(pTipo){
 

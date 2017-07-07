@@ -2,3 +2,25 @@
 
 // injector
 // endinjector
+.subtitulo-modal label {
+    font-size: 15px;
+}
+.form-control[disabled], fieldset[disabled] .form-control {
+    cursor: default;
+}
+.total-msg{
+    margin-right: 5px;
+}
+
+table tbody  tr  a{
+    cursor: pointer;
+}
+td a i{
+    font-size: 25px;
+}
+th tr{
+    font: bold;
+}
+#preloader{
+    background-color: #F0F3F4;
+}

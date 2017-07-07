@@ -28,7 +28,13 @@ angular.module('BlurAdmin.pages.aluno.projeto')
             ,{descricao:"Gerência/Infra Redes",value:5}
             ,{descricao:"Testes",value:6}
         ];
-
+        $scope.selectWithSearchItems = [
+        {label: 'Hot Dog, Fries and a Soda', value: 1},
+        {label: 'Burger, Shake and a Smile', value: 2},
+        {label: 'Sugar, Spice and all things nice', value: 3},
+        {label: 'Baby Back Ribs', value: 4}
+        ];
+        
         $apiService.projeto.GetByAluno($scope.data.aluno.matricula)
         .then(function(projeto){
             $scope.data.projeto = {};
@@ -70,13 +76,10 @@ angular.module('BlurAdmin.pages.aluno.projeto')
             
             $apiService.projeto.AddEtapa(_dados)
             .then(function(projeto){
-            
                 $scope.data.projeto = {};
-                
-                $timeout(function(){
+                $timeout(function(){                    
                     $modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao criar etapa"});
                     fecharModal();
-
                     $scope.$apply(function(){
                         $scope.data.projeto = projeto.data ;                    
                     });

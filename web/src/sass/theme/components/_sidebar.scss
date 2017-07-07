@@ -65,12 +65,13 @@ a.al-sidebar-list-link {
   height: 42px;
   padding-left: 18px;
   text-shadow: none;
-  font-size: 13px;
+  font-size: 18px;
   text-decoration: none;
   color: $sidebar-text;
   line-height: 42px;
   white-space: nowrap;
   overflow: hidden;
+  margin-top: 15px;
   cursor: pointer;
   &:hover {
     color: $primary;
