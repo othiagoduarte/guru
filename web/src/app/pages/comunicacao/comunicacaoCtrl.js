@@ -6,8 +6,8 @@ angular.module('BlurAdmin.pages.comunicacao')
     
  	/** @ngInject */
 	function comunicacaoCtrl($scope,$apiService,$modalservice) {
-    let timelineBlocks = $('.cd-timeline-block');
-    let offset = 0.8;
+    var timelineBlocks = $('.cd-timeline-block');
+    var offset = 0.8;
 
     $scope.isCoordenador = sessionStorage.perfil == "COORDENADOR";
     $scope.traduzTipo = traduzTipo;
@@ -32,7 +32,7 @@ angular.module('BlurAdmin.pages.comunicacao')
 
     function edtComunicado(pComunicado){
         
-        let _comunicado = angular.copy(pComunicado);
+        var _comunicado = angular.copy(pComunicado);
         
         $modalservice.executar({
             func1:edtComunicadoCtrl,
@@ -53,7 +53,7 @@ angular.module('BlurAdmin.pages.comunicacao')
     }
     
     function excluirComunicadoCtrl(pDados,fecharModal){
-        let _dados = { projeto: pDados, etapa:pDados.etapa };
+        var _dados = { projeto: pDados, etapa:pDados.etapa };
             
         $apiService.comunicado.Add(_dados)
         .then(function(comunicado){
@@ -74,7 +74,7 @@ angular.module('BlurAdmin.pages.comunicacao')
     
     function edtComunicadoCtrl(pDados,fecharModal){
 
-        let _dados = { projeto: pDados, etapa:pDados.etapa };
+        var _dados = { projeto: pDados, etapa:pDados.etapa };
             
         $apiService.comunicado.Add(_dados)
         .then(function(comunicado){
