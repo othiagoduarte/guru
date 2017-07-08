@@ -1,20 +1,3 @@
-<div ng-if="data.projeto.professor">
-<uib-accordion>
-    <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
-        <uib-accordion-heading>
-            Meu Orientador
-            <i class="fa pull-right ion-star"></i>
-        </uib-accordion-heading>
-        <div class="horizontal-scroll">
-		    <orientador  class="col-md-12">
-                <div ng-if="data.projeto.professor" ng-init="professor = data.projeto.professor">
-                    <div ng-include="'app/pages/componentes/professor-orientador.html'"></div>
-                </div>
-            </orientador>
-        </div>
-	</uib-accordion-group>
-</uib-accordion>
-</div>
 <uib-accordion>
     <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
         <uib-accordion-heading>
@@ -50,3 +33,20 @@
         </div>
 	</uib-accordion-group>
 </uib-accordion>
+<div ng-if="data.projeto.professor">
+<uib-accordion>
+    <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default">
+        <uib-accordion-heading>
+            Meu Orientador
+            <i class="fa pull-right ion-star"></i>
+        </uib-accordion-heading>
+        <div class="horizontal-scroll">
+		    <orientador  class="col-md-12">
+                <div ng-if="data.projeto.professor" ng-init="professor = data.projeto.professor">
+                    <div ng-include="'app/pages/componentes/professor-orientador.html'"></div>
+                </div>
+            </orientador>
+        </div>
+	</uib-accordion-group>
+</uib-accordion>
+</div>

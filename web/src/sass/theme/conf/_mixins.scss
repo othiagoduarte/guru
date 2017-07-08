@@ -70,6 +70,11 @@
   background: rgba(0, 0, 0, $opacity);
 }
 
+@mixin bg-translucent-sidebar($opacity) {
+  background: rgba($sidebar, $opacity)
+}
+
+
 @mixin placeholderStyle($color, $opacity) {
   &::-webkit-input-placeholder {
     color: $color;
