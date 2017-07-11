@@ -1,25 +1,25 @@
-var express = require('express');
-var load = require('express-load');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var passport = require('passport');
-var expressSession = require('express-session');
-var auth = require('./auth.js');
-module.exports = function()
-{
-	var app = express();
+import express from 'express';
+import load from 'express-load';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import passport from 'passport';
+import expressSession from 'express-session';
+import auth from './auth.js';
+
+module.exports = function() {
 	
+	const app = express();
 		
 	app.passportGuru = auth(app);
 	
 	app.set('host',process.env.IP || "127.0.0.1");
 	app.set('port',process.env.PORT || 3008);
 	
-	app.use('/',express.static('../app/public'));
-	app.use('/download', express.static('../app/download'));
+	app.use('/',express.static('../app-compiled/public'));
+	app.use('/download', express.static('../app-compiled/download'));
 	
 	app.set('view engine','ejs');
-	app.set('views','./app/views');
+	app.set('views','./views');
 	
 	app.use(bodyParser.urlencoded({extended: true}));
 	app.use(bodyParser.json());
@@ -50,4 +50,4 @@ module.exports = function()
 	});
 
 	return app;
-};
+}

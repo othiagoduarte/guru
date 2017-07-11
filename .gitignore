@@ -48,7 +48,7 @@ crashlytics-build.properties
 node_modules
 gulp.1
 build
-
+api/app-compiled
 web/src/release
 web/release/public
 web/bower_components
