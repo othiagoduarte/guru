@@ -84,15 +84,15 @@ app.controller('loginCtrl', function($scope,$http,$window) {
     }
     
     function erroLogin(res){
-        if(res.data.retorno){
-            alert(res.data.retorno);
+        if(res){
+            alert(res);
         }
     }
 
     function sucessoLogin(res){
         if(res.data.user._id){        
             $window.sessionStorage.token = res.data.token ;
-            $window.sessionStorage.perfil = res.data.user.tipo;
+            $window.sessionStorage.perfil = res.data.user.perfil;
             $window.sessionStorage.user = res.data.user._id;
             $window.sessionStorage.userData = JSON.stringify(res.data.userData);
             $window.location.href ="/" ;

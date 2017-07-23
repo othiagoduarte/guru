@@ -8,31 +8,20 @@ module.exports = function(app)
     const AlunoBd = app.models.aluno;		
     const ProfessorBd = app.models.professor;
     const emailRecuperacaoSenha = app.lib.emailRecuperacaoSenha;	
-    const R = app.lib.retornoBuilder;
+    const R = app.builder.retorno;
 
-    function getById(req, res){
+    async function getById(req, res){
         
-        if (req.params.id) {
-            var _id = req.params.id;
-            var where = {_id:_id}
-          
-            UserBd.findOne(where)
-    	    .then(function(users){
-      	        
-      	        if(users){
-      			    res.json({user: users});
-      				
-      			}else{
-      				res.status(404).json({retorno:"Usuario não encontrado"});
-      			}
-    
-      		},function(erro){
-      			res.status(404).json({retorno:erro});
-      		});
-    
-        } else {
-            res.sendStatus(404);
+        if (!req.params.id) {
+            R.naoEncontrado("Usuario não encontrado!");
         }
+        const where = {_id:req.params.id};
+        const user = await UserBd.findOne(where);
+
+        if(!user){
+           return  R.naoEncontrado("Usuario não encontrado!");
+        }
+        return R.sucesso(user);    	 
     }
     
     async function login (req, res) {
@@ -110,5 +99,6 @@ module.exports = function(app)
     function ehAluno(user){
         return user.perfil == 'ALUNO';
     }
+    
     return {login, getById, recuperarSenha};
 };

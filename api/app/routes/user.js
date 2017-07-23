@@ -1,18 +1,21 @@
 module.exports = function (app) 
 {
    	const auth = app.passportGuru.authenticate();
-    const controller = app.controllers.user;
+    const ctrl = app.controllers.user;
 
     app.post("/login", async (req, res) =>{
-        const retorno = await controller.login(req, res);
-        res.status(retorno.status | 500 ).jsonp(retorno.data);
+        const R = await ctrl.login(req, res);
+        res.status(R.status).jsonp(R.data);
     });
 
-    app.route("/user/:id")
-    .get(controller.getById);
+    app.get("/user/:id", async (req, res) =>{
+        const R = await ctrl.getById(req, res);
+        console.log()
+        res.status(R.status).jsonp(R.data);
+    });
 
     app.post("/user/recuperar", async (req, res) =>{
-        const retorno = await controller.recuperarSenha(req, res);
-        res.status(retorno.status | 500 ).jsonp(retorno.data);
+        const R = await ctrl.recuperarSenha(req, res);
+        res.status(R.status).jsonp(R.data);
     });
 };

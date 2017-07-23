@@ -8,12 +8,13 @@
   function routeConfig($stateProvider) {
     	$stateProvider.state('Orientandos', {
           url: '/professor/orientandos',
-          title: 'Meus Orientandos',
+          title: 'Orientandos',
           templateUrl: 'app/pages/professor/orientandos/orientandos.html',
           controller: 'OrientandosCtrl',
           sidebarMeta: {
             icon: 'ion-search',
             order: 1,
-          }        });
+          }        
+      });
 	}  
 })();

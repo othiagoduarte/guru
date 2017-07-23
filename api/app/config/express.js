@@ -34,11 +34,11 @@ module.exports = function() {
 	  res.header("Access-Control-Allow-Origin", "*");
 	  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
       res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, authorization, X-Requested-With');
-	  
   	  next();   
 	});
 
 	load('models',{cwd: 'app'})
+	.then('builder')
 	.then('lib')
 	.then('controllers')
 	.then('services')
