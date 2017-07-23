@@ -15,8 +15,8 @@ module.exports = function() {
 	app.set('host',process.env.IP || "127.0.0.1");
 	app.set('port',process.env.PORT || 3008);
 	
-	app.use('/',express.static('../app-compiled/public'));
-	app.use('/download', express.static('../app-compiled/download'));
+	app.use('/',express.static('../api/public'));
+	app.use('/download', express.static('../api/download'));
 	
 	app.set('view engine','ejs');
 	app.set('views','./views');
