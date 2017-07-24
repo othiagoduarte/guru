@@ -1,7 +1,7 @@
 module.exports = function(app)
 {
-	var ctrl = app.controllers.orientacao;
-	var auth = app.passportGuru.authenticate();
+	const ctrl = app.controllers.orientacao;
+	const auth = app.passportGuru.authenticate();
 	
 	app.post("/orientacao", async (req, res) =>{
         const R = await ctrl.add(req, res);

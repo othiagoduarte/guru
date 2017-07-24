@@ -9,14 +9,13 @@ module.exports = function(app)
 	async function getByMatricula (req, res) {	
 		try {
 			const where = {"matricula": req.params.matricula};
-			const aluno = await  AlunoBd.findOne(where);
-			if(!aluno){
+			const retorno = await  AlunoBd.findOne(where);
+			if(!retorno){
 				return R.naoEncontrado("Não encontrado");
 			}
-			return R.sucesso(aluno);
+			return R.sucesso(retorno);
 		} catch (error) {
-			console.log(error.toString());
-			return R.erroServidor(error)
+			return R.erroServidor(error);
 		}
 	};
 

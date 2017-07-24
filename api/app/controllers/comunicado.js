@@ -20,7 +20,7 @@ module.exports = function(app)
 		} catch (error) {
 			return R.erroServidor(error);				
 		}
-	};
+	}
 
 	async function add(req, res){
 		try {
