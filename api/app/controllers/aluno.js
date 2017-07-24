@@ -43,25 +43,20 @@ module.exports = function(app)
 
 	async function getByOrientando(req, res){
 		try {
-		
 			const aggregate = {
 				$match : { "professor._id": req.params.idProfessor},
 				$unwind : "$aluno",
 				$group : { _id:null , alunos:{$addToSet:"$aluno"}},
 				$project : {_id: false, alunos: true},
 			}
-			
 			const retorno = await ProjetoBd.aggregate(
 				{$match: aggregate.$match},
 				{$unwind: aggregate.$unwind},
 				{$group: aggregate.$group},
 				{$project: aggregate.$project}
 			);
-			
 			return R.sucesso(retorno[0]);	
-		
 		} catch (error) {
-			console.log(error);
 			return R.erroServidor(error);			
 		}
 		
