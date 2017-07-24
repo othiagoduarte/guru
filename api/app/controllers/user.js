@@ -13,7 +13,7 @@ module.exports = function(app)
     async function getById(req, res){
         
         if (!req.params.id) {
-            R.naoEncontrado("Usuario não encontrado!");
+            return R.naoEncontrado("Usuario não encontrado!");
         }
         const where = {_id:req.params.id};
         const user = await UserBd.findOne(where);
@@ -47,8 +47,8 @@ module.exports = function(app)
             }
             return R.sucesso(builderAutenticacao(user, userData));
         }
-        catch(err){
-            R.erroServidor(err);
+        catch(error){
+            return R.erroServidor(error);
         }        
   }
 

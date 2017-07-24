@@ -22,17 +22,4 @@ module.exports = function(app)
 		 const R = await ctrl.getByOrientando(req, res);
 		 res.status(R.status).jsonp(R.data);
 	});
-
-/*
-	app.route('/aluno/byMatricula/:matricula')
-	.get(auth, ctrl.getByMatricula);
-	
-	app.route('/aluno/byOrientando/:idProfessor')
-	.get(auth, ctrl.getByOrientando);
-	
-	app.route('/aluno')
-	.get(auth, ctrl.getAll)
-	.post(auth, ctrl.add)
-	.put(auth, ctrl.save);
-*/
 };

@@ -29,7 +29,7 @@ module.exports = function(app)
 			}
 			return R.sucesso(aluno);
 		} catch (error) {
-			R.erroServidor(error.toString())
+			return R.erroServidor(error)
 		}
 	};
 	
@@ -38,7 +38,7 @@ module.exports = function(app)
 			const alunos = await AlunoBd.find({});
 			return R.sucesso(alunos);
 		} catch (error) {
-			R.erroServidor(error.toString());
+			return R.erroServidor(error);
 		}
 	};
 
@@ -52,18 +52,18 @@ module.exports = function(app)
 				$project : {_id: false, alunos: true},
 			}
 			
-			const alunos = await ProjetoBd.aggregate(
+			const retorno = await ProjetoBd.aggregate(
 				{$match: aggregate.$match},
 				{$unwind: aggregate.$unwind},
 				{$group: aggregate.$group},
 				{$project: aggregate.$project}
 			);
 			
-			return R.sucesso(alunos);
+			return R.sucesso(retorno[0]);	
 		
 		} catch (error) {
 			console.log(error);
-			R.erroServidor(error.toString());			
+			return R.erroServidor(error);			
 		}
 		
 	}

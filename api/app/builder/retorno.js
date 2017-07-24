@@ -22,11 +22,19 @@ module.exports = function (app)
     }
 
     function erroServidor(data){
+        console.log(data);
         return {
-            status : 501,
-            data : data
+            status : 500,
+            data : "Um erro inesperado ocorreu, contate o adminstrador!"
+        }
+    }
+
+    function erroValidacao(validacao){
+        return {
+            status : 406 ,
+            data : validacao
         }
     }
     
-    return {sucesso, naoAutorizado, naoEncontrado, erroServidor}
+    return {sucesso, naoAutorizado, naoEncontrado, erroServidor, erroValidacao}
 }

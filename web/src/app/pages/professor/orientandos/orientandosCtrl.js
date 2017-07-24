@@ -21,6 +21,7 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 				
 		dbAlunos.GetByOrientando($PROFESSOR._id)
 		.then(function(alunos){
+			console.log(alunos);
 			$scope.data.alunos = alunos.data.alunos;
 		});
     	
@@ -165,6 +166,9 @@ angular.module('BlurAdmin.pages.professor.orientandos')
 			.then(function(){
 				$modalservice.informacao({titulo:"Mensagem",mensagem:"Sucesso ao agendar Orientação!"});
 				fecharModal();
+			})
+			.catch(function(response){
+				$modalservice.informacao({titulo:"Mensagem",mensagem:response.data});				
 			});
 		}
 	}
