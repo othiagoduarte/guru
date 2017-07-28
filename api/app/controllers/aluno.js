@@ -58,8 +58,7 @@ module.exports = function(app)
 			return R.sucesso(retorno[0]);	
 		} catch (error) {
 			return R.erroServidor(error);			
-		}
-		
+		}		
 	}
 
 	return {getByMatricula, getByOrientando, getAll, getByUser}
