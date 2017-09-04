@@ -4,11 +4,11 @@ var app = angular.module('BlurAdmin',modulos())
 .constant("$USERDATA",JSON.parse(window.sessionStorage.userData))
 .constant("PERFIL", "")
 /*
-.constant("$URLAPI", "http://localhost:3008/");
 .constant("$URLAPI", "https://guru-web.herokuapp.com/");
+.constant("$URLAPI", "http://guruweb-college.umbler.net/");
 
 */
-.constant("$URLAPI", "http://guruweb-college.umbler.net/");
+.constant("$URLAPI", "http://localhost:3008/");
 
 app.run(function ($rootScope,$state,authorization, $window,PERFIL) {
     authorization.token = $window.sessionStorage.token;
@@ -17,6 +17,7 @@ app.run(function ($rootScope,$state,authorization, $window,PERFIL) {
 
 function modulos(){
     var mod = [];
+    mod.push('underscore');
     mod.push('ngAnimate');
     mod.push('ui.calendar');
     mod.push('ui.bootstrap');
@@ -24,13 +25,16 @@ function modulos(){
     mod.push('ui.router');
     mod.push('ui.select');
     mod.push('ui.slimscroll');
+    mod.push('ui.utils.masks');
     mod.push('ngTouch');
     mod.push('toastr');
     mod.push('smart-table');
     mod.push("xeditable");
     mod.push('ngJsTree');
+    mod.push('ngTagsInput');
     mod.push('angular-progress-button-styles');
     mod.push('angularFileUpload');
+    mod.push('BlurAdmin.diretivas');    
     mod.push('BlurAdmin.auth');
     mod.push('BlurAdmin.theme');
     mod.push('BlurAdmin.data');

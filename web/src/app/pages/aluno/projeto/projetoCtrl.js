@@ -5,7 +5,6 @@ angular.module('BlurAdmin.pages.aluno.projeto')
 
     /** @ngInject */
     function ProjetoCtrl($scope,$apiService,$modalservice,$window,$ALUNO,$timeout,$uibModal) {
-
         $scope.data = {};
         $scope.data.aluno = $ALUNO;
         $scope.data.isAluno = true;
@@ -34,10 +33,11 @@ angular.module('BlurAdmin.pages.aluno.projeto')
         {label: 'Sugar, Spice and all things nice', value: 3},
         {label: 'Baby Back Ribs', value: 4}
         ];
+
+        $scope.data.projeto = {};
         
         $apiService.projeto.GetByAluno($scope.data.aluno.matricula)
         .then(function(projeto){
-            $scope.data.projeto = {};
             if(projeto.data){
                 $scope.data.projeto = projeto.data;
                 $scope.data.isAluno = true;
@@ -46,6 +46,9 @@ angular.module('BlurAdmin.pages.aluno.projeto')
                 $scope.data.projeto.aluno = $scope.data.aluno;
                 $apiService.projeto.Add($scope.data.projeto);
             }
+        })
+        .catch(function (){
+            $scope.data.projeto.aluno = $scope.data.aluno;
         });
             
         function concluirEtapa(pDados,projeto){

@@ -24,3 +24,7 @@ th tr{
 #preloader{
     background-color: #F0F3F4;
 }
+input.ng-touched.ng-invalid{
+    border: 1px solid red!important;
+}
+

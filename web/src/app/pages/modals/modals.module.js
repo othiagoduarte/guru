@@ -21,15 +21,15 @@
         }
 
         this.executar = function (modalData) {
-            $uibModal.open({
-                animation: true,
-                templateUrl: modalData.template,
-                size: modalData.size || 'md',
-                controller: executarCtrl,
-                resolve: {
-                    param: modalData,
-                }
-            });
+           return  $uibModal.open({
+                    animation: true,
+                    templateUrl: modalData.template,
+                    size: modalData.size || 'md',
+                    controller: executarCtrl,
+                    resolve: {
+                        param: modalData,
+                    }
+                });
         }
  
         this.solicitar = function ( al , prof) {

@@ -5,9 +5,7 @@
 
   function routeConfig($urlRouterProvider,$httpProvider) {
       $urlRouterProvider.otherwise('/');  
-        
       $httpProvider.defaults.headers.common['authorization'] = 'JWT ' + window.sessionStorage.token;
-
   }
 
   /** @ngInject */

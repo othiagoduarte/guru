@@ -6,26 +6,18 @@
     <div class="xs-6 col-md-3">
         <div class="user-profile clearfix">
             <div class="al-user-profile" uib-dropdown>
-                <img ng-src="{{::( aluno.user._id | profilePicture )}}">
+                <img ng-src="{{::( 'Aluno' | profilePicture )}}">
             </div>
         </div>
     </div>
 </div>
-<div class="Row">
+<div class="row">
     <div class="button-wrapper">
-        <div ng-if="!aluno.orientador" class="col-md-4 ">
-            <button type="button" class="btn btn-info " ng-click="VerEtapas(aluno)">Designar Orientador</button>
-        </div>
-       <div ng-if="aluno.orientador">
-            <div class="col-md-4 ">
-                <button type="button" class="btn btn-primary " ng-click="VerProjeto(aluno)">Projeto</button>
-            </div>
-            <div class="col-md-4 ">
-                <button type="button" class="btn btn-primary " ng-click="VerEtapas(aluno)">Etapas</button>
-            </div>
-            <div class="col-md-4 ">
-                <button type="button" class="btn btn-primary " ng-click="VerEtapas(aluno)">Orientador</button>
-            </div>
+       <div class="col-md-3">
+            <button type="button" class="btn btn-primary " ng-click="editarAluno(aluno)">Editar</button>
        </div>
+       <div ng-if="!aluno.orientador" class="col-md-4 ">
+            <button type="button" class="btn btn-info " ng-click="designarOrientador(aluno)">Designar Orientador</button>
+        </div>
     </div>
 </div>

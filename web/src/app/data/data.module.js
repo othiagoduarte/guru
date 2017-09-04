@@ -98,6 +98,9 @@ function Aluno(pUrlApi, $http){
       GetByOrientando : function(pIdProfessor){
             return $http.get(pUrlApi + "/ByOrientando/" + pIdProfessor) ;
       },
+      add : function(pData){
+            return $http.post(pUrlApi, pData);            
+      },
 
        
   }
@@ -210,6 +213,9 @@ function Professor(pUrlApi, $http){
       },
       Add: function(pData){
             return $http.post(pUrlApi, pData);  
+      },
+      Save: function(pData){
+            return $http.put(pUrlApi, pData);  
       },
       GetByUser : function(pUser){
             return $http.get(pUrlApi + "/GetbyUser/" + pUser) ;

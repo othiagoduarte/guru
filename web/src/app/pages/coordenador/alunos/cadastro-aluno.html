@@ -1,0 +1,58 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close">
+      </em>
+      </button>
+		<h4 class="modal-title">
+			Cadastro de alunos
+		</h4>
+	</div>
+	<div class="modal-body">
+		<form name="formAluno.form">
+			<div class="row">
+				<div class="col-md-7">
+					<div class="form-group">
+						<label for="textarea01">
+							Nome
+					</label>
+						<input type="text" name="nome" required minlength=3 class="form-control input-lg" ng-model="data.aluno.nome" placeholder="Informe o nome do aluno...">
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="form-group">
+						<label for="textarea01">
+								Aprentação
+							</label>
+						<input type="text" name="apresentacao" required minlength=3 class="form-control input-lg" ng-model="data.aluno.apresentacao"
+						 placeholder="Apresentação">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="textarea01">
+						Email
+						</label>
+						<input type="text" name="email" required class="form-control input-lg" ng-model="data.aluno.user.email" placeholder="Informe o e-mail do aluno..."
+						 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="textarea01">
+						Matricula
+						</label>
+						<input type="text" name="matricula" required minlength="9" maxlength="9" pattern="\d*" class="form-control input-lg" ng-model="data.aluno.matricula"
+						 placeholder="Informe a matricula do aluno">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-info" ng-click="executar($close)" ng-disabled="formAluno.form.$invalid">
+        	 Salvar
+	</button>
+	</div>
