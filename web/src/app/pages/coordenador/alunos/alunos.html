@@ -1,32 +1,23 @@
-<div class="row" >
-<div ba-panel>
-    <h3>Inclusão de novos alunos!</h3>
-    <div class="col-md-3">
-        <button type="button" class="btn btn-primary" ng-click="cadastrarAlunos()" ng-disabled="cadastrandoAluno">Incluir</button>
-        <button type="button" class="btn btn-primary" ng-click="addComunicado()" ng-disabled="cadastrandoAluno">Importar</button>
-    </div>
-    <div class="col-md-3 col-md-offset-6"   >
-        <div class="input-demo radio-demo row">
-            <div class="col-md-6">
-                <label class="radio-inline custom-radio nowrap">
-                    <input type="radio" ng-model="disponibilidade.name" value="nao">
-                    <span>Todos</span>
-                </label>
+<div class="col-md-12">
+    <div ba-panel>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" name="nome" class="form-control input-lg" ng-model="data.searchText" placeholder="Digíte o nome do aluno...">
             </div>
-            <div class="col-md-6">                        
-                <label class="radio-inline custom-radio nowrap">
-                    <input type="radio" ng-model="disponibilidade.name" value="sim">
-                    <span>Sem orientador</span>
-                </label>
+        </div>
+        <div class="col-md-3 col-md-offset-3">
+            <div class="form-group">
+                <br>
+                <button type="button" class="btn btn-primary" ng-click="cadastrarAlunos()" ng-disabled="cadastrandoAluno">Incluir</button>
+                <button type="button" class="btn btn-primary" ng-click="addComunicado()" ng-disabled="cadastrandoAluno">Importar</button>
             </div>
         </div>
     </div>
 </div>
-    <div ng-repeat="aluno in data.alunos">
-        <div class="col-md-4">
-            <div ba-panel ba-panel-title="Alunos" ba-panel-class="with-scroll">
-                <div ng-include="'app/pages/coordenador/alunos/contato-aluno.html'"></div>
-            </div>
+<div ng-repeat="aluno in data.alunos | filter: data.searchText">
+    <div class="col-md-4">
+        <div ba-panel ba-panel-title="Alunos" ba-panel-class="with-scroll">
+            <div ng-include="'app/pages/coordenador/alunos/contato-aluno.html'"></div>
         </div>
     </div>
 </div>
