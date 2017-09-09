@@ -18,7 +18,7 @@ angular.module('BlurAdmin.pages.aluno.projeto')
         $scope.concluirEtapa = concluirEtapa;
         $scope.entregarEtapa = entregarEtapa;
         $scope.todoList = [];
-        
+        $scope.data.projeto = {};
         $scope.data.listSegmento = [
             {descricao:"Mobile",value:1}
             ,{descricao:"Web",value:2}
@@ -27,14 +27,6 @@ angular.module('BlurAdmin.pages.aluno.projeto')
             ,{descricao:"Gerência/Infra Redes",value:5}
             ,{descricao:"Testes",value:6}
         ];
-        $scope.selectWithSearchItems = [
-        {label: 'Hot Dog, Fries and a Soda', value: 1},
-        {label: 'Burger, Shake and a Smile', value: 2},
-        {label: 'Sugar, Spice and all things nice', value: 3},
-        {label: 'Baby Back Ribs', value: 4}
-        ];
-
-        $scope.data.projeto = {};
         
         $apiService.projeto.GetByAluno($scope.data.aluno.matricula)
         .then(function(projeto){

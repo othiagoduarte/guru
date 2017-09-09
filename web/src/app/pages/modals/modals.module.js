@@ -9,7 +9,7 @@
     function modalservice($uibModal) {
 
         this.detalhar = function (modalData) {
-            $uibModal.open({
+            return $uibModal.open({
                 animation: true,
                 templateUrl: modalData.template,
                 size: modalData.size || 'md',
@@ -33,7 +33,7 @@
         }
  
         this.solicitar = function ( al , prof) {
-            $uibModal.open({
+            return $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/modals/template/solicitacaoOrientacao.html',
                 size: 'md',
@@ -47,7 +47,7 @@
 
         this.solicitacaoOrientacaoDetalhes = function (sol) {    
             
-            $uibModal.open({
+            return $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/modals/template/SolicitacaoOrientacaoDetalhes.html',
                 size: 'md',
@@ -59,7 +59,7 @@
         }
         
         this.informacao = function (ret) {    
-            $uibModal.open({
+            return $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/modals/template/informacao.html',
                 size: 'sm',
@@ -71,7 +71,7 @@
         }
         
         this.atencao = function (ret) {    
-            $uibModal.open({
+            return $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/modals/template/atencao.html',
                 size: 'sm',
@@ -141,10 +141,10 @@
                     $modalservice.informacao(retorno);
                     fechar();
                 })
-                .catch(function(data) {
+                .catch(function(response) {
                     retorno.titulo = "Atenção";
-                    retorno.mensagem = "Não foi possivel enviar solicitacao" + data.retorno;
-                    console.log('Repos error',data);
+                    retorno.mensagem = response.data.message || "Não foi possivel enviar solicitacao";
+                    console.log(response);
                     $modalservice.atencao(retorno);
                     fechar();
                 });
