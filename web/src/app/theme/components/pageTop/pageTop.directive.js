@@ -16,8 +16,10 @@
       controller: pageTopCtrl
     };
   }
-  function pageTopCtrl($scope,USERID){
+  function pageTopCtrl($scope,USERID,$USERDATA){
     $scope.USERID = USERID;
+    $scope.perfil = $USERDATA.user.perfil;
+    $scope.nomeUsuario = $USERDATA.nome;
   }
 
 })();

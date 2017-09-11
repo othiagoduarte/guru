@@ -30,7 +30,7 @@ module.exports = function(app)
  	
 	async function getAll (req, res) {
 		try {
-			const retorno = await ProfessorBd.find();
+			const retorno = await ProfessorBd.find({"user.perfil":"PROFESSOR"});
 			return R.sucesso(retorno);
 		} catch (error) {
 			return R.erroServidor(error);						

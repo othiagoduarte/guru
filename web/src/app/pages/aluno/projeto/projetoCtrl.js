@@ -34,10 +34,6 @@ angular.module('BlurAdmin.pages.aluno.projeto')
                 $scope.data.projeto = projeto.data;
                 $scope.data.isAluno = true;
             }
-            else{
-                $scope.data.projeto.aluno = $scope.data.aluno;
-                $apiService.projeto.Add($scope.data.projeto);
-            }
         })
         .catch(function (){
             $scope.data.projeto.aluno = $scope.data.aluno;
