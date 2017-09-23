@@ -14,13 +14,13 @@ module.exports = function(app)
 	async function save(req, res){
 		try {
 			const projeto = req.body;
+			console.log('projeto',projeto);
 			const query = {"_id":projeto._id};
 			const retorno = await Projeto.findOneAndUpdate(query,projeto);
 			return R.sucesso(retorno);
 		} catch (error) {
 			return R.erroServidor(error);
-		}
-	
+		}	
 	};
 
 	async function addEtapa(req, res){
@@ -62,6 +62,7 @@ module.exports = function(app)
 	async function add(req, res){
 		try {
 			const projeto = req.body;
+			console.log('projeto',projeto)		
 			const retorno = await Projeto.create(projeto);
 			return R.sucesso(retorno);
 		} catch (error) {

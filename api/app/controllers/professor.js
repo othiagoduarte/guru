@@ -44,7 +44,8 @@ module.exports = function(app)
 			const professorAtualizado = {
 				nome:professor.nome, 
 				titulo: professor.titulo, 
-				vagas:professor.vagas			
+				vagas:professor.vagas,
+				skills: professor.skills
 			}
 			const retorno = await ProfessorBd.findOneAndUpdate(query, professorAtualizado,{ upsert: true, new: true })
 			return R.sucesso(retorno);

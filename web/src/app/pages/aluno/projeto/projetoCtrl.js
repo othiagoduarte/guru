@@ -45,10 +45,18 @@ angular.module('BlurAdmin.pages.aluno.projeto')
         }    
         
         function salvarProjeto(){
-            $apiService.projeto.Save($scope.data.projeto)
-            .then(function(projeto){
-                $modalservice.informacao({titulo:"Sucesso",mensagem:"Sucesso ao savlar o projeto"});
-            });
+            if($scope.data.projeto._id){
+                $apiService.projeto.Save($scope.data.projeto)
+                .then(function(projeto){
+                    $modalservice.informacao({titulo:"Sucesso",mensagem:"Sucesso ao savlar o projeto"});
+                });    
+            }else{
+                $scope.data.projeto.aluno = $scope.data.aluno; 
+                $apiService.projeto.Add($scope.data.projeto)
+                .then(function(projeto){
+                    $modalservice.informacao({titulo:"Sucesso",mensagem:"Sucesso ao savlar o projeto"});
+                });    
+            }
         }
 
         function criarEtapa(pDados){

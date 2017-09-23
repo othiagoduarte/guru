@@ -75,6 +75,7 @@
 	}
 	
 	function addOrientadorCtrl(pDados, fecharModal){
+		pDados.orientador.skills = builderSkill(pDados.orientador.skills); 	
 		$apiService.professor.Add(pDados.orientador)
 		.then(function(){
         	$modalservice.informacao({titulo:"Sucesso",mensagem:"Sucesso ao cadastrar professor!"});

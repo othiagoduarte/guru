@@ -1,11 +1,14 @@
 {
   "name": "GuruWeb",
   "version": "0.0.1",
+  "engines": {
+    "node": "7.7.1"
+  },
   "description": "Guru Web - Gerenciador de TCC",
   "main": "server.js",
   "scripts": {
-    "start": "set DATA_BASE=mongodb://master:master@ds121674.mlab.com:21674/gurudb-prod && npm run db-prod && npm run build && node server.js",
-    "dev": "set DATA_BASE=mongodb://master:master@ds135790.mlab.com:35790/gurudb && npm run build && nodemon server.js",
+    "start": "npm run build && node server.js",
+    "dev": "npm run build && nodemon server-dev.js",
     "build": "npm install && babel app -d app-compiled ",
     "lint": "eslint server.js"
   },

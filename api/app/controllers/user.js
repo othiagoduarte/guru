@@ -34,7 +34,6 @@ module.exports = function(app)
             let userData = null;
             
             user = await UserBd.findOne({"email" : req.body.email});
-
             if(! validarUsuario(user, req.body.password)){
                 return R.naoAutorizado("e-mail ou senha inválido");
             } 

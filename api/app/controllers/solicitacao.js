@@ -13,7 +13,7 @@ module.exports = function(app)
 		try {
 			let _solicitacao = req.body;
 			let query = {"_id":_solicitacao._id};
-
+			/**VERIFICAR SE O ALUNO JÁ POSSUI UMA SOLICITAÇÂO APROVADA - SE SIM A SOLICITAÇÃO SERÁ CANCELADA*/
 			const solicitacao = await SolicitacaoBd.findOneAndUpdate(query, _solicitacao);
 
 			if(_solicitacao.status.cod == "R"){

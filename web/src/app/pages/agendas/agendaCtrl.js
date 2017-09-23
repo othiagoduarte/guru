@@ -19,7 +19,7 @@ angular.module('BlurAdmin.pages.agenda')
     $scope.eventSource = {
             url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
             className: 'gcal-event',           // an option!
-            currentTimezone: 'America/Chicago' // an option!
+            currentTimezone: 'America/Bahia' // an option!
     };
     /* event source that contains custom events on the scope */
     $scope.events = [
@@ -126,11 +126,12 @@ angular.module('BlurAdmin.pages.agenda')
         $scope.uiConfig.calendar.dayNamesShort = ["Vas", "Hét", "Kedd", "Sze", "Csüt", "Pén", "Szo"];
         $scope.changeTo= 'English';
       } else {
-        $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        $scope.uiConfig.calendar.dayNames = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo"];
         $scope.uiConfig.calendar.dayNamesShort = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
         $scope.changeTo = 'Hungarian';
       }
     };
+    $scope.changeLang();
     /* event sources array*/
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];

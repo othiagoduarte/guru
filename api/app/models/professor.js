@@ -13,7 +13,10 @@ module.exports = function() {
         },
         skills :[String]
         ,
-        disponivel: Boolean,
+        disponivel: {
+            type:Boolean,
+            default:true,            
+        },
         vagas:{
             type:Number,
             default:1,
