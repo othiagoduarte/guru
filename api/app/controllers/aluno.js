@@ -79,6 +79,5 @@ module.exports = function(app)
 			return R.erroServidor(error);							
 		}
 	}
-
 	return {getByMatricula, getByOrientando, getAll, getByUser, add}
 };

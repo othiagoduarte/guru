@@ -37,4 +37,11 @@ module.exports = function(app)
         const R = await ctrl.enviarFeedback(req, res);
         res.status(R.status).jsonp(R.data);
     });	
+    
+    app.get('/projeto/feedbacks/:id', async (req, res) =>{
+        const R = await ctrl.getFeedbacks(req, res);
+        res.status(R.status).jsonp(R.data);
+    });	
+
+    
 };

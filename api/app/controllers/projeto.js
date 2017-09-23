@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const _ = require('underscore');
 module.exports = function(app)
 {
 	const Projeto = app.models.projeto;	
@@ -80,6 +81,42 @@ module.exports = function(app)
 			return R.erroServidor(error);															
 		}		
 	}
-	
-	return {save, add, getByAluno, addEtapa, editarEtapa, delEtapa, enviarFeedback}	
+
+	async function getFeedbacks(req, res){
+		try {
+			const aggregate = {
+				$match : { "aluno._id": req.params.id},
+				$unwind : "$etapas",
+				$group : { _id:null , etapas:{$addToSet:"$etapas"}},
+				$project : {_id: false, etapas: true},
+			}
+			const projeto = await Projeto.aggregate(
+				{$match: aggregate.$match},
+				{$unwind: aggregate.$unwind},
+				{$group: aggregate.$group},
+				{$project: aggregate.$project}
+			);
+
+			return R.sucesso(builderFeedbacks(projeto));	
+		} catch (error) {
+			return R.erroServidor(error);			
+		}		
+	}
+
+	function builderFeedbacks(projeto){
+		const feedbacks =  _.flatten(_.map(projeto[0].etapas, etapa =>{		
+			return _.map(etapa.feedback, feedback =>{
+				return {
+						detalhe: feedback.detalhe,
+						assunto: feedback.assunto,
+						_id: feedback._id,
+						envio: feedback.envio,
+						etapa: etapa.titulo
+					}	
+			})
+		}));
+		return _.sortBy(feedbacks, feedback => feedback.envio).reverse();
+	}
+
+	return {save, add, getByAluno, addEtapa, editarEtapa, delEtapa, enviarFeedback, getFeedbacks}	
 };
