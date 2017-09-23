@@ -58,10 +58,10 @@
          <button ng-if="data.comunicado.tipo == 2" class="btn btn-primary" >
          Upload! <i class="ion-document"></i>
          </button>
-         <button ng-if="data.comunicado._id" type="button" class="btn btn-danger" ng-click="$dismiss()">
+         <button ng-if="data.comunicado._id" type="button" class="btn btn-danger" ng-click="executar2(data.comunicado)">
          Excluir
          </button>
-         <button type="button" class="btn btn-info" ng-click="$dismiss()">
+         <button type="button" class="btn btn-info" ng-click="executar(data.comunicado)">
          Salvar
          </button>
 </div>

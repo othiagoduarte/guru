@@ -1,5 +1,24 @@
-<feedback>
-    <div class="row">
-
-    </div>
-</feedback>
+<div ba-panel>
+    <section id="cd-timeline" class="cd-container cssanimations">
+        <div ng-repeat="comunicado in data.comunicados" class="cd-timeline-block">
+        <div class="cd-timeline-img">
+            <div class="kameleon-icon with-round-bg primary"><img ng-src="{{::( traduzTipo(comunicado.tipo) | kameleonImg )}}"></div>
+        </div>
+        <div class="cd-timeline-content primary">
+            <h5>{{comunicado.titulo}}</h5>
+            <p>{{comunicado.comunicado}}</p>
+            <div ng-if="comunicado.url" >
+            <br>
+            <div>
+                <button class="btn btn-primary" ref="{{comunicado.url}}" target="_blank" >Download! <i class="ion-document"></i></button>          
+            </div>
+            </div>
+            <span class="cd-date">{{comunicado.data | date:'dd/MM/yyyy'}}</span>
+            <div ng-if="isCoordenador">
+            <br>
+                <button type="button" class="btn btn-default" ng-click="edtComunicado(comunicado)">Editar</button>
+            </div>
+        </div>
+        </div>
+    </section>
+</div>

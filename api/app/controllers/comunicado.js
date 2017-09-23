@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 module.exports = function(app)
 {
 	const ComunicadoBd = app.models.comunicado;		
@@ -15,8 +16,9 @@ module.exports = function(app)
 	async function save(req, res){
 		try {
 			const comunicado = req.body;
-			const query = {"_id":comunicado._id};
-			return retorno = await ComunicadoBd.findOneAndUpdate(query, comunicado,{ upsert: true, new: true });
+			const query = {"_id":mongoose.Types.ObjectId(comunicado._id)};
+			return R.sucesso(await ComunicadoBd.findOneAndUpdate(query, comunicado,{ upsert: true, new: true }));
+
 		} catch (error) {
 			return R.erroServidor(error);				
 		}
@@ -32,6 +34,16 @@ module.exports = function(app)
 			return R.erroServidor(error);							
 		}
 	}
+	
+	async function del(req, res){
+		try {
+			const idComunicado = req.params.id;
+			const query = {"_id":mongoose.Types.ObjectId(idComunicado)};
+			return R.sucesso(await ComunicadoBd.findOneAndRemove(query));
+		} catch (error) {
+			return R.erroServidor(error);							
+		}
+	}
 
-	return { getAll, save, add}  
+	return { getAll, save, add, del}  
 }

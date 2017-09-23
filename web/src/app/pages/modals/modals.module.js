@@ -89,11 +89,13 @@
         $scope.func = param.func;
         $scope.func2 = param.func2;
         $scope.executar = function (fechar){
-            $scope.func($scope.data,fechar);
+            $scope.func($scope.data, fechar);
+        }
+        $scope.executar2 = function (fechar){
+            $scope.func2($scope.data, fechar);
         }
     }
-    
-
+ 
     /** @ngInject */
     function detalharCtrl($scope,param){
         $scope.data = param.data;

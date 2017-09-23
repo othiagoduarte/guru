@@ -1,7 +1,7 @@
 <div class="row" >
     <div class="xs-6 col-md-9">
-        <h3>{{professor.nome}}</h3>
-        <h6>{{professor.titulo}}</h6>
+        <h3>{{professor.nome | limitTo:20}}</h3>
+        <h6>{{professor.titulo| limitTo:20}}</h6>
     </div>
     <div class="xs-6 col-md-3">
         <div class="user-profile clearfix">

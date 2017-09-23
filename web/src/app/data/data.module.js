@@ -115,6 +115,15 @@ function Comunicado(pUrlApi, $http){
       Get : function(pId){
             return $http.get(pUrlApi + "/" + pId);            
       },
+      Add : function (pData){
+            return $http.post(pUrlApi, pData);              
+      },
+      Save : function (pData){
+            return $http.put(pUrlApi, pData);             
+      },
+      Delete : function (pId){
+            return $http.delete(pUrlApi + "/" + pId);            
+      }            
   }
 }
 function Contato(pUrlApi, $http){

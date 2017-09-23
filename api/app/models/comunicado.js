@@ -11,14 +11,16 @@ module.exports = function() {
         },
         tipo: {
             type: Number ,
-            default: 1
+            default: 1,
+            required: true            
         },
         url: {
             type: String
         },
         data:{ 
             type: Date, 
-            default: Date.now
+            default: Date.now,
+            
         } ,
     }));
 };

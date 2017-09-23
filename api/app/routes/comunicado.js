@@ -17,4 +17,9 @@ module.exports = function(app)
 		 const R = await ctrl.save(req, res);
 		 res.status(R.status).jsonp(R.data);
 	});
+	
+	app.delete('/comunicado/:id', async (req, res)=>{
+		const R = await ctrl.del(req, res);
+		res.status(R.status).jsonp(R.data);
+   });
 };

@@ -5,7 +5,7 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/api/server.js",
+            "program": "${workspaceRoot}/api/server-dev.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",
@@ -22,23 +22,10 @@
             "outDir": null
         },
         {
-            "name": "Attach",
-            "type": "node",
-            "request": "attach",
-            "port": 5858,
-            "address": "localhost",
-            "restart": false,
-            "sourceMaps": false,
-            "outDir": null,
-            "localRoot": "${workspaceRoot}",
-            "remoteRoot": null
-        },
-    
-        {
             "type": "node",
             "request": "attach",
             "name": "Attach to Process",
-            "port": 5858
+            "port": 21337            
         }
     ]
 }
