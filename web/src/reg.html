@@ -26,23 +26,32 @@
   <div class="auth-block">
     <h1>Recuperar Senha!</h1>
     <form class="form-horizontal">
-      <div class="form-group">
+      <div class="form-group" ng-if="!codigoEnviado">
         <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-10">
           <input type="email" class="form-control" ng-model="data.email" placeholder="Digite o e-mail cadastrado">
         </div>
       </div>
-      <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">CPF</label>
+      <div class="form-group" ng-if="codigoEnviado">
+        <label for="inputPassword3" class="col-sm-2 control-label">Código</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="data.cpf" placeholder="Ou digite seu cpf">
+          <input type="text" class="form-control" ng-model="data.cpf" placeholder="digite o código de acesso enviado para seu e-mail">
         </div>
+      </div>
+      <div class="form-group" ng-if="codigoEnviado">
+          <label for="inputPassword3" class="col-sm-2 control-label">Senha</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="data.cpf" placeholder="digite sua nova senha!">
+          </div>
       </div>
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button ng-click="recuperar()" class="btn btn-default btn-auth">Recuperar</button>
+        <div class="col-sm-4" ng-if="!codigoEnviado">
+          <button ng-click="solicitarCodigo()" class="btn btn-default btn-auth">Solicitar código</button>
         </div>
-      </div>
+        <div class="col-sm-4" ng-if="codigoEnviado">
+            <button ng-click="cadastrarSenha()" class="btn btn-default btn-auth">Cadastrar Nova Senha</button>
+        </div>
+      </div> 
     </form>
     <a href="auth.html" class="auth-link">Ou para entrar no Guru click aqui!</a>
   </div>
@@ -60,14 +69,14 @@
 var app = angular.module('Auth',[]);
 
 app.controller('loginCtrl', function($scope,$http,$window) {
-
-    $scope.recuperar = recuperar;
+    var url = "http://localhost:3008/";
+     //   url = "https://guru-web.herokuapp.com/";
+       // url = "http://guruweb-college.umbler.net/";
+    $scope.solicitarCodigo = solicitarCodigo;
+    $scope.codigoEnviado = false;
     $scope.data = {};
 
-    function recuperar(){
-        var url = "http://localhost:3008/";
-     //   url = "https://guru-web.herokuapp.com/";
-        url = "http://guruweb-college.umbler.net/";
+    function solicitarCodigo(){
         if($scope.data && $scope.data.email != "" || $scope.data.cpf !="" ){      
             $http.post(url + "user/recuperar", $scope.data)
             .then(sucessoRecuperar)
@@ -84,10 +93,12 @@ app.controller('loginCtrl', function($scope,$http,$window) {
     }
 
     function sucessoRecuperar(res){
-    	if(res.data.retorno){
-            alert(res.data.retorno);
-            $window.location.href ="/auth.html" ;
-        }       
+      debugger;
+      $scope.codigoEnviado = true;
+    	// if(res.data){
+      //       alert(res.data);
+      //       $window.location.href ="/auth.html" ;
+      //   }       
     }
 });
    </script>
