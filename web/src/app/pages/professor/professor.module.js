@@ -10,7 +10,6 @@
       modulos.push('BlurAdmin.pages.professor.mensagens');
       modulos.push('BlurAdmin.pages.professor.orientandos');
       modulos.push('BlurAdmin.pages.professor.orientacao');
-      modulos.push('BlurAdmin.pages.professor.feedback');
       return modulos;
   }
 })();
