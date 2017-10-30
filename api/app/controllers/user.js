@@ -84,6 +84,7 @@ module.exports = function(app)
     function builderAutenticacao(user, userData){
         const payload = {id: user.id};
         const token = jwt.encode(payload, cfg.jwtSecret);
+        userData.user.password = "************************";
         return {
             token: token, 
             user: user, 

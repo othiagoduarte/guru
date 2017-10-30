@@ -26,7 +26,6 @@ function fileModel ($parse) {
 function apiService($http,$URLAPI,FileUploader,$httpParamSerializer){
 
     var pUrlApi = $URLAPI;
-    //var pUrlApi = "https://guru-othiagoduarte.c9users.io/";
  
     this.aluno = Aluno(pUrlApi, $http);    
     this.contato = Contato(pUrlApi, $http);    
@@ -63,11 +62,8 @@ function Arquivo(pUrlApi,$http){
                         headers: {'Content-Type': undefined}
                   });
             },
-           addComunicado : function(pFile, pData){
-                  
-                  
+           addComunicado : function(pFile, pData){                 
                   var form = new FormData();
-
                   form.append('file', pFile);
                   form.append('comunicado', pData.comunicado);
                   
@@ -100,17 +96,19 @@ function Aluno(pUrlApi, $http){
       },
       add : function(pData){
             return $http.post(pUrlApi, pData);            
-      },
-
-       
+      },       
   }
 }
 
 function Comunicado(pUrlApi, $http){
   pUrlApi+= "comunicado";
   return {
-      GetAll : function(pData){
-            return $http.get(pUrlApi);            
+      GetAll : function(autores){
+            return $http.get(pUrlApi, {
+                  params:{
+                        autores: autores
+                  }
+            });            
       },
       Get : function(pId){
             return $http.get(pUrlApi + "/" + pId);            
@@ -410,82 +408,3 @@ function validarService(){
 }
 
 })();
-
-function l_professores(){
-
-  return [
- {nome:"Aline Campos",disponivel:true,titulo:"Mestre em Ciencia da Computação",skills: ["Agile","Scrum","Web"]},
- {nome:"Rafael Jeffman",disponivel:false,titulo:"Mestre em Ciencia da Computação",skills: ["Agile","Scrum","C++"]},
- {nome:"Luciano Zanus",disponivel:false,titulo:"Mestre em Ciencia da Computação",skills: ["Agile","Scrum"]},
- {nome:"Guilherme",disponivel:true,titulo:"Mestre em Ciencia da Computação",skills: ["Agile","Scrum"]},
- {nome:"James",disponivel:false,titulo:"Mestre em Ciencia da Computação",skills: ["Agile","Scrum"]},
- {nome:"Marcela",disponivel:false,titulo:"Mestre em Ciencia da Computação",skills: ["Agile","Scrum","Arduino","IOT"]},
- {nome:"Lossurdo",disponivel:true,titulo:"Mestre em Ciencia da Computação",skills: ["Agile","Scrum"]},
- {nome:"Ries",disponivel:false,titulo:"Mestre em Ciencia da Computação",skills: ["Agile","Scrum","Java"]},
- {nome:"Elias Maluco",disponivel:true,titulo:"Mestre em cambiarras",skills: ["Agile","Scrum","XGH"]},
-    
-  ]
-}
-
-function l_alunos(){
-
-  return [
-      {nome:"Thiago Duarte",Turma:"TCC1",matricula:"631320232"},
-  ];
-}
-function l_skills(){
-
-  return [
-      {nome:"Agile"},
-      {nome:"Scrum"},
-      {nome:"Android"},
-      {nome:"Web"},
-      {nome:"Java"},
-      {nome:"XGH"},
-      {nome:"IOT"},
-      {nome:"C++"},
-      {nome:"Arduino"},
-      {nome:"Extreme Programming"},
-      {nome:"NoSQL"},
-      {nome:"Firebase"},
-      {nome:"Orientação a objetos"},
-      {nome:"HTML5"},
-      {nome:"CodeIgniter"},
-      {nome:"Bootstrap"},
-      {nome:"PHP"},
-      {nome:"C#"},
-      {nome:"MVP"}    
-  ]
-}
-/*
-function carregarDados(){
-
-      angular.forEach(l_skills(), function(item) {
-      
-      $apiService.skill.Add(item).then(
-      function(data) {
-            console.log(data);
-      } , 
-      function(error) { 
-            console.log("Error:", error);
-      });
-      
-}); 
-
-angular.forEach(l_professores(), function(item) {
-      
-      $apiService.professor.Save(item).then(
-      function(data) {
-            console.log(data);
-      } , 
-      function(error) { 
-            console.log("Error:", error);
-      });
-      
-}); 
-
-}
-
-//carregarDados();
-
-*/

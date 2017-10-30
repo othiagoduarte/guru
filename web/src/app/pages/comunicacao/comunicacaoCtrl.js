@@ -8,18 +8,22 @@
 		var timelineBlocks = $('.cd-timeline-block');
 		var offset = 0.8;
 
-		$scope.isCoordenador = sessionStorage.perfil == "COORDENADOR";
+		$scope.podeIncluirComunicado = sessionStorage.perfil == "COORDENADOR" || sessionStorage.perfil == "PROFESSOR";
 		$scope.traduzTipo = traduzTipo;
 		$scope.addComunicado = addComunicado;
 		$scope.edtComunicado = edtComunicado;
-		$scope.data = {};
-		$scope.data.comunicados = [];
+		$scope.autor = obterAutor();
 
+		console.log($scope.usuario);
+
+		$scope.data = {};
+		$scope.data.comunicados = [];		
 		$scope.data.listTipo = [
 			{ descricao: "Aviso", value: 1 }
 			, { descricao: "Arquivo", value: 2 }
 			, { descricao: "Dica", value: 3 }
 		];
+		
 		init();
 		
 		function apply(){
@@ -33,8 +37,20 @@
 			buscarTodosComunicados();
 		}
 
+		function buscarListaAutoresComunicados(){
+			var autores = ["COORDENADOR"] ;	
+			if(!verificaPerfilCoordenador()){
+				if(verificaPerfilProfessor()){
+					autores.push(obterIdUsuario());					
+				}else{
+					autores.push(obterIdOrientador());										
+				}
+			}
+			return autores;
+		}
+
 		function buscarTodosComunicados() {
-			$apiService.comunicado.GetAll()
+			$apiService.comunicado.GetAll(buscarListaAutoresComunicados())
 				.then(function (comunicados) {
 					$scope.data.comunicados = comunicados.data;
 					apply();
@@ -61,6 +77,33 @@
 				size: 'lg',
 				template: 'app/pages/comunicacao/comunicado-modal.html'
 			});
+		}
+
+		function verificaPerfilProfessor(){
+			return sessionStorage.perfil == "PROFESSOR"
+		}
+		
+		function verificaPerfilCoordenador(){
+			return sessionStorage.perfil == "COORDENADOR";
+		}
+
+		function obterUsuario(){
+			return JSON.parse(sessionStorage.userData);
+		}
+
+		function obterIdUsuario(){
+			return obterUsuario()._id;
+		}
+
+		function obterAutor(){
+			if(verificaPerfilCoordenador()) return "COORDENADOR";
+			if(verificaPerfilProfessor()) return obterIdUsuario();
+			return null;
+		}
+
+		function obterIdOrientador(){
+			var usuario = obterUsuario();
+			return usuario.orientador._id;
 		}
 
 		function excluirComunicadoCtrl(pDados, fecharModal) {
@@ -95,6 +138,11 @@
 
 		function addComunicadoCtrl(pDados, fecharModal) {
 			var modal = this;
+
+			if(verificaPerfilProfessor()){
+				pDados.comunicado.autor = obterIdUsuario();				
+			} 
+		
 			$apiService.comunicado.Add(pDados.comunicado)
 				.then(function (comunicado) {
 					$modalservice.informacao({ titulo: "Mensagem", mensagem: "Sucesso ao criar comunicado" });

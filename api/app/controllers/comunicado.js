@@ -6,7 +6,8 @@ module.exports = function(app)
 
 	async function getAll (req, res) {
 		try {
-			const retorno = await ComunicadoBd.find({});
+			const autores = req.query.autores;
+			const retorno = await ComunicadoBd.find({autor:{$in:autores}});
 			return R.sucesso(retorno);			
 		} catch (error) {
 			return R.erroServidor(error);	

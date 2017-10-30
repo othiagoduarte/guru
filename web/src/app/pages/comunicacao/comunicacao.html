@@ -1,6 +1,6 @@
 <div ba-panel>
 <h3>Comunicados e avisos importantes!</h3>
- <div ng-if="isCoordenador">
+ <div ng-if="podeIncluirComunicado">
   <button type="button" class="btn btn-default" ng-click="addComunicado()">Incluir</button>
  </div>
 </div>
@@ -11,6 +11,8 @@
           <div class="kameleon-icon with-round-bg primary"><img ng-src="{{::( traduzTipo(comunicado.tipo) | kameleonImg )}}"></div>
         </div>
         <div class="cd-timeline-content primary">
+          <h5 ng-if="comunicado.autor == 'COORDENADOR'">[Coordenação]</h5> 
+          <h5 ng-if="comunicado.autor != 'COORDENADOR'">[Orientador]</h5>           
           <h5>{{comunicado.titulo}}</h5>
           <p>{{comunicado.comunicado}}</p>
           <div ng-if="comunicado.url" >
@@ -20,7 +22,7 @@
             </div>
           </div>
           <span class="cd-date">{{comunicado.data | date:'dd/MM/yyyy'}}</span>
-          <div ng-if="isCoordenador">
+          <div ng-if="podeIncluirComunicado && autor == comunicado.autor">
             <br>
               <button type="button" class="btn btn-default" ng-click="edtComunicado(comunicado)">Editar</button>
           </div>

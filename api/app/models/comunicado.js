@@ -22,5 +22,9 @@ module.exports = function() {
             default: Date.now,
             
         } ,
+        autor:{
+            type:String,
+            default:"COORDENADOR"
+        }
     }));
 };
