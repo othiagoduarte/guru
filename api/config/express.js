@@ -13,7 +13,7 @@ module.exports = function() {
 	app.set('port',process.env.PORT || 3008);
 	
 	app.use('/', express.static('./public'));
-	app.use('/download', express.static('../download'));
+	app.use('/download', express.static('./download'));
 	
 	app.use(bodyParser.urlencoded({extended: true}));
 	app.use(bodyParser.json());
