@@ -55,3 +55,4 @@ web/bower_components
 web/.tmp/serve
 web/.tmp/
 api/public
+api/download
