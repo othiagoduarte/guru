@@ -22,7 +22,6 @@ module.exports = function() {
 	app.use(passport.session());
 	app.use(cookieParser());
 	app.use(expressSession({secret: 'guru_db'}));
-
 	
 	app.use(function(req, res, next){
 	  res.header("Access-Control-Allow-Origin", "*");
