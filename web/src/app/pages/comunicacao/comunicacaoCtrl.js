@@ -43,7 +43,7 @@
 				if(verificaPerfilProfessor()){
 					autores.push(obterIdUsuario());					
 				}else{
-					autores.push(obterIdOrientador());										
+					autores.push(obterIdOrientador() || "");										
 				}
 			}
 			return autores;
@@ -103,7 +103,7 @@
 
 		function obterIdOrientador(){
 			var usuario = obterUsuario();
-			return usuario.orientador._id;
+			return usuario.orientador ? usuario.orientador._id : null;
 		}
 
 		function excluirComunicadoCtrl(pDados, fecharModal) {
