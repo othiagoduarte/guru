@@ -1,18 +1,25 @@
-<div ba-panel>
-    <h3>Feedback sobre a conclusão das etapas do projeto!</h3>
-</div>
-<div ba-panel>
-    <section id="cd-timeline" class="cd-container cssanimations">
-        <div ng-repeat="feedback in data.feedbacks" class="cd-timeline-block">
-        <div class="cd-timeline-img">
-            <div class="kameleon-icon with-round-bg primary"><img ng-src="{{::( 'Paper-Plane' | kameleonImg )}}"></div>
-        </div>
-        <div class="cd-timeline-content primary">
-            <h4>{{feedback.etapa}}</h4>
-            <h5>{{feedback.assunto}}</h5>            
-            <p>{{feedback.detalhe}}</p>
-            <span class="cd-date">{{feedback.envio | date:'dd/MM/yyyy'}}</span>
-        </div>
-        </div>
-    </section>
-</div>
+<span ng-if="!data.feedbacks">
+        <div class="alert bg-info closeable" role="alert"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Informação </strong>Você não possui feedback!
+        </div>    
+</span>
+<span ng-if="data.feedbacks">
+    <div ba-panel>
+        <h3>Feedback sobre a conclusão das etapas do projeto!</h3>
+    </div>
+    <div ba-panel>
+        <section id="cd-timeline" class="cd-container cssanimations">
+            <div ng-repeat="feedback in data.feedbacks" class="cd-timeline-block">
+            <div class="cd-timeline-img">
+                <div class="kameleon-icon with-round-bg primary"><img ng-src="{{::( 'Paper-Plane' | kameleonImg )}}"></div>
+            </div>
+            <div class="cd-timeline-content primary">
+                <h4>{{feedback.etapa}}</h4>
+                <h5>{{feedback.assunto}}</h5>            
+                <p>{{feedback.detalhe}}</p>
+                <span class="cd-date">{{feedback.envio | date:'dd/MM/yyyy'}}</span>
+            </div>
+            </div>
+        </section>
+    </div>
+</span>
