@@ -1,5 +1,5 @@
-# guru - MEAN Stack
-Guru Academico - Sistema de Gestão os processos do Trabalho de Conclusão de Curso
+# Guru - MEAN Stack
+Guru Academico - Sistema de Gestão os processos do Trabalho de Conclusão de Curso usando a MEAN Stack
 
 Versão beta disponível em https://guru-web.herokuapp.com/ 
 
